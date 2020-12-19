@@ -237,16 +237,22 @@ return [
             'topnav' => true,
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
             'text'        => 'Dashboard',
             'url'         => 'dashboard',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
             'label'       => 1,
             'label_color' => 'success',
+        ],
+        ['header' => 'ITINERARY MANAGEMENT'],
+        [
+            'text' => 'Premium Itinerary',
+            'icon' => 'fas fa-fw fa-star',
+            'url' => 'itinerary',
+        ],
+        [
+            'text' => 'Free Itinerary',
+            'icon' => 'far fa-fw fa-star',
+            'url' => 'free-itinerary'
         ],
         ['header' => 'account_settings'],
         [

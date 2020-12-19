@@ -11,6 +11,10 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+
+    // AdminLTE
+    require('../../public/vendor/overlayScrollbars/js/OverlayScrollbars.min');
+    require('../../public/vendor/adminlte/dist/js/adminlte.min');
 } catch (e) {}
 
 /**

@@ -1,8 +1,13 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// AdminLTE
+@import '../../public/vendor/fontawesome-free/css/all.min.css';
+@import '../../public/vendor/adminlte/dist/css/adminlte.min.css';
+@import '../../public/vendor/overlayScrollbars/css/OverlayScrollbars.min.css';

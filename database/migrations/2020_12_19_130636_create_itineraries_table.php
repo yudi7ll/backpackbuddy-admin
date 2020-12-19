@@ -17,8 +17,8 @@ class CreateItinerariesTable extends Migration
             $table->id();
             $table->string('place_name');
             $table->string('price');
-            $table->string('excerpt');
-            $table->string('description');
+            $table->string('excerpt')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

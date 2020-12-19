@@ -12,8 +12,8 @@ try {
 
     require('bootstrap');
 
-    // AdminLTE
-    require('../../public/vendor/overlayScrollbars/js/OverlayScrollbars.min');
+    require('datatables.net-bs4');
+    require('overlayscrollbars');
     require('../../public/vendor/adminlte/dist/js/adminlte.min');
 } catch (e) {}
 

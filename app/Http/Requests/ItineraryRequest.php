@@ -25,7 +25,7 @@ class ItineraryRequest extends FormRequest
     {
         return [
             'place_name' => 'required|string|max:255',
-            'price' => 'required|integer|max:100',
+            'price' => 'required|integer',
             'excerpt' => 'string|nullable',
             'description' => 'string|nullable',
         ];

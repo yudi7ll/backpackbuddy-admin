@@ -15,9 +15,17 @@
 @import '~overlayscrollbars/css/OverlayScrollbars.min.css';
 @import '../../public/vendor/adminlte/dist/css/adminlte.min.css';
 
+html {
+    font-family: Roboto, sans-serif;
+}
+
 section {
     @extend .bg-white;
     @extend .p-4;
     @extend .rounded;
     @extend .shadow-sm;
+}
+
+.title {
+    font-size: 1.8em;
 }

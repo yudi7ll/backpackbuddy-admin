@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ItineraryRequest;
 use App\Itinerary;
-use Illuminate\Http\Request;
 
 class ItineraryController extends Controller
 {
+    private $itinerary;
+
     /**
      * Create a new controller instance
      *
@@ -26,7 +27,9 @@ class ItineraryController extends Controller
      */
     public function index()
     {
-        return view('itinerary.index', [ 'itineraries' => $this->itinerary->all() ]);
+        $itineraries = $this->itinerary->all();
+
+        return view('itinerary.index', compact('itineraries'));
     }
 
     /**
@@ -47,6 +50,18 @@ class ItineraryController extends Controller
     public function store(ItineraryRequest $request)
     {
         $this->itinerary->create($request->all());
+
+        return redirect()->back();
+    }
+
+    /**
+     * Update an existing data
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function update(ItineraryRequest $request, $id)
+    {
+        $this->itinerary->find($id)->update($request->all());
 
         return redirect()->back();
     }

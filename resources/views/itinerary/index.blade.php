@@ -69,7 +69,7 @@
 
         // edit data
         $('#itinerary-modal').on('show.bs.modal', function (e) {
-            const allInput = e.relatedTarget.querySelectorAll('input');
+            const allInput = $(e.relatedTarget).find('input');
             const modal = $(this);
 
             // insert all hidden input to modal

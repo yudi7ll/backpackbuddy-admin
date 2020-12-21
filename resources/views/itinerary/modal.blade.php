@@ -38,6 +38,10 @@
                 </form>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-warning mr-auto" onclick="confirm('Reset form?') && document.querySelector('form').reset()">
+                    <i class="fa fa-fw fa-retweet"></i>
+                    Reset
+                </button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     <i class="fa fa-fw fa-ban"></i>
                     Close

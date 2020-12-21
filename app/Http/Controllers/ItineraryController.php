@@ -55,13 +55,25 @@ class ItineraryController extends Controller
     }
 
     /**
-     * Update an existing data
+     * Update a specified data
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function update(ItineraryRequest $request, $id)
     {
         $this->itinerary->find($id)->update($request->all());
+
+        return redirect()->back();
+    }
+
+    /**
+     * Remove a specified data
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function destroy($id)
+    {
+        $this->itinerary->destroy($id);
 
         return redirect()->back();
     }

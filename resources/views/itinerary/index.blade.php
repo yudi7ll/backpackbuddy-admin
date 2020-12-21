@@ -27,7 +27,7 @@
                         <td class="text-center">
                             <span class="bg-success rounded py-1 px-3">Published</span>
                         </td>
-                        <td class="text-right">
+                        <td class="text-center">
                             <button type="button" id="edit-btn" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#itinerary-modal" data-action="{{ route('itinerary.update', $itinerary->id) }}">
                                 <input type="hidden" id="input-place_name" value="{{ $itinerary->place_name }}" />
                                 <input type="hidden" id="input-price" value="{{ $itinerary->price }}" />
@@ -35,9 +35,13 @@
                                 <input type="hidden" id="input-description" value="{{ $itinerary->description }}" />
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </button>
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-fw fa-trash"></i>
-                            </button>
+                            <form id="delete-form" class="d-inline-block m-0" action="{{ route('itinerary.destroy', $itinerary->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" onclick="confirm('Are you sure?') && $('#delete-form').submit()" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-fw fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
@@ -73,6 +77,7 @@
                 modal.find(`#${item.id}`).val(item.value);
             });
 
+            // change action form
             if (allInput.length) {
                 $('#itinerary-form').attr('action', $(e.relatedTarget).data('action'))
                 $('input[name="_method"]').val('PUT')

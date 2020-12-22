@@ -10,7 +10,6 @@
             <div class="modal-body">
                 <form id="itinerary-form" action="{{ route('itinerary.store') }}" method="POST">
                     @csrf
-                    @method('PUT')
                     <div class="form-group">
                         <label for="input-place_name" class="col-form-label">Place Name:</label>
                         <input type="text" class="form-control @error('place_name') is-invalid @enderror" id="input-place_name" name="place_name" value="{{ old('place_name') }}" />

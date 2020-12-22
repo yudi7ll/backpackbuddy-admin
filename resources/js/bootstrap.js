@@ -13,6 +13,7 @@ try {
     require('bootstrap');
 
     require('datatables.net-bs4');
+    require('icheck-bootstrap');
     require('overlayscrollbars');
     require('../../public/vendor/adminlte/dist/js/adminlte.min');
 } catch (e) {}

@@ -13,4 +13,12 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [ 'name', 'slug' ];
+
+    /**
+     * Get the Itinerary that belongs to the category.
+     */
+    public function itineraries()
+    {
+        return $this->belongsToMany('App\Itinerary');
+    }
 }

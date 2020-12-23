@@ -14,4 +14,12 @@ class Itinerary extends Model
     protected $fillable = [
         'place_name', 'price', 'excerpt', 'description',
     ];
+
+    /**
+     * Get the category for the Itinerary
+     */
+    public function categories()
+    {
+        return $this->belongsToMany('App\Category');
+    }
 }

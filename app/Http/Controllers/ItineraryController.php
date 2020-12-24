@@ -60,7 +60,7 @@ class ItineraryController extends Controller
         // store the data to database
         $this->data = $this->itinerary->create($requestData);
 
-        // loop the categories data then attach it to current data
+        // store the request categories then take the id
         $categoryId = collect($request->categories)->map(function ($c) {
             return $this->category->firstOrCreate([
                 'name' => $c,
@@ -97,7 +97,7 @@ class ItineraryController extends Controller
         // update itinerary
         $this->data->update($request->except('categories'));
 
-        // update categories
+        // update the request categories then take the id
         $categoryId = collect($request->categories)->map(function ($c) {
             return $this->category->firstOrCreate([
                 'name' => $c,

@@ -1,5 +1,5 @@
 <div class="modal fade" id="itinerary-modal" tabindex="-1" aria-labelledby="itinerary-modal-label" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="itinerary-modal-label">Add New Itinerary</h5>
@@ -10,6 +10,7 @@
             <div class="modal-body">
                 <form id="itinerary-form" action="{{ route('itinerary.store') }}" method="POST">
                     @csrf
+                    @method('POST')
                     <div class="form-group">
                         <label for="input-place_name" class="col-form-label">Place Name:</label>
                         <input type="text" class="form-control @error('place_name') is-invalid @enderror" id="input-place_name" name="place_name" value="{{ old('place_name') }}" />
@@ -17,6 +18,18 @@
                         @error('place_name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="input-category">Category:</label>
+                        <div>
+                            <select name="categories[]" id="input-category" multiple style="width: 100%;">
+                                @foreach (\App\Category::all() as $category)
+                                    <option value="{{ $category->name }}">
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="input-price" class="col-form-label">Price:</label>
@@ -33,6 +46,12 @@
                     <div class="form-group">
                         <label for="input-description" class="col-form-label">Description:</label>
                         <textarea class="form-control" id="input-description" rows="5" name="description">{{ old('description') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <select class="custom-select" name="is_published" id="input-is_published">
+                            <option value="1">Published</option>
+                            <option value="0">Draft</option>
+                        </select>
                     </div>
                 </form>
             </div>

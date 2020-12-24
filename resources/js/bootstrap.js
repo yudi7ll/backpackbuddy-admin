@@ -15,6 +15,7 @@ try {
     require('datatables.net-bs4');
     require('icheck-bootstrap');
     require('overlayscrollbars');
+    require('select2');
     require('../../public/vendor/adminlte/dist/js/adminlte.min');
 } catch (e) {}
 

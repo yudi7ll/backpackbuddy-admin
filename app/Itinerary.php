@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Str;
 
 class Itinerary extends Model
 {
@@ -12,7 +13,7 @@ class Itinerary extends Model
      * @var array
      */
     protected $fillable = [
-        'place_name', 'price', 'excerpt', 'description',
+        'place_name', 'categories', 'price', 'excerpt', 'description',
     ];
 
     /**

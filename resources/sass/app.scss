@@ -9,6 +9,8 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~icheck-bootstrap/icheck-bootstrap.css';
 
+@import '~select2/dist/css/select2.css';
+
 // Datatables
 @import '~datatables.net-bs4/css/dataTables.bootstrap4.min.css';
 
@@ -16,7 +18,7 @@
 @import '~overlayscrollbars/css/OverlayScrollbars.min.css';
 @import '../../public/vendor/adminlte/dist/css/adminlte.min.css';
 
-html {
+body {
     font-family: Roboto, sans-serif;
 }
 

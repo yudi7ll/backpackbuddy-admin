@@ -15,6 +15,7 @@
                 <tr class="text-center">
                     <th>Place Name</th>
                     <th>Price</th>
+                    <th>Category</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -24,6 +25,7 @@
                     <tr>
                         <td>{{ $itinerary->place_name }}</td>
                         <td class="text-right">Rp. {{ number_format($itinerary->price, 0, ',', '.') }}</td>
+                        <td>{{ $itinerary->categories->pluck('name')->join(', ') }}</td>
                         <td class="text-center">
                             <span class="bg-success rounded py-1 px-3">Published</span>
                         </td>
@@ -73,7 +75,7 @@
             const modal = $(this);
 
             // insert all hidden input to modal
-            [].map.call(allInput, item => {
+            [].forEach.call(allInput, item => {
                 modal.find(`#${item.id}`).val(item.value);
             });
 

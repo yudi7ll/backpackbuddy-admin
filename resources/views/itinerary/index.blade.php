@@ -31,7 +31,7 @@
                         <td class="text-right text-nowrap">Rp. {{ number_format($itinerary->price, 0, ',', '.') }}</td>
                         <td class="text-nowrap">{{ $itinerary->categories->pluck('name')->join(', ') }}</td>
                         <td class="text-center text-nowrap">
-                            <span class="bg-success rounded py-1 px-3">Published</span>
+                            <small class="bg-success rounded py-1 px-3">Published</small>
                         </td>
                         <td class="text-center text-nowrap">
                             <a class="btn btn-primary btn-sm" href="{{ route('itinerary.edit', $itinerary) }}">

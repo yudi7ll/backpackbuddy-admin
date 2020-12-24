@@ -8,7 +8,7 @@
         {{ $itinerary->place_name }}
     </h1>
     <hr>
-    <section class="bg-light">
+    <section>
         <form action="{{ route('itinerary.update', $itinerary) }}" method="POST">
             @csrf
             @method('PUT')

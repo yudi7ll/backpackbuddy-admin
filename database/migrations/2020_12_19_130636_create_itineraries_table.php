@@ -19,6 +19,7 @@ class CreateItinerariesTable extends Migration
             $table->string('price');
             $table->string('excerpt')->nullable();
             $table->string('description')->nullable();
+            $table->boolean('is_published')->default(false);
             $table->timestamps();
         });
     }

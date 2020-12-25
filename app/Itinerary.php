@@ -13,7 +13,21 @@ class Itinerary extends Model
      * @var array
      */
     protected $fillable = [
-        'place_name', 'categories', 'price', 'excerpt', 'description',
+        'place_name',
+        'categories',
+        'price',
+        'excerpt',
+        'description',
+        'is_published',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_published' => 'boolean',
     ];
 
     /**

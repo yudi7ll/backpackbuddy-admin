@@ -13,26 +13,34 @@
         <table id="datatables" class="table table-striped table-bordered table-responsive">
             <thead>
                 <tr class="text-center">
-                    <th>Place Name</th>
+                    <th>No.</th>
+                    <th>Place name</th>
                     <th>Price</th>
                     <th>Category</th>
                     <th>Status</th>
+                    <th>Updated at</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($itineraries as $itinerary)
+                @foreach ($itineraries as $key => $itinerary)
                     <tr>
+                        <td>{{ $key+1 }}</td>
                         <td class="text-nowrap">
                             <a class="text-dark" href="{{ route('itinerary.edit', $itinerary) }}">
                                 {{ $itinerary->place_name }}
                             </a>
                         </td>
                         <td class="text-right text-nowrap">Rp. {{ number_format($itinerary->price, 0, ',', '.') }}</td>
-                        <td class="text-nowrap">{{ $itinerary->categories->pluck('name')->join(', ') }}</td>
+                        <td>{{ $itinerary->categories->pluck('name')->join(', ') }}</td>
                         <td class="text-center text-nowrap">
-                            <small class="bg-success rounded py-1 px-3">Published</small>
+                            @if ($itinerary->is_published)
+                                <small class="bg-success rounded py-1 px-3">Published</small>
+                            @else
+                                <small class="bg-secondary rounded py-1 px-3">Draft</small>
+                            @endif
                         </td>
+                        <td class="text-nowrap">{{ $itinerary->updated_at->diffForHumans() }}</td>
                         <td class="text-center text-nowrap">
                             <a class="btn btn-primary btn-sm" href="{{ route('itinerary.edit', $itinerary) }}">
                                 <i class="fa fa-fw fa-pencil-alt"></i>

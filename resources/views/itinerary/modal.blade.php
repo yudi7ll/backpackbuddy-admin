@@ -13,7 +13,13 @@
                     @method('POST')
                     <div class="form-group">
                         <label for="input-place_name" class="col-form-label">Place Name:</label>
-                        <input type="text" class="form-control @error('place_name') is-invalid @enderror" id="input-place_name" name="place_name" value="{{ old('place_name') }}" />
+                        <input
+                            type="text"
+                            class="form-control @error('place_name') is-invalid @enderror"
+                            id="input-place_name"
+                            name="place_name"
+                            value="{{ old('place_name') }}"
+                            />
 
                         @error('place_name')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -22,18 +28,28 @@
                     <div class="form-group">
                         <label for="input-category">Category:</label>
                         <div>
-                            <select name="categories[]" id="input-category" multiple style="width: 100%;">
+                            <select class="@error('categories') is-invalid @enderror" name="categories[]" id="input-category" multiple style="width: 100%;">
                                 @foreach (\App\Category::all() as $category)
                                     <option value="{{ $category->name }}">
-                                        {{ $category->name }}
+                                    {{ $category->name }}
                                     </option>
                                 @endforeach
                             </select>
+
+                            @error('categories')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="input-price" class="col-form-label">Price:</label>
-                        <input type="text" class="form-control @error('price') is-invalid @enderror" id="input-price" name="price" value="{{ old('price') }}" />
+                        <input
+                            type="text"
+                            class="form-control @error('price') is-invalid @enderror"
+                            id="input-price"
+                            name="price"
+                            value="{{ old('price') }}"
+                            />
 
                         @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -47,28 +63,35 @@
                         <label for="input-description" class="col-form-label">Description:</label>
                         <textarea class="form-control" id="input-description" rows="5" name="description">{{ old('description') }}</textarea>
                     </div>
-                    <div class="form-group">
-                        <select class="custom-select" name="is_published" id="input-is_published">
-                            <option value="1">Published</option>
-                            <option value="0">Draft</option>
-                        </select>
-                    </div>
+                    <input type="hidden" name="is_published" value="0" />
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-warning mr-auto" onclick="confirm('Reset form?') && document.querySelector('form').reset()">
+                <button type="button" class="btn btn-outline-warning btn-sm" onclick="confirm('Reset form?') && document.querySelector('form').reset()">
                     <i class="fa fa-fw fa-retweet"></i>
                     Reset
                 </button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                <button type="button" class="btn btn-outline-danger btn-sm mr-auto" data-dismiss="modal">
                     <i class="fa fa-fw fa-ban"></i>
                     Close
                 </button>
-                <button type="submit" class="btn btn-primary" onclick="$('#itinerary-form').submit()">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="submitForm(0)">
                     <i class="fa fa-fw fa-save"></i>
-                    Save
+                    Draft
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="submitForm(1)">
+                    <i class="fa fa-fw fa-globe"></i>
+                    Publish
                 </button>
             </div>
         </div>
     </div>
 </div>
+@push('js')
+    <script>
+        function submitForm(isPublished) {
+            $('input[name="is_published"]').attr('value', isPublished);
+            $('#itinerary-form').submit();
+        }
+    </script>
+@endpush

@@ -9,9 +9,10 @@
     </h1>
     <hr>
     <section>
-        <form action="{{ route('itinerary.update', $itinerary) }}" method="POST">
+        <form id="itinerary-form" action="{{ route('itinerary.update', $itinerary) }}" method="POST">
             @csrf
             @method('PUT')
+            <input type="hidden" name="is_published" value="0" />
             <div class="form-group">
                 <label for="input-place_name" class="col-form-label">Place Name:</label>
                 <input type="text" class="form-control @error('place_name') is-invalid @enderror" id="input-place_name" name="place_name" value="{{ old('place_name', $itinerary->place_name) }}" />
@@ -54,10 +55,22 @@
                 <label for="input-description" class="col-form-label">Description:</label>
                 <textarea class="form-control" id="input-description" rows="5" name="description">{{ old('description', $itinerary->description) }}</textarea>
             </div>
-            <button class="btn btn-primary btn-sm">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="submitForm(0)">
                 <i class="fa fa-fw fa-save"></i>
+                Save Draft
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="submitForm(1)">
+                <i class="fa fa-fw fa-globe"></i>
                 Update
             </button>
         </form>
     </section>
 @endsection
+@push('js')
+    <script>
+        function submitForm(isPublished) {
+            $('input[name="is_published"]').attr('value', isPublished);
+            $('#itinerary-form').submit();
+        }
+    </script>
+@endpush

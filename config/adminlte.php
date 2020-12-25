@@ -254,6 +254,12 @@ return [
             'icon' => 'fas fa-fw fa-plus',
             'url' => 'itinerary/create',
         ],
+        ['header' => 'CATEGORY MANAGEMENT'],
+        [
+            'text' => 'Categories',
+            'icon' => 'fa fa-fw fa-tags',
+            'url' => 'category',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
@@ -302,22 +308,6 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
         ],
     ],
 

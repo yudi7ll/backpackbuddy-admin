@@ -48,9 +48,6 @@
                         </td>
                         <td class="text-nowrap">{{ $itinerary->updated_at->diffForHumans() }}</td>
                         <td class="text-center text-nowrap">
-                            <button class="btn btn-info btn-sm text-white" title="Quick view">
-                                <i class="fa fa-fw fa-eye"></i>
-                            </button>
                             <a class="btn btn-primary btn-sm" href="{{ route('itinerary.edit', $itinerary) }}" title="Edit">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>

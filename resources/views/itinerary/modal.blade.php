@@ -1,7 +1,7 @@
 <div class="modal fade" id="itinerary-modal" tabindex="-1" aria-labelledby="itinerary-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-light">
                 <h5 class="modal-title" id="itinerary-modal-label">Add New Itinerary</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -66,11 +66,7 @@
                     <input type="hidden" name="is_published" value="0" />
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-warning btn-sm" onclick="confirm('Reset form?') && document.querySelector('form').reset()">
-                    <i class="fa fa-fw fa-retweet"></i>
-                    Reset
-                </button>
+            <div class="modal-footer bg-light">
                 <button type="button" class="btn btn-outline-danger btn-sm mr-auto" data-dismiss="modal">
                     <i class="fa fa-fw fa-ban"></i>
                     Close

@@ -59,19 +59,13 @@
             <section>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <strong>Status: </strong>
+                        <strong>Itinerary count: </strong> {{ $category->itineraries->count() }}
                     </li>
                     <li class="list-group-item">
-                        <strong>View: </strong> Coming Soon
+                        <strong>Created at: </strong> {{ $category->created_at->diffForHumans() }}
                     </li>
                     <li class="list-group-item">
-                        <strong>Sold: </strong> Coming soon
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Created at: </strong>
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Updated at: </strong>
+                        <strong>Updated at: </strong> {{ $category->updated_at->diffForHumans() }}
                     </li>
                 </ul>
             </section>

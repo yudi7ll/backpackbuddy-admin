@@ -245,25 +245,25 @@ return [
         ],
         ['header' => 'ITINERARY MANAGEMENT'],
         [
-            'text' => 'Premium Itinerary',
-            'icon' => 'fas fa-fw fa-star',
-            'url' => 'itinerary',
+            'text' => 'Itineraries',
+            'icon' => 'fas fa-fw fa-tasks',
+            'submenu' => [
+                [
+                    'text' => 'All Itineraries',
+                    'icon' => 'fas fa-fw fa-tasks',
+                    'url' => 'itinerary',
+                ],
+                [
+                    'text' => 'Add New',
+                    'icon' => 'fas fa-fw fa-plus',
+                    'url' => 'itinerary/create',
+                ],
+            ],
         ],
-        [
-            'text' => 'Add New',
-            'icon' => 'fas fa-fw fa-plus',
-            'url' => 'itinerary/create',
-        ],
-        ['header' => 'CATEGORY MANAGEMENT'],
         [
             'text' => 'Categories',
             'icon' => 'fa fa-fw fa-tags',
             'url' => 'category',
-        ],
-        [
-            'text' => 'Add New',
-            'icon' => 'fa fa-fw fa-plus',
-            'url' => 'category/create',
         ],
         ['header' => 'account_settings'],
         [

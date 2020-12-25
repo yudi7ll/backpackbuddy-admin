@@ -75,7 +75,7 @@
                     <div class="d-flex justify-content-between">
                         <div class="left">
                             <button type="submit" class="btn btn-primary btn-sm">
-                                <i class="fa fa-fw fa-globe"></i>
+                                <i class="fa fa-fw fa-save"></i>
                                 Update
                             </button>
                         </div>

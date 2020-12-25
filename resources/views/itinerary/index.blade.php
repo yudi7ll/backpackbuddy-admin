@@ -8,14 +8,15 @@
     <section>
         <button id="add-itinerary" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#itinerary-modal">
             <i class="fa fa-fw fa-plus"></i>
-            Add New
+            Quick Add
         </button>
-        <table id="datatables" class="table table-striped table-bordered table-responsive">
+        <table id="datatables" class="table table-striped table-bordered table-responsive-xl">
             <thead>
                 <tr class="text-center">
                     <th>No.</th>
                     <th>Place name</th>
                     <th>Price</th>
+                    <th>Sale</th>
                     <th>Category</th>
                     <th>Status</th>
                     <th>Updated at</th>
@@ -31,7 +32,12 @@
                                 {{ $itinerary->place_name }}
                             </a>
                         </td>
-                        <td class="text-right text-nowrap">Rp. {{ number_format($itinerary->price, 0, ',', '.') }}</td>
+                        <td class="text-right text-nowrap">
+                            Rp. {{ number_format($itinerary->sale ? $itinerary->sale : $itinerary->price, 0, ',', '.') }}
+                        </td>
+                        <td class="text-center text-nowrap">
+                            {{ $itinerary->sale ? 'Yes' : 'No' }}
+                        </td>
                         <td>{{ $itinerary->categories->pluck('name')->join(', ') }}</td>
                         <td class="text-center text-nowrap">
                             @if ($itinerary->is_published)
@@ -42,10 +48,13 @@
                         </td>
                         <td class="text-nowrap">{{ $itinerary->updated_at->diffForHumans() }}</td>
                         <td class="text-center text-nowrap">
-                            <a class="btn btn-primary btn-sm" href="{{ route('itinerary.edit', $itinerary) }}">
+                            <button class="btn btn-info btn-sm text-white" title="Quick view">
+                                <i class="fa fa-fw fa-eye"></i>
+                            </button>
+                            <a class="btn btn-primary btn-sm" href="{{ route('itinerary.edit', $itinerary) }}" title="Edit">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
-                            <form id="delete-form" class="d-inline-block m-0" action="{{ route('itinerary.destroy', $itinerary->id) }}" method="POST">
+                            <form id="delete-form" class="d-inline-block m-0" action="{{ route('itinerary.destroy', $itinerary->id) }}" method="POST" title="Delete">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" onclick="confirm('Are you sure?') && $('#delete-form').submit()" class="btn btn-sm btn-danger">

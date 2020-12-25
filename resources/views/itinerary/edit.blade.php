@@ -50,6 +50,14 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="input-sale" class="col-form-label">Sale:</label>
+                        <input type="text" class="form-control @error('sale') is-invalid @enderror" id="input-sale" name="sale" value="{{ old('sale', $itinerary->sale) }}" />
+
+                        @error('sale')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="input-excerpt" class="col-form-label">Excerpt:</label>
                         <textarea class="form-control" id="input-excerpt" rows="3" name="excerpt">{{ old('excerpt', $itinerary->excerpt) }}</textarea>
                     </div>

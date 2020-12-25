@@ -233,7 +233,7 @@ return [
     'menu' => [
         [
             'text' => 'search',
-            'search' => true,
+            'search' => false,
             'topnav' => true,
         ],
         [
@@ -250,9 +250,9 @@ return [
             'url' => 'itinerary',
         ],
         [
-            'text' => 'Free Itinerary',
-            'icon' => 'far fa-fw fa-star',
-            'url' => 'free-itinerary'
+            'text' => 'Add New',
+            'icon' => 'fas fa-fw fa-plus',
+            'url' => 'itinerary/create',
         ],
         ['header' => 'account_settings'],
         [

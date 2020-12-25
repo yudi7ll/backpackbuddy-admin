@@ -16,6 +16,7 @@ class Itinerary extends Model
         'place_name',
         'categories',
         'price',
+        'sale',
         'excerpt',
         'description',
         'is_published',

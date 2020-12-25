@@ -11,6 +11,7 @@
                 <form id="itinerary-form" action="{{ route('itinerary.store') }}" method="POST">
                     @csrf
                     @method('POST')
+                    <input type="hidden" name="is_published" value="0" />
                     <div class="form-group">
                         <label for="input-place_name" class="col-form-label">Place Name:</label>
                         <input
@@ -49,9 +50,23 @@
                             id="input-price"
                             name="price"
                             value="{{ old('price') }}"
-                            />
+                        />
 
                         @error('price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="input-sale" class="col-form-label">Sale:</label>
+                        <input
+                            type="text"
+                            class="form-control @error('sale') is-invalid @enderror"
+                            id="input-sale"
+                            name="sale"
+                            value="{{ old('sale') }}"
+                        />
+
+                        @error('sale')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
@@ -63,7 +78,6 @@
                         <label for="input-description" class="col-form-label">Description:</label>
                         <textarea class="form-control" id="input-description" rows="5" name="description">{{ old('description') }}</textarea>
                     </div>
-                    <input type="hidden" name="is_published" value="0" />
                 </form>
             </div>
             <div class="modal-footer bg-light">

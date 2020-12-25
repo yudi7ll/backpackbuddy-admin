@@ -9,10 +9,6 @@ use Str;
 
 class ItineraryController extends Controller
 {
-    private $itinerary;
-    private $category;
-    private $data;
-
     /**
      * Create a new controller instance
      *
@@ -32,9 +28,9 @@ class ItineraryController extends Controller
      */
     public function index()
     {
-        $itineraries = $this->itinerary->get();
+        $this->data['itineraries'] = $this->itinerary->get();
 
-        return view('itinerary.index', compact('itineraries'));
+        return view('itinerary.index', $this->data);
     }
 
     /**
@@ -44,7 +40,9 @@ class ItineraryController extends Controller
      */
     public function create()
     {
-        return view('itinerary.create');
+        $this->data['categories'] = $this->category->isPublished()->get();
+
+        return view('itinerary.create', $this->data);
     }
 
     /**
@@ -58,7 +56,7 @@ class ItineraryController extends Controller
         $requestData = $request->except('categories');
 
         // store the data to database
-        $this->data = $this->itinerary->create($requestData);
+        $newItinerary = $this->itinerary->create($requestData);
 
         // store the request categories then take the id
         $categoryId = collect($request->categories)->map(function ($c) {
@@ -68,9 +66,9 @@ class ItineraryController extends Controller
             ])->id;
         });
 
-        $this->data->categories()->sync($categoryId);
+        $newItinerary->categories()->sync($categoryId);
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Data added successfully!');
     }
 
     /**
@@ -108,7 +106,7 @@ class ItineraryController extends Controller
         $this->data->categories()->sync($categoryId);
 
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Data updated successfully!');
     }
 
     /**
@@ -120,6 +118,6 @@ class ItineraryController extends Controller
     {
         $this->itinerary->destroy($id);
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Data deleted successfully!');
     }
 }

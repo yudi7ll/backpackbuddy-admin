@@ -24,8 +24,9 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'string|required|max:255|unique:categories',
-            'slug' => 'string|required|max:255|unique:categories',
+            'name' => 'string|required|max:100',
+            'slug' => 'alpha_dash|required|max:100|unique:categories,slug,' .$this->id,
+            'is_published' => 'boolean',
         ];
     }
 }

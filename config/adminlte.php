@@ -260,6 +260,11 @@ return [
             'icon' => 'fa fa-fw fa-tags',
             'url' => 'category',
         ],
+        [
+            'text' => 'Add New',
+            'icon' => 'fa fa-fw fa-plus',
+            'url' => 'category/create',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

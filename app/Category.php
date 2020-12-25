@@ -12,7 +12,15 @@ class Category extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'name', 'slug' ];
+    protected $fillable = [ 'name', 'slug', 'is_published' ];
+
+    /**
+     * Determine whether the category is published or not
+     */
+    public function isPublished()
+    {
+        return $this->where('is_published', true);
+    }
 
     /**
      * Get the Itinerary that belongs to the category.

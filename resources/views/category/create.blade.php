@@ -5,11 +5,11 @@
 @section('content')
     <h1 class="title">
         <i class="fa fa-fw fa-plus"></i>
-        Add New Itinerary
+        Add New Category
     </h1>
     <hr>
     <section>
-        <form id="itinerary-form" action="{{ route('itinerary.store') }}" method="POST">
+        <form id="category-form" action="{{ route('category.store') }}" method="POST">
             @csrf
             @method('POST')
             <input type="hidden" name="is_published" value="0" />
@@ -31,7 +31,7 @@
                 <label for="input-category">Category:</label>
                 <div>
                     <select class="@error('categories') is-invalid @enderror" name="categories[]" id="input-category" multiple style="width: 100%;">
-                        @foreach ($categories as $category)
+                        @foreach (\App\Category::all() as $category)
                             <option value="{{ $category->name }}">
                             {{ $category->name }}
                             </option>
@@ -94,7 +94,7 @@
     <script>
         function submitForm(isPublished) {
             $('input[name="is_published"]').attr('value', isPublished);
-            $('#itinerary-form').submit();
+            $('#category-form').submit();
         }
     </script>
 @endpush

@@ -14,7 +14,7 @@
                 <form id="itinerary-form" action="{{ route('itinerary.update', $itinerary) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <input type="hidden" name="is_published" value="0" />
+                    <input type="hidden" name="id" value="{{ $itinerary->id }}" />
                     <div class="form-group">
                         <label for="input-place_name" class="col-form-label">Place Name:</label>
                         <input type="text" class="form-control @error('place_name') is-invalid @enderror" id="input-place_name" name="place_name" value="{{ old('place_name', $itinerary->place_name) }}" />
@@ -65,13 +65,16 @@
                         <label for="input-description" class="col-form-label">Description:</label>
                         <textarea class="form-control" id="input-description" rows="5" name="description">{{ old('description', $itinerary->description) }}</textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select class="custom-select" name="is_published" id="input-is_published">
+                            <option {{ $category->is_published ? 'selected' : '' }} value="1">Publish</option>
+                            <option {{ $category->is_published ? '' : 'selected' }} value="0">Draft</option>
+                        </select>
+                    </div>
                     <div class="d-flex justify-content-between">
                         <div class="left">
-                            <button type="button" class="btn btn-secondary btn-sm" onclick="submitForm(0)">
-                                <i class="fa fa-fw fa-save"></i>
-                                Save Draft
-                            </button>
-                            <button type="button" class="btn btn-primary btn-sm" onclick="submitForm(1)">
+                            <button type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa fa-fw fa-globe"></i>
                                 Update
                             </button>
@@ -109,11 +112,3 @@
         </div>
     </div>
 @endsection
-@push('js')
-    <script>
-        function submitForm(isPublished) {
-            $('input[name="is_published"]').attr('value', isPublished);
-            $('#itinerary-form').submit();
-        }
-    </script>
-@endpush

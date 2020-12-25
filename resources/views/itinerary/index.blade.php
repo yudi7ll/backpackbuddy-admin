@@ -57,7 +57,7 @@
                             <form id="delete-form" class="d-inline-block m-0" action="{{ route('itinerary.destroy', $itinerary->id) }}" method="POST" title="Delete">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" onclick="confirm('Are you sure?') && $('#delete-form').submit()" class="btn btn-sm btn-danger">
+                                <button type="button" onclick="confirm('Are you sure?') && $(this).parent().submit()" class="btn btn-sm btn-danger">
                                     <i class="fa fa-fw fa-trash"></i>
                                 </button>
                             </form>
@@ -68,7 +68,7 @@
         </table>
     </section>
 @endsection
-@include('itinerary.modal')
+@include('itinerary.quick-add')
 
 @if ($errors->any())
     @push('js')

@@ -18,6 +18,7 @@
                     <th>Price</th>
                     <th>Sale</th>
                     <th>Category</th>
+                    <th>District</th>
                     <th>Status</th>
                     <th>Updated at</th>
                     <th>Action</th>
@@ -39,6 +40,7 @@
                             {{ $itinerary->sale ? 'Yes' : 'No' }}
                         </td>
                         <td>{{ $itinerary->categories->pluck('name')->join(', ') }}</td>
+                        <td>{{ $itinerary->districts->pluck('name')->join(', ') }}</td>
                         <td class="text-center text-nowrap">
                             @if ($itinerary->is_published)
                                 <small class="bg-success rounded py-1 px-3">Published</small>

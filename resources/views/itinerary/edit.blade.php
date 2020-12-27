@@ -42,6 +42,25 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="input-district">District:</label>
+                        <div>
+                            <select class="@error('districts') is-invalid @enderror" name="districts[]" id="input-district" multiple style="width: 100%;">
+                                @foreach ($districts as $district)
+                                    <option
+                                        {{ (bool) $category->itineraries->find($itinerary) ? 'selected' : '' }}
+                                        value="{{ $district->slug }}"
+                                    >
+                                        {{ $district->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @error('districts')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="input-price" class="col-form-label">Price:</label>
                         <input type="text" class="form-control @error('price') is-invalid @enderror" id="input-price" name="price" value="{{ old('price', $itinerary->price) }}" />
 

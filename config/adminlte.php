@@ -265,6 +265,11 @@ return [
             'icon' => 'fa fa-fw fa-tags',
             'url' => 'category',
         ],
+        [
+            'text' => 'Districts',
+            'icon' => 'fa fa-fw fa-map-marker',
+            'url' => 'district',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

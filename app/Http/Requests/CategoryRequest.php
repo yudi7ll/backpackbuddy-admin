@@ -26,7 +26,6 @@ class CategoryRequest extends FormRequest
         return [
             'name' => 'string|required|max:100',
             'slug' => 'alpha_dash|required|max:100|unique:categories,slug,' .$this->id,
-            'is_published' => 'boolean',
         ];
     }
 }

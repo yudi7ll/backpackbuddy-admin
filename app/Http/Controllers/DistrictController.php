@@ -3,10 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\District;
-use Illuminate\Http\Request;
+use App\Http\Requests\DistrictRequest;
 
 class DistrictController extends Controller
 {
+    /**
+     * Create a new controller instance
+     *
+     * @return void
+     */
+    public function __construct(District $district)
+    {
+        $this->middleware('auth');
+        $this->district = $district;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,17 +25,9 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $this->data['districts'] = $this->district->all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('district.index', $this->data);
     }
 
     /**
@@ -33,20 +36,11 @@ class DistrictController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DistrictRequest $request)
     {
-        //
-    }
+        $this->district->create($request->all());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\District  $district
-     * @return \Illuminate\Http\Response
-     */
-    public function show(District $district)
-    {
-        //
+        return redirect()->back()->with('message', 'Data has been saved!');
     }
 
     /**
@@ -57,7 +51,7 @@ class DistrictController extends Controller
      */
     public function edit(District $district)
     {
-        //
+        return view('district.edit', compact('district'));
     }
 
     /**
@@ -67,9 +61,11 @@ class DistrictController extends Controller
      * @param  \App\District  $district
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, District $district)
+    public function update(DistrictRequest $request, District $district)
     {
-        //
+        $district->update($request->all());
+
+        return redirect()->back()->with('message', 'Data has been updated!');
     }
 
     /**
@@ -80,6 +76,8 @@ class DistrictController extends Controller
      */
     public function destroy(District $district)
     {
-        //
+        $district->delete();
+
+        return redirect()->back()->with('message', 'Data has been deleted successfully!');
     }
 }

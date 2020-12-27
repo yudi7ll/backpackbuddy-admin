@@ -25,7 +25,7 @@ class DistrictRequest extends FormRequest
     {
         return [
             'name' => 'string|required|max:100',
-            'slug' => 'alpha_dash|required|max:100|unique:district,slug,' .$this->id,
+            'slug' => 'alpha_dash|required|max:100|unique:districts,slug,' .$this->id,
         ];
     }
 }

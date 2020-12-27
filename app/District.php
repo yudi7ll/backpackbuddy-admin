@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class District extends Model
 {
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [ 'name', 'slug' ];
+    protected $fillable = [ 'name', 'slug', 'is_published' ];
 
     /**
      * Get the Itinerary that belongs to the category.

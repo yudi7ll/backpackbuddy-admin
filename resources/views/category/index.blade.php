@@ -8,7 +8,7 @@
     <section>
         <button id="add-category" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#category-modal">
             <i class="fa fa-fw fa-plus"></i>
-            Quick Add
+            Add New
         </button>
         <table id="datatables" class="table table-striped table-bordered table-responsive-xl">
             <thead>
@@ -17,7 +17,6 @@
                     <th class="text-nowrap">Category Name</th>
                     <th class="text-nowrap">Category Slug</th>
                     <th class="text-nowrap">Itinerary Count</th>
-                    <th class="text-nowrap">Status</th>
                     <th class="text-nowrap">Added at</th>
                     <th>Action</th>
                 </tr>
@@ -29,13 +28,6 @@
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->slug }}</td>
                         <td class="text-center">{{ $category->itineraries()->count() }}</td>
-                        <td class="text-center text-nowrap">
-                            @if ($category->is_published)
-                                <small class="bg-success rounded py-1 px-3">Published</small>
-                            @else
-                                <small class="bg-secondary rounded py-1 px-3">Draft</small>
-                            @endif
-                        </td>
                         <td>{{ $category->updated_at->diffForHumans() }}</td>
                         <td>
                             <a class="btn btn-primary btn-sm" href="{{ route('category.edit', $category) }}" title="Edit">

@@ -29,6 +29,7 @@ class ItineraryController extends Controller
     public function index()
     {
         $this->data['itineraries'] = $this->itinerary->get();
+        $this->data['categories'] = $this->category->get();
 
         return view('itinerary.index', $this->data);
     }
@@ -40,7 +41,7 @@ class ItineraryController extends Controller
      */
     public function create()
     {
-        $this->data['categories'] = $this->category->isPublished()->get();
+        $this->data['categories'] = $this->category->get();
 
         return view('itinerary.create', $this->data);
     }
@@ -60,10 +61,17 @@ class ItineraryController extends Controller
 
         // store the request categories then take the id
         $categoryId = collect($request->categories)->map(function ($c) {
-            return $this->category->firstOrCreate([
-                'name' => $c,
-                'slug' => Str::slug($c, '-'),
-            ])->id;
+            // Retrieve category by slug or create it and return the id
+            $category = $this->category->where('slug', $c)->first();
+
+            if ( empty($category->id) ) {
+                $category = $this->category->updateOrCreate([
+                    'name' => $c,
+                    'slug' => Str::slug($c, '-')
+                ]);
+            }
+
+            return $category->id;
         });
 
         $newItinerary->categories()->sync($categoryId);
@@ -78,9 +86,10 @@ class ItineraryController extends Controller
      */
     public function edit($id)
     {
-        $itinerary = $this->itinerary->find($id);
+        $this->data['itinerary'] = $this->itinerary->find($id);
+        $this->data['categories'] = $this->category->get();
 
-        return view('itinerary.edit', compact('itinerary'));
+        return view('itinerary.edit', $this->data);
     }
 
     /**
@@ -95,12 +104,19 @@ class ItineraryController extends Controller
         // update itinerary
         $this->data->update($request->except('categories'));
 
-        // update the request categories then take the id
+        // store the request categories then take the id
         $categoryId = collect($request->categories)->map(function ($c) {
-            return $this->category->firstOrCreate([
-                'name' => $c,
-                'slug' => Str::slug($c, '-'),
-            ])->id;
+            // Retrieve category by slug or create it and return the id
+            $category = $this->category->where('slug', $c)->first();
+
+            if ( empty($category->id) ) {
+                $category = $this->category->updateOrCreate([
+                    'name' => $c,
+                    'slug' => Str::slug($c, '-')
+                ]);
+            }
+
+            return $category->id;
         });
 
         $this->data->categories()->sync($categoryId);

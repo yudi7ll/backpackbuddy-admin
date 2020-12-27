@@ -27,10 +27,10 @@
                         <label for="input-category">Category:</label>
                         <div>
                             <select class="@error('categories') is-invalid @enderror" name="categories[]" id="input-category" multiple style="width: 100%;">
-                                @foreach (\App\Category::all() as $category)
+                                @foreach ($categories as $category)
                                     <option
-                                        {{ (bool) $category->itineraries->find($itinerary) ? 'selected=1' : '' }}
-                                        value="{{ $category->name }}"
+                                        {{ (bool) $category->itineraries->find($itinerary) ? 'selected' : '' }}
+                                        value="{{ $category->slug }}"
                                         >
                                         {{ $category->name }}
                                     </option>
@@ -68,8 +68,8 @@
                     <div class="form-group">
                         <label for="status">Status:</label>
                         <select class="custom-select" name="is_published" id="input-is_published">
-                            <option {{ $category->is_published ? 'selected' : '' }} value="1">Publish</option>
-                            <option {{ $category->is_published ? '' : 'selected' }} value="0">Draft</option>
+                            <option {{ $itinerary->is_published ? 'selected' : '' }} value="1">Publish</option>
+                            <option {{ $itinerary->is_published ? '' : 'selected' }} value="0">Draft</option>
                         </select>
                     </div>
                     <div class="d-flex justify-content-between">

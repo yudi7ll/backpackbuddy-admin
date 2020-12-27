@@ -254,7 +254,7 @@ return [
                     'url' => 'itinerary',
                 ],
                 [
-                    'text' => 'Add New',
+                    'text' => 'Add New Itinerary',
                     'icon' => 'fas fa-fw fa-plus',
                     'url' => 'itinerary/create',
                 ],

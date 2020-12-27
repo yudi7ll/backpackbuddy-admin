@@ -31,13 +31,6 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="status">Status:</label>
-                        <select class="custom-select" name="is_published" id="input-is_published">
-                            <option {{ $category->is_published ? 'selected' : '' }} value="1">Publish</option>
-                            <option {{ $category->is_published ? '' : 'selected' }} value="0">Draft</option>
-                        </select>
-                    </div>
                     <div class="d-flex justify-content-between">
                         <div class="left">
                             <button type="submit" class="btn btn-primary btn-sm">

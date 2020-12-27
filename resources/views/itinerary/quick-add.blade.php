@@ -30,8 +30,8 @@
                         <label for="input-category">Category:</label>
                         <div>
                             <select class="@error('categories') is-invalid @enderror" name="categories[]" id="input-category" multiple style="width: 100%;">
-                                @foreach (\App\Category::all() as $category)
-                                    <option value="{{ $category->name }}">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->slug }}">
                                     {{ $category->name }}
                                     </option>
                                 @endforeach

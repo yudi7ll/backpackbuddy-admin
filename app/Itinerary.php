@@ -38,4 +38,12 @@ class Itinerary extends Model
     {
         return $this->belongsToMany('App\Category');
     }
+
+    /**
+     * Get the district for the Itinerary
+     */
+    public function districts()
+    {
+        return $this->belongsToMany('App\District');
+    }
 }

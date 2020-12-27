@@ -30,7 +30,7 @@ class ItineraryRequest extends FormRequest
             'sale' => 'integer|nullable',
             'excerpt' => 'string|nullable',
             'description' => 'string|nullable',
-            'is_published' => 'boolean|nullable',
+            'is_published' => 'boolean',
         ];
     }
 }

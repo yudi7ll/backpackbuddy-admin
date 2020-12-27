@@ -3,7 +3,7 @@
 @section('title', 'Premium Itinerary')
 
 @section('content')
-    <h1 class="title"><i class="fa fa-fw fa-star"></i> Premium Itinerary</h1>
+    <h1 class="title"><i class="fa fa-fw fa-tasks"></i> Premium Itinerary</h1>
     <hr>
     <section>
         <button id="add-itinerary" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#itinerary-modal">

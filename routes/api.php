@@ -12,6 +12,5 @@
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/itinerary', 'Api\ItineraryController@index');
+Route::get('/itinerary/{itinerary}', 'Api\ItineraryController@show');

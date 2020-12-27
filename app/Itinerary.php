@@ -31,6 +31,16 @@ class Itinerary extends Model
     ];
 
     /**
+     * Filter the itinerary whether is published or not
+     *
+     * @return \Illuminate\Model
+     */
+    public function isPublished()
+    {
+        return $this->where('is_published', 1);
+    }
+
+    /**
      * Get the category for the Itinerary
      */
     public function categories()

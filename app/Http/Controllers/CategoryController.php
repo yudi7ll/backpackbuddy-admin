@@ -49,7 +49,7 @@ class CategoryController extends Controller
     {
         $this->category->create($request->all());
 
-        return redirect()->back()->with('message', 'New category has been saved!');
+        return redirect()->back()->with('success', 'New category has been saved!');
     }
 
     /**
@@ -73,7 +73,7 @@ class CategoryController extends Controller
     {
         $this->category->find($id)->update($request->all());
 
-        return redirect()->back()->with('message', 'Category has been updated!');
+        return redirect()->back()->with('success', 'Category has been updated!');
     }
 
     /**
@@ -85,6 +85,6 @@ class CategoryController extends Controller
     {
         $this->category->destroy($id);
 
-        return redirect()->back()->with('message', 'Category has been removed!');
+        return redirect()->back()->with('success', 'Category has been removed!');
     }
 }

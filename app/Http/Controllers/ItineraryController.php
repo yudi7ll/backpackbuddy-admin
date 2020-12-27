@@ -96,7 +96,7 @@ class ItineraryController extends Controller
         $this->data->categories()->sync($categoryId);
         $this->data->districts()->sync($districtId);
 
-        return redirect()->back()->with('message', 'Data added successfully!');
+        return redirect()->back()->with('success', 'Data added successfully!');
     }
 
     /**
@@ -159,7 +159,7 @@ class ItineraryController extends Controller
         $this->data->districts()->sync($districtId);
 
 
-        return redirect()->back()->with('message', 'Data updated successfully!');
+        return redirect()->back()->with('success', 'Data updated successfully!');
     }
 
     /**
@@ -171,6 +171,6 @@ class ItineraryController extends Controller
     {
         $this->itinerary->destroy($id);
 
-        return redirect()->back()->with('message', 'Data deleted successfully!');
+        return redirect()->back()->with('success', 'Data deleted successfully!');
     }
 }

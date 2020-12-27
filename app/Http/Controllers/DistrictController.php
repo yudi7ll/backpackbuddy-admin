@@ -40,7 +40,7 @@ class DistrictController extends Controller
     {
         $this->district->create($request->all());
 
-        return redirect()->back()->with('message', 'Data has been saved!');
+        return redirect()->back()->with('success', 'Data has been saved!');
     }
 
     /**
@@ -65,7 +65,7 @@ class DistrictController extends Controller
     {
         $district->update($request->all());
 
-        return redirect()->back()->with('message', 'Data has been updated!');
+        return redirect()->back()->with('success', 'Data has been updated!');
     }
 
     /**
@@ -78,6 +78,6 @@ class DistrictController extends Controller
     {
         $district->delete();
 
-        return redirect()->back()->with('message', 'Data has been deleted successfully!');
+        return redirect()->back()->with('success', 'Data has been deleted successfully!');
     }
 }

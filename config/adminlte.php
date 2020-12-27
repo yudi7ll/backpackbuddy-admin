@@ -245,20 +245,14 @@ return [
         ],
         ['header' => 'ITINERARY MANAGEMENT'],
         [
-            'text' => 'Itineraries',
+            'text' => 'Add New Itinerary',
+            'icon' => 'fas fa-fw fa-plus',
+            'url' => 'itinerary/create',
+        ],
+        [
+            'text' => 'All Itineraries',
             'icon' => 'fas fa-fw fa-tasks',
-            'submenu' => [
-                [
-                    'text' => 'All Itineraries',
-                    'icon' => 'fas fa-fw fa-tasks',
-                    'url' => 'itinerary',
-                ],
-                [
-                    'text' => 'Add New Itinerary',
-                    'icon' => 'fas fa-fw fa-plus',
-                    'url' => 'itinerary/create',
-                ],
-            ],
+            'url' => 'itinerary',
         ],
         [
             'text' => 'Categories',

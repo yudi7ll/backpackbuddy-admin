@@ -53,13 +53,9 @@
                             <a class="btn btn-primary btn-sm" href="{{ route('itinerary.edit', $itinerary) }}" title="Edit">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
-                            <form id="delete-form" class="d-inline-block m-0" action="{{ route('itinerary.destroy', $itinerary->id) }}" method="POST" title="Delete">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" onclick="confirm('Are you sure?') && $(this).parent().submit()" class="btn btn-sm btn-danger">
-                                    <i class="fa fa-fw fa-trash"></i>
-                                </button>
-                            </form>
+                            <button type="button" onclick="deleteHandle({{ $itinerary->id }})" class="btn btn-sm btn-danger">
+                                <i class="fa fa-fw fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -78,3 +74,27 @@
         </script>
     @endpush
 @endif
+
+@push('js')
+    <script type="text/javascript">
+        async function deleteHandle(id) {
+            const willDelete = await swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+
+            if (willDelete) {
+                try {
+                    await axios.delete(`/itinerary/${id}`)
+                    await swal("Poof! Your data has been deleted!", { icon: "success" });
+                    document.location.reload();
+                } catch(e) {
+                    await swal("Error! Something have been wrong!", { icon: "error" });
+                }
+            }
+        };
+    </script>
+@endpush

@@ -16,6 +16,7 @@ try {
     require('icheck-bootstrap');
     require('overlayscrollbars');
     require('select2');
+    require('sweetalert');
     require('../../public/vendor/adminlte/dist/js/adminlte.min');
 } catch (e) {}
 

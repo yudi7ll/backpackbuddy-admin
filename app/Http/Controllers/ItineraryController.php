@@ -169,8 +169,6 @@ class ItineraryController extends Controller
      */
     public function destroy($id)
     {
-        $this->itinerary->destroy($id);
-
-        return redirect()->back()->with('success', 'Data deleted successfully!');
+        return $this->itinerary->destroy($id);
     }
 }

@@ -14,13 +14,13 @@
             <thead>
                 <tr class="text-center">
                     <th>No.</th>
-                    <th>Place name</th>
+                    <th class="text-nowrap">Place name</th>
                     <th>Price</th>
                     <th>Sale</th>
                     <th>Category</th>
                     <th>District</th>
                     <th>Status</th>
-                    <th>Updated at</th>
+                    <th class="text-nowrap">Updated at</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -89,7 +89,6 @@
             if (willDelete) {
                 try {
                     await axios.delete(`/itinerary/${id}`)
-                    await swal("Poof! Your data has been deleted!", { icon: "success" });
                     document.location.reload();
                 } catch(e) {
                     await swal("Error! Something have been wrong!", { icon: "error" });

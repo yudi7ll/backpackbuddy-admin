@@ -19,6 +19,7 @@ class CreateItinerariesTable extends Migration
             $table->string('price');
             $table->string('sale')->nullable();
             $table->integer('view')->default(0);
+            $table->string('featured_picture')->nullable();
             $table->text('excerpt')->nullable();
             $table->text('description')->nullable();
             $table->boolean('is_published')->default(false);

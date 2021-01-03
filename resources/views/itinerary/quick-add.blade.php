@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="itinerary-form" action="{{ route('itinerary.store') }}" method="POST">
+                <form id="itinerary-form" action="{{ route('itinerary.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <input type="hidden" name="is_published" value="0" />
@@ -23,6 +23,14 @@
                             />
 
                         @error('place_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="input-featured_picture">Featured Picture</label>
+                        <input type="file" class="form-control-file @error('featured_picture') is-invalid @enderror" name="featured_picture" id="input-featured_picture" required />
+
+                        @error('featured_picture')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

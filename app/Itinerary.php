@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Storage;
 
 class Itinerary extends Model
 {
@@ -16,6 +17,7 @@ class Itinerary extends Model
         'categories',
         'price',
         'sale',
+        'featured_picture',
         'excerpt',
         'description',
         'is_published',
@@ -29,6 +31,15 @@ class Itinerary extends Model
     protected $casts = [
         'is_published' => 'boolean',
     ];
+
+    /**
+     * Get the picture attributes
+     *
+     */
+    public function getFeaturedPictureAttribute($value)
+    {
+        return Storage::disk('public')->url("featured_picture/{$value}");
+    }
 
     /**
      * Filter the itinerary whether is published or not

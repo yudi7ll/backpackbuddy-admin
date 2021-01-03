@@ -6,6 +6,7 @@ use App\Category;
 use App\District;
 use App\Http\Requests\ItineraryRequest;
 use App\Itinerary;
+use Exception;
 use Str;
 
 class ItineraryController extends Controller
@@ -44,7 +45,7 @@ class ItineraryController extends Controller
      */
     public function create()
     {
-        $this->data['categories'] = $this->category->get();
+        $this->data['categories'] = $this->category->all();
         $this->data['districts'] = $this->district->all();
 
         return view('itinerary.create', $this->data);
@@ -58,12 +59,28 @@ class ItineraryController extends Controller
     public function store(ItineraryRequest $request)
     {
         // get all request except categories
-        $requestData = $request->except('categories');
+        $requestData = $request->except(['categories', 'featured_picture']);
 
         // store the data to database
         $this->data = $this->itinerary->create($requestData);
 
-        // store the request categories then take the id
+        /*
+         * Featured Picture
+         */
+        $imageName = "itinerary-{$this->data->id}.jpg";
+        $request->file('featured_picture')
+                ->storeAs('public/featured_picture', $imageName);
+
+        // save the filename
+        $this->data->featured_picture = $imageName;
+        $this->data->save();
+
+
+        /*
+         * Category
+         *
+         * store the request categories then take the id
+         */
         $categoryId = collect($request->categories)->map(function ($c) {
             // Retrieve category by slug or create it and return the id
             $category = $this->category->where('slug', $c)->first();
@@ -78,7 +95,13 @@ class ItineraryController extends Controller
             return $category->id;
         });
 
-        // store the request districts then take the id
+        $this->data->categories()->sync($categoryId);
+
+        /*
+         * Districts
+         *
+         * store the request districts then take the id
+         */
         $districtId = collect($request->districts)->map(function ($c) {
             // Retrieve district by slug or create it and return the id
             $district = $this->district->where('slug', $c)->first();
@@ -93,7 +116,6 @@ class ItineraryController extends Controller
             return $district->id;
         });
 
-        $this->data->categories()->sync($categoryId);
         $this->data->districts()->sync($districtId);
 
         return redirect()->back()->with('success', 'Data added successfully!');
@@ -125,7 +147,24 @@ class ItineraryController extends Controller
         // update itinerary
         $this->data->update($request->except('categories'));
 
-        // store the request categories then take the id
+        /*
+         * Featured Picture
+         */
+        if ($request->file('featured_picture')) {
+            $imageName = "itinerary-{$this->data->id}.jpg";
+            $request->file('featured_picture')
+                    ->storeAs('public/featured_picture', $imageName);
+
+            // save the filename
+            $this->data->featured_picture = $imageName;
+            $this->data->save();
+        }
+
+        /*
+         * Category
+         *
+         * store the request categories then take the id
+         */
         $categoryId = collect($request->categories)->map(function ($c) {
             // Retrieve category by slug or create it and return the id
             $category = $this->category->where('slug', $c)->first();
@@ -140,7 +179,11 @@ class ItineraryController extends Controller
             return $category->id;
         });
 
-        // store the request districts then take the id
+        /*
+         * Districts
+         *
+         * store the request districts then take the id
+         */
         $districtId = collect($request->districts)->map(function ($c) {
             // Retrieve district by slug or create it and return the id
             $district = $this->district->where('slug', $c)->first();

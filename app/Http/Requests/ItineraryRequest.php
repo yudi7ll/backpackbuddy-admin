@@ -31,6 +31,7 @@ class ItineraryRequest extends FormRequest
             'excerpt' => 'string|nullable',
             'description' => 'string|nullable',
             'is_published' => 'boolean',
+            'featured_picture' => 'nullable|image',
         ];
     }
 }

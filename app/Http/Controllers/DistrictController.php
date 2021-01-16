@@ -90,6 +90,6 @@ class DistrictController extends Controller
     {
         $district->delete();
 
-        return Session::flash('success', 'Data has been deleted successfully!');
+        return Session::flash('success', 'the district has been removed!');
     }
 }

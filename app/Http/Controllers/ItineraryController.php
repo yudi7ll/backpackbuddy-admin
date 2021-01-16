@@ -217,6 +217,6 @@ class ItineraryController extends Controller
     {
         $itinerary->delete();
 
-        return Session::flash('success', 'Data has been deleted successfully!');
+        return Session::flash('success', 'The itinerary has been removed!');
     }
 }

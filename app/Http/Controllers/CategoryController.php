@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Requests\CategoryRequest;
+use Session;
 
 class CategoryController extends Controller
 {
@@ -81,10 +82,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        $this->category->destroy($id);
+        $category->delete();
 
-        return redirect()->back()->with('success', 'Category has been removed!');
+        return Session::flash('success', 'The category has been removed!');
     }
 }

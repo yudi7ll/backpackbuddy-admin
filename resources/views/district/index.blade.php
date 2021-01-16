@@ -33,7 +33,7 @@
                         <td>{{ $district->slug }}</td>
                         <td class="text-center">{{ $district->itineraries()->count() }}</td>
                         <td>{{ $district->updated_at->diffForHumans() }}</td>
-                        <td>
+                        <td class="text-nowrap text-center">
                             <a class="btn btn-primary btn-sm" href="{{ route('district.edit', $district) }}" title="Edit">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>

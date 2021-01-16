@@ -49,7 +49,7 @@
             </section>
 
             <section class="my-4">
-                <h4>Itineraries of {{ $district->name }}</h4>
+                <h4>Itineraries of district {{ strtolower($district->name) }}</h4>
 
 
                 <table id="datatables" class="table table-striped table-bordered table-responsive-xl">

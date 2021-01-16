@@ -10,10 +10,11 @@
             <i class="fa fa-fw fa-plus"></i>
             Quick Add
         </button>
-        <table id="datatables" class="table table-striped table-bordered table-responsive-xl">
+        <table id="datatables" class="table table-striped table-bordered table-responsive">
             <thead>
                 <tr class="text-center">
                     <th>No.</th>
+                    <th class="text-nowrap">Featured P.</th>
                     <th class="text-nowrap">Place name</th>
                     <th>Price</th>
                     <th>Sale</th>
@@ -28,6 +29,11 @@
                 @foreach ($itineraries as $key => $itinerary)
                     <tr>
                         <td>{{ $key+1 }}</td>
+                        <td class="text-center">
+                            <a href="{{ route('itinerary.edit', $itinerary) }}">
+                                <img class="img__featured img-fluid" src="{{ $itinerary->featured_picture }}" alt="{{ $itinerary->place_name }}" />
+                            </a>
+                        </td>
                         <td class="text-nowrap">
                             <a class="text-dark" href="{{ route('itinerary.edit', $itinerary) }}">
                                 {{ $itinerary->place_name }}

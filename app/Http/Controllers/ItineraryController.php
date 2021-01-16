@@ -67,13 +67,15 @@ class ItineraryController extends Controller
         /*
          * Featured Picture
          */
-        $imageName = "itinerary-{$this->data->id}.jpg";
-        $request->file('featured_picture')
-                ->storeAs('public/featured_picture', $imageName);
+        if ($request->file('featured_picture')) {
+            $imageName = "itinerary-{$this->data->id}.jpg";
+            $request->file('featured_picture')
+                    ->storeAs('public/featured_picture', $imageName);
 
-        // save the filename
-        $this->data->featured_picture = $imageName;
-        $this->data->save();
+            // save the filename
+            $this->data->featured_picture = $imageName;
+            $this->data->save();
+        }
 
 
         /*

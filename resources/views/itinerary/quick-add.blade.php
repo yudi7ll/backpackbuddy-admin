@@ -105,7 +105,7 @@
                 </form>
             </div>
             <div class="modal-footer bg-light">
-                <button type="button" class="btn btn-outline-danger btn-sm mr-auto" data-dismiss="modal">
+                <button type="button" class="btn btn-outline-dark btn-sm mr-auto" data-dismiss="modal">
                     <i class="fa fa-fw fa-ban"></i>
                     Close
                 </button>

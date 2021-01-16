@@ -5,6 +5,9 @@
 @section('content')
     <h1 class="title">
         <i class="fa fa-fw fa-pencil-alt"></i>
+        @if (!$itinerary->is_published)
+            Draft -
+        @endif
         {{ $itinerary->place_name }}
     </h1>
     <hr>

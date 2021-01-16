@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\District;
 use App\Http\Requests\DistrictRequest;
+use Session;
 
 class DistrictController extends Controller
 {
@@ -28,6 +29,17 @@ class DistrictController extends Controller
         $this->data['districts'] = $this->district->all();
 
         return view('district.index', $this->data);
+    }
+
+    /**
+     * Display a single district with the Itinerary
+     *
+     * @param \App\District $district
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function show(District $district)
+    {
+        return view('district.show', compact('district'));
     }
 
     /**
@@ -78,6 +90,6 @@ class DistrictController extends Controller
     {
         $district->delete();
 
-        return redirect()->back()->with('success', 'Data has been deleted successfully!');
+        return Session::flash('success', 'Data has been deleted successfully!');
     }
 }

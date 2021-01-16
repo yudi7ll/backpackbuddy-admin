@@ -7,6 +7,7 @@ use App\District;
 use App\Http\Requests\ItineraryRequest;
 use App\Itinerary;
 use Exception;
+use Session;
 use Str;
 
 class ItineraryController extends Controller
@@ -212,8 +213,10 @@ class ItineraryController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function destroy($id)
+    public function destroy(Itinerary $itinerary)
     {
-        return $this->itinerary->destroy($id);
+        $itinerary->delete();
+
+        return Session::flash('success', 'Data has been deleted successfully!');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryItineraryTable extends Migration
+class CreateCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateCategoryItineraryTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_itinerary', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id')->index();
-            $table->unsignedBigInteger('itinerary_id')->index();
+            $table->string('name');
+            $table->string('username')->unique();
+            $table->string('email')->unique();
+            $table->string('password');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateCategoryItineraryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_itinerary');
+        Schema::dropIfExists('customers');
     }
 }

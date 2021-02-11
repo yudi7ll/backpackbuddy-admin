@@ -15,8 +15,8 @@ class CreateDistrictItineraryTable extends Migration
     {
         Schema::create('district_itinerary', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('district_id');
-            $table->unsignedBigInteger('itinerary_id');
+            $table->unsignedBigInteger('district_id')->index();
+            $table->unsignedBigInteger('itinerary_id')->index();
             $table->timestamps();
         });
     }

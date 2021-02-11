@@ -10,11 +10,12 @@
             <i class="fa fa-fw fa-plus"></i>
             Quick Add
         </button>
-        <table id="datatables" class="table table-striped table-bordered table-responsive-xl">
+        <div class="table-responsive">
+        <table id="datatables" class="table table-sm table-striped table-bordered">
             <thead>
                 <tr class="text-center">
-                    <th>No.</th>
-                    <th class="text-nowrap">Featured P.</th>
+                    <th>NO&nbsp;</th>
+                    <th class="text-nowrap">Thumb&nbsp;</th>
                     <th class="text-nowrap">Place name</th>
                     <th>Price</th>
                     <th>Category</th>
@@ -26,13 +27,13 @@
             <tbody>
                 @foreach ($itineraries as $key => $itinerary)
                     <tr>
-                        <td class="text-center">{{ $key+1 }}</td>
-                        <td class="text-center">
+                        <td class="text-center align-middle">{{ $key+1 }}</td>
+                        <td class="text-center align-middle">
                             <a href="{{ route('itinerary.edit', $itinerary) }}">
                                 <img class="img__featured img-fluid" src="{{ $itinerary->featured_picture }}" alt="{{ $itinerary->place_name }}" />
                             </a>
                         </td>
-                        <td class="text-nowrap">
+                        <td class="text-nowrap align-middle">
                             <a class="text-dark" href="{{ route('itinerary.edit', $itinerary) }}">
                                 @if (!$itinerary->is_published)
                                     <i class="fa fa-fw fa-file"></i>
@@ -41,13 +42,13 @@
                                 {{ $itinerary->place_name }}
                             </a>
                         </td>
-                        <td class="text-right text-nowrap">
+                        <td class="text-nowrap align-middle">
                             Rp. {{ number_format($itinerary->sale ? $itinerary->sale : $itinerary->price, 0, ',', '.') }}
                         </td>
-                        <td>{{ $itinerary->categories->pluck('name')->join(', ') }}</td>
-                        <td>{{ $itinerary->districts->pluck('name')->join(', ') }}</td>
-                        <td class="text-nowrap">{{ $itinerary->updated_at->diffForHumans() }}</td>
-                        <td class="text-center text-nowrap">
+                        <td class="align-middle">{{ $itinerary->categories->pluck('name')->join(', ') }}</td>
+                        <td class="align-middle">{{ $itinerary->districts->pluck('name')->join(', ') }}</td>
+                        <td class="text-nowrap align-middle">{{ $itinerary->updated_at->diffForHumans() }}</td>
+                        <td class="text-center text-nowrap align-middle">
                             <a class="btn btn-primary btn-sm" href="{{ route('itinerary.edit', $itinerary) }}" title="Edit">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
@@ -59,6 +60,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
     </section>
 @endsection
 @include('itinerary.quick-add')

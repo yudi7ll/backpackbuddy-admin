@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Premium Itinerary')
+@section('title', 'Categories')
 
 @section('content')
     <h1 class="title"><i class="fa fa-fw fa-tags"></i> Categories</h1>

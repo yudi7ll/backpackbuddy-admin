@@ -13,7 +13,7 @@
         @method('POST')
         <div class="row">
             <div class="col-lg-8">
-                <section>
+                <section class="mb-4">
                         <input type="hidden" name="is_published" value="0" />
                         <div class="form-group">
                             <label for="input-place_name" class="col-form-label">Place Name:</label>

@@ -16,7 +16,7 @@
         @method('PUT')
         <div class="row">
             <div class="col-lg-8">
-                <section>
+                <section class="mb-4">
                         <input type="hidden" name="id" value="{{ $itinerary->id }}" />
                         <div class="form-group">
                             <label for="input-place_name" class="col-form-label">Place Name:</label>

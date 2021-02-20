@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Edit Premium District')
+@section('title', 'Edit District')
 
 @section('content')
     <h1 class="title">

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Premium Itinerary')
+@section('title', 'Districts')
 
 @section('content')
     <h1 class="title"><i class="fa fa-fw fa-map-marker-alt"></i> Districts</h1>

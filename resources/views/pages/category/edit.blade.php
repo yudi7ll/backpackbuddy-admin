@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Edit Premium Category')
+@section('title', 'Edit Category')
 
 @section('content')
     <h1 class="title">

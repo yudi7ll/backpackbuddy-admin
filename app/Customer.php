@@ -17,4 +17,13 @@ class Customer extends Model
     protected $fillable = [
         'name', 'username', 'email', 'password',
     ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }

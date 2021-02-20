@@ -28,7 +28,7 @@ class DistrictController extends Controller
     {
         $this->data['districts'] = $this->district->all();
 
-        return view('district.index', $this->data);
+        return view('pages.district.index', $this->data);
     }
 
     /**
@@ -39,7 +39,7 @@ class DistrictController extends Controller
      */
     public function show(District $district)
     {
-        return view('district.show', compact('district'));
+        return view('pages.district.show', compact('district'));
     }
 
     /**
@@ -63,7 +63,7 @@ class DistrictController extends Controller
      */
     public function edit(District $district)
     {
-        return view('district.edit', compact('district'));
+        return view('pages.district.edit', compact('district'));
     }
 
     /**

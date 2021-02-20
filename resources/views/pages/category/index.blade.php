@@ -14,7 +14,7 @@
             <table id="datatables" class="table table-striped table-bordered">
                 <thead>
                     <tr class="text-center">
-                        <th>No.</th>
+                        <th>No</th>
                         <th class="text-nowrap">Category Name</th>
                         <th class="text-nowrap">Category Slug</th>
                         <th class="text-nowrap">Itinerary Count</th>
@@ -51,7 +51,7 @@
         </div>
     </section>
 @endsection
-@include('category.quick-add')
+@include('pages.category.quick-add')
 
 @if ($errors->any())
     @push('js')

@@ -28,7 +28,7 @@ class CategoryController extends Controller
     {
         $this->data['categories'] = $this->category->all();
 
-        return view('category.index', $this->data);
+        return view('pages.category.index', $this->data);
     }
 
     /**
@@ -38,7 +38,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        return view('pages.category.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class CategoryController extends Controller
     {
         $this->data['category'] = $this->category->find($id);
 
-        return view('category.edit', $this->data);
+        return view('pages.category.edit', $this->data);
     }
 
     /**

@@ -36,7 +36,7 @@ class ItineraryController extends Controller
         $this->data['categories'] = $this->category->all();
         $this->data['districts'] = $this->district->all();
 
-        return view('itinerary.index', $this->data);
+        return view('pages.itinerary.index', $this->data);
     }
 
     /**
@@ -49,7 +49,7 @@ class ItineraryController extends Controller
         $this->data['categories'] = $this->category->all();
         $this->data['districts'] = $this->district->all();
 
-        return view('itinerary.create', $this->data);
+        return view('pages.itinerary.create', $this->data);
     }
 
     /**
@@ -135,7 +135,7 @@ class ItineraryController extends Controller
         $this->data['categories'] = $this->category->get();
         $this->data['districts'] = $this->district->all();
 
-        return view('itinerary.edit', $this->data);
+        return view('pages.itinerary.edit', $this->data);
     }
 
     /**

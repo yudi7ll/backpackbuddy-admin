@@ -243,6 +243,11 @@ return [
             'label'       => 1,
             'label_color' => 'success',
         ],
+        [
+            'text' => 'Status',
+            'url' => 'selling',
+            'icon' => 'fa fa-fw fa-chart-line'
+        ],
         ['header' => 'ITINERARY MANAGEMENT'],
         [
             'text' => 'Add New Itinerary',
@@ -261,57 +266,14 @@ return [
         ],
         [
             'text' => 'Districts',
-            'icon' => 'fa fa-fw fa-map-marker',
+            'icon' => 'fa fa-fw fa-map-marker-alt',
             'url' => 'district',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'CUSTOMER MANAGEMENT'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'Customer',
+            'url'  => 'customer',
             'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
         ],
     ],
 

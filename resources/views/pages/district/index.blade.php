@@ -3,7 +3,7 @@
 @section('title', 'Premium Itinerary')
 
 @section('content')
-    <h1 class="title"><i class="fa fa-fw fa-map-marker"></i> Districts</h1>
+    <h1 class="title"><i class="fa fa-fw fa-map-marker-alt"></i> Districts</h1>
     <hr>
     <section>
         <button id="add-district" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#district-modal">
@@ -14,7 +14,7 @@
             <table id="datatables" class="table table-striped table-bordered">
                 <thead>
                     <tr class="text-center">
-                        <th>No.</th>
+                        <th>No</th>
                         <th class="text-nowrap">District Name</th>
                         <th class="text-nowrap">District Slug</th>
                         <th class="text-nowrap">Itinerary Count</th>
@@ -53,7 +53,7 @@
         </div>
     </section>
 @endsection
-@include('district.quick-add')
+@include('pages.district.quick-add')
 
 @if ($errors->any())
     @push('js')

@@ -11,11 +11,11 @@
             Quick Add
         </button>
         <div class="table-responsive">
-        <table id="datatables" class="table table-sm table-striped table-bordered">
+        <table id="datatables" class="table table-striped table-bordered">
             <thead>
                 <tr class="text-center">
-                    <th>NO&nbsp;</th>
-                    <th class="text-nowrap">Thumb&nbsp;</th>
+                    <th>No</th>
+                    <th class="text-nowrap">Thumb</th>
                     <th class="text-nowrap">Place name</th>
                     <th>Price</th>
                     <th>Category</th>
@@ -35,11 +35,12 @@
                         </td>
                         <td class="text-nowrap align-middle">
                             <a class="text-dark" href="{{ route('itinerary.edit', $itinerary) }}">
-                                @if (!$itinerary->is_published)
-                                    <i class="fa fa-fw fa-file"></i>
-                                    Draft -
-                                @endif
                                 {{ $itinerary->place_name }}
+                                @if (!$itinerary->is_published)
+                                    -
+                                    <i class="fa fa-fw fa-file"></i>
+                                    Draft
+                                @endif
                             </a>
                         </td>
                         <td class="text-nowrap align-middle">
@@ -63,7 +64,7 @@
         </div>
     </section>
 @endsection
-@include('itinerary.quick-add')
+@include('pages.itinerary.quick-add')
 
 @if ($errors->any())
     @push('js')

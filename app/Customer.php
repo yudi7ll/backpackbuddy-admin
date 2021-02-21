@@ -26,4 +26,12 @@ class Customer extends Model
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the customer infos for customer
+     */
+    public function customerInfo()
+    {
+        return $this->hasOne('App\CustomerInfo');
+    }
 }

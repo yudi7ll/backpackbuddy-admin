@@ -22,10 +22,12 @@
                         <tr>
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td class="text-center">
-                                <a class="text-dark" href="{{ route('customer.edit', $customer) }}">{{ $customer['name'] }}</a>
+                                <a class="text-dark"
+                                    href="{{ route('customer.edit', $customer) }}">{{ $customer['name'] }}</a>
                             </td>
                             <td class="text-center">
-                                <a class="text-dark" href="{{ route('customer.edit', $customer) }}">{{ $customer['username'] }}</a>
+                                <a class="text-dark"
+                                    href="{{ route('customer.edit', $customer) }}">{{ $customer['username'] }}</a>
                             </td>
                             <td class="text-center">
                                 <a href="mailto:{{ $customer['email'] }}">{{ $customer['email'] }}</a>
@@ -33,13 +35,16 @@
                             <td class="text-center">Coming Soon</td>
                             <td class="text-center">{{ $customer['created_at']->diffForHumans() }}</td>
                             <td class="text-center text-nowrap align-middle">
-                                <a class="btn btn-primary btn-sm" href="{{ route('customer.edit', $customer) }}" title="Edit">
+                                <a class="btn btn-primary btn-sm" href="{{ route('customer.edit', $customer) }}"
+                                    title="Edit">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </a>
-                                <form id="delete-form" class="d-inline-block m-0" action="{{ route('customer.destroy', $customer) }}" method="POST" title="Delete">
+                                <form id="delete-form" class="d-inline-block m-0"
+                                    action="{{ route('customer.destroy', $customer) }}" method="POST" title="Delete">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" onclick="confirm('Are you sure?') && $(this).parent().submit()" class="btn btn-sm btn-danger">
+                                    <button type="button" onclick="confirm('Are you sure?') && $(this).parent().submit()"
+                                        class="btn btn-sm btn-danger">
                                         <i class="fa fa-fw fa-trash"></i>
                                     </button>
                                 </form>

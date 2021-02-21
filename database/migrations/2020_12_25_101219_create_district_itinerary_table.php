@@ -17,7 +17,6 @@ class CreateDistrictItineraryTable extends Migration
             $table->id();
             $table->unsignedBigInteger('district_id')->index();
             $table->unsignedBigInteger('itinerary_id')->index();
-            $table->timestamps();
         });
     }
 

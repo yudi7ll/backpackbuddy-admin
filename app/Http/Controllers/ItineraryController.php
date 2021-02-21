@@ -6,7 +6,6 @@ use App\Category;
 use App\District;
 use App\Http\Requests\ItineraryRequest;
 use App\Itinerary;
-use Exception;
 use Session;
 use Str;
 
@@ -88,7 +87,7 @@ class ItineraryController extends Controller
             // Retrieve category by slug or create it and return the id
             $category = $this->category->where('slug', $c)->first();
 
-            if ( empty($category->id) ) {
+            if (empty($category->id)) {
                 $category = $this->category->updateOrCreate([
                     'name' => $c,
                     'slug' => Str::slug($c, '-')
@@ -109,7 +108,7 @@ class ItineraryController extends Controller
             // Retrieve district by slug or create it and return the id
             $district = $this->district->where('slug', $c)->first();
 
-            if ( empty($district->id) ) {
+            if (empty($district->id)) {
                 $district = $this->district->updateOrCreate([
                     'name' => $c,
                     'slug' => Str::slug($c, '-')
@@ -172,7 +171,7 @@ class ItineraryController extends Controller
             // Retrieve category by slug or create it and return the id
             $category = $this->category->where('slug', $c)->first();
 
-            if ( empty($category->id) ) {
+            if (empty($category->id)) {
                 $category = $this->category->updateOrCreate([
                     'name' => $c,
                     'slug' => Str::slug($c, '-')
@@ -191,7 +190,7 @@ class ItineraryController extends Controller
             // Retrieve district by slug or create it and return the id
             $district = $this->district->where('slug', $c)->first();
 
-            if ( empty($district->id) ) {
+            if (empty($district->id)) {
                 $district = $this->district->updateOrCreate([
                     'name' => $c,
                     'slug' => Str::slug($c, '-')

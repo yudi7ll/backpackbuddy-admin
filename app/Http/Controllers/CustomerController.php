@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Http\Requests\CustomerInfoRequest;
 use App\Http\Requests\CustomerRequest;
 use App\Http\Requests\CustomerUpdatePasswordRequest;
 use Hash;
@@ -75,6 +76,18 @@ class CustomerController extends Controller
     }
 
     /**
+     * Update the Customer Info of specified data
+     *
+     */
+    public function updateInfo(CustomerInfoRequest $request, Customer $customer)
+    {
+        $this->data = $request->all();
+        $customer->update($this->data);
+
+        return redirect()->back()->with('success', 'Data has been updated.');
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Customer  $customer
@@ -84,6 +97,6 @@ class CustomerController extends Controller
     {
         $customer->delete();
 
-        return Session::flash('success', 'The customer has been removed!');
+        return Session::flash('success', 'Data has been deleted!');
     }
 }

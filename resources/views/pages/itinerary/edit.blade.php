@@ -11,103 +11,109 @@
         {{ $itinerary->place_name }}
     </h1>
     <hr>
-    <form id="itinerary-form" action="{{ route('itinerary.update', $itinerary) }}" method="POST" enctype="multipart/form-data">
+    <form id="itinerary-form" action="{{ route('itinerary.update', $itinerary) }}" method="POST"
+        enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row">
             <div class="col-lg-8">
                 <section class="mb-4">
-                        <input type="hidden" name="id" value="{{ $itinerary->id }}" />
-                        <div class="form-group">
-                            <label for="input-place_name" class="col-form-label">Place Name:</label>
-                            <input type="text" class="form-control @error('place_name') is-invalid @enderror" id="input-place_name" name="place_name" value="{{ old('place_name', $itinerary->place_name) }}" />
+                    <input type="hidden" name="id" value="{{ $itinerary->id }}" />
+                    <div class="form-group">
+                        <label for="input-place_name" class="col-form-label">Place Name:</label>
+                        <input type="text" class="form-control @error('place_name') is-invalid @enderror"
+                            id="input-place_name" name="place_name"
+                            value="{{ old('place_name', $itinerary->place_name) }}" />
 
-                            @error('place_name')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="input-category">Category:</label>
-                            <div>
-                                <select class="@error('categories') is-invalid @enderror" name="categories[]" id="input-category" multiple style="width: 100%;">
-                                    @foreach ($categories as $category)
-                                        <option
-                                            {{ (bool) $category->itineraries->find($itinerary) ? 'selected' : '' }}
-                                            value="{{ $category->slug }}"
-                                            >
-                                            {{ $category->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('categories')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="input-district">District:</label>
-                            <div>
-                                <select class="@error('districts') is-invalid @enderror" name="districts[]" id="input-district" multiple style="width: 100%;">
-                                    @foreach ($districts as $district)
-                                        <option
-                                            {{ (bool) $district->itineraries->find($itinerary) ? 'selected="selected"' : '' }}
-                                            value="{{ $district->slug }}"
-                                        >
-                                            {{ $district->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-
-                                @error('districts')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="input-price" class="col-form-label">Price:</label>
-                            <input type="text" class="form-control @error('price') is-invalid @enderror" id="input-price" name="price" value="{{ old('price', $itinerary->price) }}" />
-
-                            @error('price')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="input-sale" class="col-form-label">Sale:</label>
-                            <input type="text" class="form-control @error('sale') is-invalid @enderror" id="input-sale" name="sale" value="{{ old('sale', $itinerary->sale) }}" />
-
-                            @error('sale')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="input-excerpt" class="col-form-label">Excerpt:</label>
-                            <textarea class="form-control" id="input-excerpt" rows="3" name="excerpt">{{ old('excerpt', $itinerary->excerpt) }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="input-description" class="col-form-label">Description:</label>
-                            <textarea class="form-control" id="input-description" rows="5" name="description">{{ old('description', $itinerary->description) }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="status">Status:</label>
-                            <select class="custom-select" name="is_published" id="input-is_published">
-                                <option {{ $itinerary->is_published ? 'selected' : '' }} value="1">Publish</option>
-                                <option {{ $itinerary->is_published ? '' : 'selected' }} value="0">Draft</option>
+                        @error('place_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="input-category">Category:</label>
+                        <div>
+                            <select class="@error('categories') is-invalid @enderror" name="categories[]"
+                                id="input-category" multiple style="width: 100%;">
+                                @foreach ($categories as $category)
+                                    <option {{ (bool) $category->itineraries->find($itinerary) ? 'selected' : '' }}
+                                        value="{{ $category->slug }}">
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
                             </select>
+                            @error('categories')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <div class="left">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-fw fa-save"></i>
-                                    Update
-                                </button>
-                            </div>
-                            <div class="right">
-                                <button class="btn btn-outline-danger btn-sm">
-                                    <i class="fa fa-fw fa-trash"></i>
-                                    Delete
-                                </button>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-district">District:</label>
+                        <div>
+                            <select class="@error('districts') is-invalid @enderror" name="districts[]" id="input-district"
+                                multiple style="width: 100%;">
+                                @foreach ($districts as $district)
+                                    <option
+                                        {{ (bool) $district->itineraries->find($itinerary) ? 'selected="selected"' : '' }}
+                                        value="{{ $district->slug }}">
+                                        {{ $district->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @error('districts')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-price" class="col-form-label">Price:</label>
+                        <input type="text" class="form-control @error('price') is-invalid @enderror" id="input-price"
+                            name="price" value="{{ old('price', $itinerary->price) }}" />
+
+                        @error('price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="input-sale" class="col-form-label">Sale:</label>
+                        <input type="text" class="form-control @error('sale') is-invalid @enderror" id="input-sale"
+                            name="sale" value="{{ old('sale', $itinerary->sale) }}" />
+
+                        @error('sale')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="input-excerpt" class="col-form-label">Excerpt:</label>
+                        <textarea class="form-control" id="input-excerpt" rows="3"
+                            name="excerpt">{{ old('excerpt', $itinerary->excerpt) }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="input-description" rows="5"
+                            name="description">{{ old('description', $itinerary->description) }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select class="custom-select" name="is_published" id="input-is_published">
+                            <option {{ $itinerary->is_published ? 'selected' : '' }} value="1">Publish</option>
+                            <option {{ $itinerary->is_published ? '' : 'selected' }} value="0">Draft</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="left">
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <i class="fa fa-fw fa-save"></i>
+                                Update
+                            </button>
+                        </div>
+                        <div class="right">
+                            <button class="btn btn-outline-danger btn-sm">
+                                <i class="fa fa-fw fa-trash"></i>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
                 </section>
             </div>
             <div class="col-lg-4">
@@ -133,7 +139,8 @@
                 <section class="mt-4">
                     <h5>Featured picture</h5>
                     <a href="{{ $itinerary->featured_picture }}">
-                        <img id="featured_picture-preview" src="{{ $itinerary->featured_picture }}" alt="{{ $itinerary->place_name }}" class="img-fluid" />
+                        <img id="featured_picture-preview" src="{{ $itinerary->featured_picture }}"
+                            alt="{{ $itinerary->place_name }}" class="img-fluid" />
                     </a>
                     <input class="d-none" type="file" name="featured_picture" id="input-featured_picture">
                     <div class="mt-2 d-flex justify-content-between">
@@ -169,5 +176,6 @@
                 reader.readAsDataURL(file);
             }
         });
+
     </script>
 @endpush

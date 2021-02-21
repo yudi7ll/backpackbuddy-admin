@@ -4,7 +4,7 @@
 
 @section('auth_body')
 
-    @if(session('resent'))
+    @if (session('resent'))
         <div class="alert alert-success" role="alert">
             {{ __('adminlte::adminlte.verify_email_sent') }}
         </div>

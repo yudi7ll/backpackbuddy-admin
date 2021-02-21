@@ -8,36 +8,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                    @csrf
-                    @method('POST')
-                    <div class="form-group">
-                        <label for="input-name" class="col-form-label">District Name:</label>
-                        <input
-                            type="text"
-                            class="form-control @error('name') is-invalid @enderror"
-                            id="input-name"
-                            name="name"
-                            value="{{ old('name') }}"
-                            />
+                @csrf
+                @method('POST')
+                <div class="form-group">
+                    <label for="input-name" class="col-form-label">District Name:</label>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="input-name"
+                        name="name" value="{{ old('name') }}" />
 
-                        @error('name')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="input-slug" class="col-form-label">District Slug</label>
-                        <input
-                            type="text"
-                            class="form-control @error('slug') is-invalid @enderror"
-                            id="input-slug"
-                            name="slug"
-                            value="{{ old('slug') }}"
-                            />
+                    @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="input-slug" class="col-form-label">District Slug</label>
+                    <input type="text" class="form-control @error('slug') is-invalid @enderror" id="input-slug"
+                        name="slug" value="{{ old('slug') }}" />
 
-                        @error('slug')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    @error('slug')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
             <div class="modal-footer bg-light">
                 <button type="button" class="btn btn-outline-danger btn-sm mr-auto" data-dismiss="modal">

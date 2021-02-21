@@ -17,7 +17,8 @@
                     <input type="hidden" name="id" value="{{ $category->id }}" />
                     <div class="form-group">
                         <label for="input-name" class="col-form-label">Category Name:</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="input-name" name="name" value="{{ old('name', $category->name) }}" />
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="input-name"
+                            name="name" value="{{ old('name', $category->name) }}" />
 
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -25,7 +26,8 @@
                     </div>
                     <div class="form-group">
                         <label for="input-slug" class="col-form-label">Category Slug:</label>
-                        <input type="text" class="form-control @error('slug') is-invalid @enderror" id="input-slug" name="slug" value="{{ old('slug', $category->slug) }}" />
+                        <input type="text" class="form-control @error('slug') is-invalid @enderror" id="input-slug"
+                            name="slug" value="{{ old('slug', $category->slug) }}" />
 
                         @error('slug')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -39,7 +41,8 @@
                             </button>
                         </div>
                         <div class="right">
-                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteCategory({{ $category->id }})">
+                            <button type="button" class="btn btn-outline-danger btn-sm"
+                                onclick="deleteCategory({{ $category->id }})">
                                 <i class="fa fa-fw fa-trash"></i>
                                 Delete
                             </button>
@@ -65,9 +68,10 @@
                     <tbody>
                         @foreach ($category->itineraries->all() as $key => $itinerary)
                             <tr>
-                                <td class="text-center">{{ $key+1 }}</td>
+                                <td class="text-center">{{ $key + 1 }}</td>
                                 <td class="text-center">
-                                    <img class="img__featured img-fluid" src="{{ $itinerary->featured_picture }}" alt="{{ $itinerary->place_name }}" />
+                                    <img class="img__featured img-fluid" src="{{ $itinerary->featured_picture }}"
+                                        alt="{{ $itinerary->place_name }}" />
                                 </td>
                                 <td>
                                     <a class="text-dark" href="{{ route('itinerary.edit', $itinerary) }}">
@@ -76,10 +80,12 @@
                                 </td>
                                 <td class="text-center">{{ $itinerary->updated_at->diffForHumans() }}</td>
                                 <td class="text-nowrap text-center">
-                                    <a class="btn btn-primary btn-sm" href="{{ route('itinerary.edit', $itinerary) }}" title="Edit">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('itinerary.edit', $itinerary) }}"
+                                        title="Edit">
                                         <i class="fa fa-fw fa-pencil-alt"></i>
                                     </a>
-                                    <button type="button" onclick="deleteItinerary({{ $itinerary->id }})" class="btn btn-sm btn-danger">
+                                    <button type="button" onclick="deleteItinerary({{ $itinerary->id }})"
+                                        class="btn btn-sm btn-danger">
                                         <i class="fa fa-fw fa-trash"></i>
                                     </button>
                                 </td>
@@ -121,8 +127,10 @@
                 try {
                     await axios.delete(`/itinerary/${id}`)
                     document.location.reload();
-                } catch(e) {
-                    await swal("Error! Something have been wrong!", { icon: "error" });
+                } catch (e) {
+                    await swal("Error! Something have been wrong!", {
+                        icon: "error"
+                    });
                 }
             }
         };
@@ -140,10 +148,13 @@
                 try {
                     await axios.delete(`/category/${id}`);
                     document.location.href = '/category';
-                } catch(e) {
-                    await swal("Error! Something have been wrong!", { icon: "error" });
+                } catch (e) {
+                    await swal("Error! Something have been wrong!", {
+                        icon: "error"
+                    });
                 }
             }
         };
+
     </script>
 @endpush

@@ -27,19 +27,23 @@
                         <tr>
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td>
-                                <a class="text-dark" href="{{ route('category.edit', $category) }}"> {{ $category->name }} </a>
+                                <a class="text-dark" href="{{ route('category.edit', $category) }}">
+                                    {{ $category->name }} </a>
                             </td>
                             <td>{{ $category->slug }}</td>
                             <td class="text-center">{{ $category->itineraries()->count() }}</td>
                             <td>{{ $category->updated_at->diffForHumans() }}</td>
                             <td class="text-nowrap text-center">
-                                <a class="btn btn-primary btn-sm" href="{{ route('category.edit', $category) }}" title="Edit">
+                                <a class="btn btn-primary btn-sm" href="{{ route('category.edit', $category) }}"
+                                    title="Edit">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </a>
-                                <form id="delete-form" class="d-inline-block m-0" action="{{ route('category.destroy', $category) }}" method="POST" title="Delete">
+                                <form id="delete-form" class="d-inline-block m-0"
+                                    action="{{ route('category.destroy', $category) }}" method="POST" title="Delete">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" onclick="confirm('Are you sure?') && $(this).parent().submit()" class="btn btn-sm btn-danger">
+                                    <button type="button" onclick="confirm('Are you sure?') && $(this).parent().submit()"
+                                        class="btn btn-sm btn-danger">
                                         <i class="fa fa-fw fa-trash"></i>
                                     </button>
                                 </form>
@@ -59,6 +63,7 @@
             $(document).ready(function() {
                 $('#category-modal').modal('show');
             });
+
         </script>
     @endpush
 @endif

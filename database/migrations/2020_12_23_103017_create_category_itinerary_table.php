@@ -17,7 +17,6 @@ class CreateCategoryItineraryTable extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id')->index();
             $table->unsignedBigInteger('itinerary_id')->index();
-            $table->timestamps();
         });
     }
 

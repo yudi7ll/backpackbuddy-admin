@@ -35,13 +35,16 @@
                             <td class="text-center">{{ $district->itineraries()->count() }}</td>
                             <td>{{ $district->updated_at->diffForHumans() }}</td>
                             <td class="text-nowrap text-center">
-                                <a class="btn btn-primary btn-sm" href="{{ route('district.edit', $district) }}" title="Edit">
+                                <a class="btn btn-primary btn-sm" href="{{ route('district.edit', $district) }}"
+                                    title="Edit">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </a>
-                                <form id="delete-form" class="d-inline-block m-0" action="{{ route('district.destroy', $district) }}" method="POST" title="Delete">
+                                <form id="delete-form" class="d-inline-block m-0"
+                                    action="{{ route('district.destroy', $district) }}" method="POST" title="Delete">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" onclick="confirm('Are you sure?') && $(this).parent().submit()" class="btn btn-sm btn-danger">
+                                    <button type="button" onclick="confirm('Are you sure?') && $(this).parent().submit()"
+                                        class="btn btn-sm btn-danger">
                                         <i class="fa fa-fw fa-trash"></i>
                                     </button>
                                 </form>
@@ -61,6 +64,7 @@
             $(document).ready(function() {
                 $('#district-modal').modal('show');
             });
+
         </script>
     @endpush
 @endif

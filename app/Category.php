@@ -15,6 +15,8 @@ class Category extends Model
 
     /**
      * Get the Itinerary that belongs to the category.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function itineraries()
     {

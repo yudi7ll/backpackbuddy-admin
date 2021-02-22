@@ -7,6 +7,7 @@ use App\District;
 use App\Http\Requests\ItineraryRequest;
 use App\Itinerary;
 use Session;
+use Storage;
 use Str;
 
 class ItineraryController extends Controller
@@ -68,9 +69,11 @@ class ItineraryController extends Controller
          * Featured Picture
          */
         if ($request->file('featured_picture')) {
-            $imageName = "itinerary-{$this->data->id}.jpg";
-            $request->file('featured_picture')
-                    ->storeAs('public/featured_picture', $imageName);
+            $file = $request->file('featured_picture');
+            $imageName = "itinerary-{$this->data->id}.{$request->file('featured_picture')->getClientOriginalExtension()}";
+
+            // store the file to public directory
+            $file->storeAs('public/featured_picture', $imageName);
 
             // save the filename
             $this->data->featured_picture = $imageName;
@@ -153,9 +156,11 @@ class ItineraryController extends Controller
          * Featured Picture
          */
         if ($request->file('featured_picture')) {
-            $imageName = "itinerary-{$this->data->id}.jpg";
-            $request->file('featured_picture')
-                    ->storeAs('public/featured_picture', $imageName);
+            $file = $request->file('featured_picture');
+            $imageName = "itinerary-{$this->data->id}.{$request->file('featured_picture')->getClientOriginalExtension()}";
+
+            // store the file to public directory
+            $file->storeAs('public/featured_picture', $imageName);
 
             // save the filename
             $this->data->featured_picture = $imageName;

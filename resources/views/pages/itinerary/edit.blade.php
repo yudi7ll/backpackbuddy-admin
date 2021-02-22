@@ -138,7 +138,7 @@
                 </section>
                 <section class="mt-4">
                     <h5>Featured picture</h5>
-                    <a href="{{ $itinerary->featured_picture }}">
+                    <a href="{{ $itinerary->featured_picture }}" target="_blank">
                         <img id="featured_picture-preview" src="{{ $itinerary->featured_picture }}"
                             alt="{{ $itinerary->place_name }}" class="img-fluid" />
                     </a>

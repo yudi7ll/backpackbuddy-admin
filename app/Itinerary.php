@@ -44,7 +44,7 @@ class Itinerary extends Model
     /**
      * Filter the itinerary whether is published or not
      *
-     * @return \Illuminate\Model
+     * @return \App\Itinerary
      */
     public function isPublished()
     {
@@ -53,6 +53,8 @@ class Itinerary extends Model
 
     /**
      * Get the category for the Itinerary
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function categories()
     {
@@ -61,6 +63,8 @@ class Itinerary extends Model
 
     /**
      * Get the district for the Itinerary
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function districts()
     {

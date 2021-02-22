@@ -28,7 +28,9 @@ class Customer extends Model
     ];
 
     /**
-     * Get the customer infos for customer
+     * Get the customer info for customer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function customerInfo()
     {

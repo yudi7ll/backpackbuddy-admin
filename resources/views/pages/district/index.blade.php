@@ -39,15 +39,12 @@
                                     title="Edit">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </a>
-                                <form id="delete-form" class="d-inline-block m-0"
-                                    action="{{ route('district.destroy', $district) }}" method="POST" title="Delete">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" onclick="confirm('Are you sure?') && $(this).parent().submit()"
-                                        class="btn btn-sm btn-danger">
+                                <div class="d-inline-block m-0">
+                                    <button type="button" onclick="deleteHandle({{ $district->id }})"
+                                          class="btn btn-sm btn-danger">
                                         <i class="fa fa-fw fa-trash"></i>
                                     </button>
-                                </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -57,6 +54,31 @@
     </section>
 @endsection
 @include('pages.district.quick-add')
+
+@push('js')
+    <script type="text/javascript">
+        async function deleteHandle(id) {
+            const willDelete = await swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+
+            if (willDelete) {
+                try {
+                    await axios.delete(`/district/${id}`);
+                    document.location.href = '/district';
+                } catch (e) {
+                    await swal("Error! Something have been wrong!", {
+                        icon: "error"
+                    });
+                }
+            }
+        };
+    </script>
+@endpush
 
 @if ($errors->any())
     @push('js')

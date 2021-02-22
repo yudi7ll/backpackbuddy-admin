@@ -14,7 +14,7 @@ Route::middleware('auth:web')->group(function () {
     Route::resource('customer', 'CustomerController');
     Route::prefix('customer')->group(function() {
         Route::put('{customer}/update-password', 'CustomerController@updatePassword')->name('customer.update-password');
-        Route::put('{customer}/update-info', 'CustomerController@update-info')->name('customer.update-info');
+        Route::put('{customer}/update-info', 'CustomerController@updateInfo')->name('customer.update-info');
         // redirect customer show to edit
         Route::get('{customer}', function ($customer) {
             return redirect()->route('customer.edit', $customer);

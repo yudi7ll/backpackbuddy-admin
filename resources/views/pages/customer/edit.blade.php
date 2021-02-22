@@ -51,20 +51,13 @@
                                 Update
                             </button>
                         </div>
-                        <div class="right">
-                            <button type="button" onclick="deleteCustomerHandle({{ $customer->id }})"
-                                class="btn btn-sm btn-outline-danger">
-                                <i class="fa fa-fw fa-trash"></i>
-                                Delete
-                            </button>
-                        </div>
                     </div>
                 </form>
             </section>
             <section class="mt-4">
                 <h3>Privacy</h3>
                 <hr>
-                <form id="customer-form" action="{{ route('customer.update', $customer) }}" method="POST">
+                <form id="customer-form" action="{{ route('customer.update-info', $customer) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="id" value="{{ $customer->id }}" />
@@ -136,13 +129,6 @@
                                 Update
                             </button>
                         </div>
-                        <div class="right">
-                            <button type="button" onclick="deleteCustomerHandle({{ $customer->id }})"
-                                class="btn btn-sm btn-outline-danger">
-                                <i class="fa fa-fw fa-trash"></i>
-                                Delete
-                            </button>
-                        </div>
                     </div>
                 </form>
             </section>
@@ -179,6 +165,13 @@
                         </div>
                     </div>
                 </form>
+            </section>
+            <section class="mt-4">
+                <h4 class="text-danger">Danger Zone</h4>
+                <hr>
+                <button class="btn btn-outline-danger" type="button" onclick="deleteCustomerHandle({{ $customer->id }})">
+                    Delete this account permanently
+                </button>
             </section>
         </div>
         <div class="col-lg-4">

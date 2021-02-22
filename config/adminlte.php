@@ -245,7 +245,7 @@ return [
         ],
         [
             'text' => 'Status',
-            'url' => 'selling',
+            'url' => 'status',
             'icon' => 'fa fa-fw fa-chart-line'
         ],
         ['header' => 'ITINERARY MANAGEMENT'],

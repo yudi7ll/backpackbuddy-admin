@@ -17,7 +17,9 @@ class CustomerInfo extends Model
 
 
     /**
-     * Get the Customer that belongs to this customer infos
+     * Get Customer that belongs to customer info
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function customer()
     {

@@ -26,10 +26,10 @@ class CustomerInfoRequest extends FormRequest
         return [
             'address_1' => 'required|string|max:255',
             'address_2' => 'nullable|string|max:255',
-            'postcode' => 'required|numeric|max:50',
+            'postcode' => 'required|numeric',
             'city' => 'required|string|max:50',
-            'identity' => 'required|numeric|max:50',
-            'telp' => 'required|numeric|max:100'
+            'identity' => 'required|numeric',
+            'telp' => 'required|numeric'
         ];
     }
 }

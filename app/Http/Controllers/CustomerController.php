@@ -25,7 +25,7 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -37,7 +37,7 @@ class CustomerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Customer $customer)
     {
@@ -49,7 +49,7 @@ class CustomerController extends Controller
      *
      * @param  \Illuminate\Http\Requests\CustomerRequest  $request
      * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Routing\RedirectResponse
      */
     public function update(CustomerRequest $request, Customer $customer)
     {
@@ -64,7 +64,7 @@ class CustomerController extends Controller
      *
      * @param \Illuminate\Http\Requests\CustomerUpdatePasswordRequest $request
      * @param \App\Customer $customer
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Routing\RedirectResponse
      */
     public function updatePassword(CustomerUpdatePasswordRequest $request, Customer $customer)
     {
@@ -78,11 +78,14 @@ class CustomerController extends Controller
     /**
      * Update the Customer Info of specified data
      *
+     * @param \Illuminate\Http\Requests\CustomerInfoRequest $request
+     * @param \App\Customer $customer
+     * @return \Illuminate\Routing\RedirectResponse
      */
     public function updateInfo(CustomerInfoRequest $request, Customer $customer)
     {
         $this->data = $request->all();
-        $customer->update($this->data);
+        $customer->customerInfo()->update($this->data);
 
         return redirect()->back()->with('success', 'Data has been updated.');
     }
@@ -91,7 +94,7 @@ class CustomerController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Support\Facades\Session
      */
     public function destroy(Customer $customer)
     {

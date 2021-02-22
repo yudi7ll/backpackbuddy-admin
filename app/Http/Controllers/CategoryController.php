@@ -56,7 +56,7 @@ class CategoryController extends Controller
     /**
      * Show edit category form
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {

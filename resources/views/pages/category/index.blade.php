@@ -38,15 +38,12 @@
                                     title="Edit">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </a>
-                                <form id="delete-form" class="d-inline-block m-0"
-                                    action="{{ route('category.destroy', $category) }}" method="POST" title="Delete">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" onclick="confirm('Are you sure?') && $(this).parent().submit()"
+                                <div class="d-inline-block m-0">
+                                    <button type="button" onclick="deleteCategoryHandle({{ $category->id }})"
                                         class="btn btn-sm btn-danger">
                                         <i class="fa fa-fw fa-trash"></i>
                                     </button>
-                                </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -56,6 +53,31 @@
     </section>
 @endsection
 @include('pages.category.quick-add')
+
+@push('js')
+    <script>
+        async function deleteCategoryHandle(id) {
+            const willDelete = await swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+
+            if (willDelete) {
+                try {
+                    await axios.delete(`/category/${id}`);
+                    document.location.href = '/category';
+                } catch (e) {
+                    await swal("Error! Something have been wrong!", {
+                        icon: "error"
+                    });
+                }
+            }
+        };
+    </script>
+@endpush
 
 @if ($errors->any())
     @push('js')

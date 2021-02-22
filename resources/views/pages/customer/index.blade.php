@@ -39,15 +39,10 @@
                                     title="Edit">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </a>
-                                <form id="delete-form" class="d-inline-block m-0"
-                                    action="{{ route('customer.destroy', $customer) }}" method="POST" title="Delete">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" onclick="confirm('Are you sure?') && $(this).parent().submit()"
-                                        class="btn btn-sm btn-danger">
-                                        <i class="fa fa-fw fa-trash"></i>
-                                    </button>
-                                </form>
+                                <button type="button" onclick="deleteCustomerHandle({{ $customer->id }})"
+                                    class="btn btn-sm btn-danger">
+                                    <i class="fa fa-fw fa-trash"></i>
+                                </button>
                             </td>
                         </tr>
                     @endforeach
@@ -56,3 +51,27 @@
         </div>
     </section>
 @endsection
+@push('js')
+    <script type="text/javascript">
+        async function deleteCustomerHandle(id) {
+            const willDelete = await swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+
+            if (willDelete) {
+                try {
+                    await axios.delete(`/customer/${id}`);
+                    document.location.href = '/customer';
+                } catch (e) {
+                    await swal("Error! Something have been wrong!", {
+                        icon: "error"
+                    });
+                }
+            }
+        };
+    </script>
+@endpush

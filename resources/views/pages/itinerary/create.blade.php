@@ -97,6 +97,16 @@
                 </section>
             </div>
             <div class="col-lg-4">
+                <section class="d-flex align-items-center justify-content-between">
+                    <button type="button" class="btn btn-secondary" onclick="submitForm(0)">
+                        <i class="fa fa-fw fa-save"></i>
+                        Save Draft
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="submitForm(1)">
+                        <i class="fa fa-fw fa-globe"></i>
+                        Publish
+                    </button>
+                </section>
                 <section>
                     <label for="input-featured_picture">Featured Picture</label>
                     <img class="img-fluid mb-2" id="featured__preview" src="" />
@@ -106,16 +116,6 @@
                     @error('featured_picture')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                </section>
-                <section class="mt-4 d-flex justify-content-between">
-                    <button type="button" class="btn btn-secondary" onclick="submitForm(0)">
-                        <i class="fa fa-fw fa-save"></i>
-                        Save Draft
-                    </button>
-                    <button type="button" class="btn btn-primary" onclick="submitForm(1)">
-                        <i class="fa fa-fw fa-globe"></i>
-                        Publish
-                    </button>
                 </section>
             </div>
         </div>

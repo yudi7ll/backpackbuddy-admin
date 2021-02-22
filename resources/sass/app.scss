@@ -30,6 +30,7 @@ html, body, table {
 
 section {
     @extend .bg-white;
+    @extend .mb-4;
     @extend .p-4;
     @extend .rounded;
     @extend .shadow-sm;

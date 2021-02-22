@@ -93,34 +93,27 @@
                         <textarea class="form-control" id="input-description" rows="5"
                             name="description">{{ old('description', $itinerary->description) }}</textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="status">Status:</label>
-                        <select class="custom-select" name="is_published" id="input-is_published">
-                            <option {{ $itinerary->is_published ? 'selected' : '' }} value="1">Publish</option>
-                            <option {{ $itinerary->is_published ? '' : 'selected' }} value="0">Draft</option>
-                        </select>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <div class="left">
-                            <button type="submit" class="btn btn-primary btn-sm">
-                                <i class="fa fa-fw fa-save"></i>
-                                Update
-                            </button>
-                        </div>
-                        <div class="right">
-                            <button class="btn btn-outline-danger btn-sm">
-                                <i class="fa fa-fw fa-trash"></i>
-                                Delete
-                            </button>
-                        </div>
-                    </div>
                 </section>
             </div>
             <div class="col-lg-4">
                 <section>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <select class="custom-select" name="is_published" id="input-is_published">
+                                <option {{ $itinerary->is_published ? 'selected' : '' }} value="1">Publish</option>
+                                <option {{ $itinerary->is_published ? '' : 'selected' }} value="0">Draft</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-fw fa-save"></i>
+                            Update
+                        </button>
+                    </div>
+                </section>
+                <section>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <strong>Status: </strong> {{ $itinerary->is_published ? 'Published' : 'Draft' }}
+                            <strong>Visibility: </strong> {{ $itinerary->is_published ? 'Published' : 'Draft' }}
                         </li>
                         <li class="list-group-item">
                             <strong>View: </strong> Coming Soon
@@ -136,7 +129,7 @@
                         </li>
                     </ul>
                 </section>
-                <section class="mt-4">
+                <section>
                     <h5>Featured picture</h5>
                     <a href="{{ $itinerary->featured_picture }}" target="_blank">
                         <img id="featured_picture-preview" src="{{ $itinerary->featured_picture }}"
@@ -150,6 +143,14 @@
                             Update
                         </button>
                     </div>
+                </section>
+                <section>
+                    <h5 class="text-danger">Danger Zone</h5>
+                    <hr />
+                    <button class="btn btn-outline-danger" onclick="deleteHandle({{ $itinerary->id }})" type="button">
+                        <i class="fa fa-fw fa-trash"></i>
+                        Delete
+                    </button>
                 </section>
             </div>
         </div>
@@ -177,5 +178,25 @@
             }
         });
 
+        async function deleteHandle(id) {
+            const willDelete = await swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+
+            if (willDelete) {
+                try {
+                    await axios.delete(`/itinerary/${id}`)
+                    document.location.href = '/itinerary';
+                } catch (e) {
+                    await swal("Error! Something have been wrong!", {
+                        icon: "error"
+                    });
+                }
+            }
+        };
     </script>
 @endpush

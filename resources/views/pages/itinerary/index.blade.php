@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'All Itinerary')
+@section('title', 'All Itineraries')
 
 @section('content')
-    <h1 class="title"><i class="fa fa-fw fa-tasks"></i> All Itinerary</h1>
+    <h1 class="title"><i class="fa fa-fw fa-tasks"></i> All Itineraries</h1>
     <hr>
     <section>
         <button id="add-itinerary" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#itinerary-modal">

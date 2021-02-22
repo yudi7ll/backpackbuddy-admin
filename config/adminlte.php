@@ -255,25 +255,29 @@ return [
             'url' => 'itinerary/create',
         ],
         [
-            'text' => 'All Itineraries',
+            'text' => 'Itineraries',
             'icon' => 'fas fa-fw fa-tasks',
             'url' => 'itinerary',
+            'active' => ['itinerary/*/edit']
         ],
         [
             'text' => 'Categories',
             'icon' => 'fa fa-fw fa-tags',
             'url' => 'category',
+            'active' => ['category*']
         ],
         [
             'text' => 'Districts',
             'icon' => 'fa fa-fw fa-map-marker-alt',
             'url' => 'district',
+            'active' => ['district*']
         ],
         ['header' => 'CUSTOMER MANAGEMENT'],
         [
             'text' => 'Customer',
             'url'  => 'customer',
             'icon' => 'fas fa-fw fa-user',
+            'active' => ['customer*']
         ],
     ],
 

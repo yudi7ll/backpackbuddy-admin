@@ -41,7 +41,7 @@
                                 </a>
                                 <div class="d-inline-block m-0">
                                     <button type="button" onclick="deleteHandle({{ $district->id }})"
-                                          class="btn btn-sm btn-danger">
+                                        class="btn btn-sm btn-danger">
                                         <i class="fa fa-fw fa-trash"></i>
                                     </button>
                                 </div>
@@ -77,6 +77,7 @@
                 }
             }
         };
+
     </script>
 @endpush
 

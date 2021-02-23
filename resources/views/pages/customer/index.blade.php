@@ -73,5 +73,6 @@
                 }
             }
         };
+
     </script>
 @endpush

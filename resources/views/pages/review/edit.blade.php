@@ -17,7 +17,8 @@
                     <input type="hidden" name="id" value="{{ $review->id }}" />
                     <div class="form-group">
                         <label for="input-rating" class="col-form-label">Rating:</label>
-                        <input class="form-control" type="number" name="rating" id="rating" value="{{ old('rating', $review->rating) }}" required />
+                        <input class="form-control" type="number" name="rating" id="rating"
+                            value="{{ old('rating', $review->rating) }}" required />
 
                         @error('rating')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -25,7 +26,8 @@
                     </div>
                     <div class="form-group">
                         <label for="input-content" class="col-form-label">Content:</label>
-                        <textarea class="form-control" name="content" id="content" rows="10">{{ old('content', $review->content) }}</textarea>
+                        <textarea class="form-control" name="content" id="content"
+                            rows="10">{{ old('content', $review->content) }}</textarea>
 
                         @error('content')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -57,14 +59,16 @@
                             <th scope="col">Author</th>
                             <td scope="col">:</td>
                             <td scope="col">
-                                <a href="{{ route('customer.edit', $review->customer) }}">{{ $review->customer->name }}</a>
+                                <a
+                                    href="{{ route('customer.edit', $review->customer) }}">{{ $review->customer->name }}</a>
                             </td>
                         </tr>
                         <tr>
                             <th scope="col">Itinerary</th>
                             <td scope="col">:</td>
                             <td scope="col">
-                                <a href="{{ route('itinerary.edit', $review->itinerary) }}">{{ $review->itinerary->place_name }}</a>
+                                <a
+                                    href="{{ route('itinerary.edit', $review->itinerary) }}">{{ $review->itinerary->place_name }}</a>
                             </td>
                         </tr>
                     </tbody>
@@ -95,5 +99,6 @@
                 }
             }
         };
+
     </script>
 @endpush

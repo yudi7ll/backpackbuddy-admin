@@ -65,7 +65,7 @@
                         <label for="input-address_1" class="col-form-label">Adress 1: </label>
                         <input type="text" class="form-control @error('address_1') is-invalid @enderror"
                             id="input-address_1" name="address_1"
-                             value="{{ old('address_1', isset($customer->customerInfo) ? $customer->customerInfo->address_1 : '') }}">
+                            value="{{ old('address_1', isset($customer->customerInfo) ? $customer->customerInfo->address_1 : '') }}">
 
                         @error('address_1')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -75,7 +75,7 @@
                         <label for="input-address_2" class="col-form-label">Adress 2 (Optional): </label>
                         <input type="text" class="form-control @error('address_2') is-invalid @enderror"
                             id="input-address_2" name="address_2"
-                             value="{{ old('address_2', isset($customer->customerInfo) ? $customer->customerInfo->address_2 : '') }}">
+                            value="{{ old('address_2', isset($customer->customerInfo) ? $customer->customerInfo->address_2 : '') }}">
 
                         @error('address_2')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -83,9 +83,9 @@
                     </div>
                     <div class="form-group">
                         <label for="input-postcode" class="col-form-label">Post Code: </label>
-                        <input type="text" class="form-control @error('postcode') is-invalid @enderror"
-                            id="input-postcode" name="postcode"
-                             value="{{ old('postcode', isset($customer->customerInfo) ? $customer->customerInfo->postcode : '') }}">
+                        <input type="text" class="form-control @error('postcode') is-invalid @enderror" id="input-postcode"
+                            name="postcode"
+                            value="{{ old('postcode', isset($customer->customerInfo) ? $customer->customerInfo->postcode : '') }}">
 
                         @error('postcode')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -93,9 +93,9 @@
                     </div>
                     <div class="form-group">
                         <label for="input-city" class="col-form-label">City: </label>
-                        <input type="text" class="form-control @error('city') is-invalid @enderror"
-                            id="input-city" name="city"
-                             value="{{ old('city', isset($customer->customerInfo) ? $customer->customerInfo->city : '') }}">
+                        <input type="text" class="form-control @error('city') is-invalid @enderror" id="input-city"
+                            name="city"
+                            value="{{ old('city', isset($customer->customerInfo) ? $customer->customerInfo->city : '') }}">
 
                         @error('city')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -103,10 +103,10 @@
                     </div>
                     <div class="form-group">
                         <label for="input-identity" class="col-form-label">Identity: </label>
-                        <input type="text" class="form-control @error('identity') is-invalid @enderror"
-                            id="input-identity" name="identity"
-                             value="{{ old('identity', isset($customer->customerInfo) ? $customer->customerInfo->identity : '') }}"
-                             placeholder="KTP/Passport/Visa">
+                        <input type="text" class="form-control @error('identity') is-invalid @enderror" id="input-identity"
+                            name="identity"
+                            value="{{ old('identity', isset($customer->customerInfo) ? $customer->customerInfo->identity : '') }}"
+                            placeholder="KTP/Passport/Visa">
 
                         @error('identity')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -114,9 +114,9 @@
                     </div>
                     <div class="form-group">
                         <label for="input-telp" class="col-form-label">Telp. : </label>
-                        <input type="text" class="form-control @error('telp') is-invalid @enderror"
-                            id="input-telp" name="telp"
-                             value="{{ old('telp', isset($customer->customerInfo) ? $customer->customerInfo->telp : '') }}">
+                        <input type="text" class="form-control @error('telp') is-invalid @enderror" id="input-telp"
+                            name="telp"
+                            value="{{ old('telp', isset($customer->customerInfo) ? $customer->customerInfo->telp : '') }}">
 
                         @error('telp')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -213,5 +213,6 @@
                 }
             }
         };
+
     </script>
 @endpush

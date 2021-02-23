@@ -18,24 +18,25 @@
                     <th class="text-center">Action</th>
                 </thead>
                 <tbody>
-                    @foreach($reviews as $key => $review)
+                    @foreach ($reviews as $key => $review)
                         <tr>
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td class="text-center">
                                 <a class="text-dark field-hover" href="{{ route('customer.edit', $review->customer) }}"
-                                         title="Edit customer {{ $review->customer->name }}">
+                                    title="Edit customer {{ $review->customer->name }}">
                                     {{ $review->customer->name }}
                                 </a>
                             </td>
                             <td class="text-center">
                                 <a class="text-dark field-hover" href="{{ route('itinerary.edit', $review->itinerary) }}"
-                                     title="Edit itinerary {{ $review->itinerary->place_name }}">
+                                    title="Edit itinerary {{ $review->itinerary->place_name }}">
                                     {{ $review->itinerary->place_name }}
                                 </a>
                             </td>
                             <td class="text-center">
-                                <a class="text-dark text-truncate d-inline-block" href="{{ route('review.edit', $review) }}"
-                                    title="Edit this review" style="max-width: 250px;">
+                                <a class="text-dark text-truncate d-inline-block"
+                                    href="{{ route('review.edit', $review) }}" title="Edit this review"
+                                    style="max-width: 250px;">
                                     {{ $review->content }}
                                 </a>
                             </td>
@@ -80,5 +81,6 @@
                 }
             }
         };
+
     </script>
 @endpush

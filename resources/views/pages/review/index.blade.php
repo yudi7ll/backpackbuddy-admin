@@ -33,8 +33,9 @@
                                     {{ $review->itinerary->place_name }}
                                 </a>
                             </td>
-                            <td class="text-center text-truncate">
-                                <a class="text-dark" href="{{ route('review.edit', $review) }}" title="Edit this review">
+                            <td class="text-center">
+                                <a class="text-dark text-truncate d-inline-block" href="{{ route('review.edit', $review) }}"
+                                    title="Edit this review" style="max-width: 250px;">
                                     {{ $review->content }}
                                 </a>
                             </td>

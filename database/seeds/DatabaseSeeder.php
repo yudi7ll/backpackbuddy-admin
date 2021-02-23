@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
             DistrictSeeder::class,
             ItinerarySeeder::class,
             UserSeeder::class,
+            CustomerSeeder::class,
+            CustomerInfoSeeder::class,
+            ReviewSeeder::class,
         ]);
     }
 }

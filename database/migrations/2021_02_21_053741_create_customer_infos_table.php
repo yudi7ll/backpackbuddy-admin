@@ -15,7 +15,7 @@ class CreateCustomerInfosTable extends Migration
     {
         Schema::create('customer_infos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id')->index();
+            $table->unsignedBigInteger('customer_id')->index()->unique();
             $table->string('address_1');
             $table->string('address_2')->nullable();
             $table->string('postcode', 50);

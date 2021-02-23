@@ -17,7 +17,7 @@ class CreateReviewsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id')->index();
             $table->unsignedBigInteger('itinerary_id')->index();
-            $table->string('content');
+            $table->string('content')->nullable();
             $table->smallInteger('rating')->default(5);
             $table->timestamps();
         });

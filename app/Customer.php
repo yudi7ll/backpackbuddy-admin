@@ -36,4 +36,14 @@ class Customer extends Model
     {
         return $this->hasOne('App\CustomerInfo');
     }
+
+    /**
+     * Get the reviews that this customer has
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
 }

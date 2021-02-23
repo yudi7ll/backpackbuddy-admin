@@ -35,6 +35,7 @@ class Itinerary extends Model
     /**
      * Get the picture attributes
      *
+     * @return \Illuminate\Support\Facades\Storage
      */
     public function getFeaturedPictureAttribute($value)
     {
@@ -69,5 +70,15 @@ class Itinerary extends Model
     public function districts()
     {
         return $this->belongsToMany('App\District');
+    }
+
+    /**
+     * Get the reviews that this itinerary has
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
     }
 }

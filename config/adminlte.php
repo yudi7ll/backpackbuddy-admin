@@ -272,6 +272,12 @@ return [
             'url' => 'district',
             'active' => ['district*']
         ],
+        [
+            'text' => 'Reviews',
+            'icon' => 'fas fa-fw fa-star',
+            'url' => 'review',
+            'active' => ['review*']
+        ],
         ['header' => 'CUSTOMER MANAGEMENT'],
         [
             'text' => 'Customer',

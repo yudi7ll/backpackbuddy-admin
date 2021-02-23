@@ -33,6 +33,11 @@ class CustomerController extends Controller
         return view('pages.customer.index', $this->data);
     }
 
+    public function store()
+    {
+        // TODO
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

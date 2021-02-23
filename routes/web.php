@@ -11,8 +11,9 @@ Route::middleware('auth:web')->group(function () {
     Route::resource('itinerary', 'ItineraryController');
     Route::resource('category', 'CategoryController')->except('create');
     Route::resource('district', 'DistrictController')->except('create');
+    Route::resource('review', 'ReviewController')->except('create');
     Route::resource('customer', 'CustomerController');
-    Route::prefix('customer')->group(function() {
+    Route::prefix('customer')->group(function () {
         Route::put('{customer}/update-password', 'CustomerController@updatePassword')->name('customer.update-password');
         Route::put('{customer}/update-info', 'CustomerController@updateInfo')->name('customer.update-info');
         // redirect customer show to edit

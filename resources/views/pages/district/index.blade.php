@@ -26,14 +26,14 @@
                     @foreach ($districts as $key => $district)
                         <tr>
                             <td class="text-center">{{ $key + 1 }}</td>
-                            <td>
+                            <td class="text-center">
                                 <a class="text-dark" href="{{ route('district.edit', $district) }}">
                                     {{ $district->name }}
                                 </a>
                             </td>
-                            <td>{{ $district->slug }}</td>
+                            <td class="text-center">{{ $district->slug }}</td>
                             <td class="text-center">{{ $district->itineraries()->count() }}</td>
-                            <td>{{ $district->updated_at->diffForHumans() }}</td>
+                            <td class="text-center">{{ $district->updated_at->diffForHumans() }}</td>
                             <td class="text-nowrap text-center">
                                 <a class="btn btn-primary btn-sm" href="{{ route('district.edit', $district) }}"
                                     title="Edit">

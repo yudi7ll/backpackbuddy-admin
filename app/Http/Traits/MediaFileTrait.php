@@ -79,7 +79,7 @@ trait MediaFileTrait
         // store the media info to database
         $this->mediafileId = MediaFile::create($mediafile)->id;
 
-        // move the file to $path
+        // move the file to the path
         $file->storeAs($mediafile['path'], $mediafile['name']);
 
         // sync the mediafile relationship

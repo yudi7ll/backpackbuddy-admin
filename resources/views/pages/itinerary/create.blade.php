@@ -121,7 +121,7 @@
                 <section>
                     <h4>Gallery</h4>
                     <hr>
-                    <div class="row" id="gallery-preview"></div>
+                    <div class="row mb-2" id="gallery-preview"></div>
                     <input type="file" class="form-control-file @error('galleries') is-invalid @enderror"
                         name="galleries[]" id="input-gallery" multiple />
                     @error('galleries')

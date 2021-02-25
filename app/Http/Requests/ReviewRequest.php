@@ -25,7 +25,7 @@ class ReviewRequest extends FormRequest
     {
         return [
             'content' => 'nullable|string|max:255',
-            'rating' => 'required|numeric|max:5',
+            'rating' => 'required|numeric|min:1|max:5',
         ];
     }
 }

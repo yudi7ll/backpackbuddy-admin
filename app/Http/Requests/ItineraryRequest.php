@@ -25,13 +25,11 @@ class ItineraryRequest extends FormRequest
     {
         return [
             'place_name' => 'required|string|max:255',
-            'categories' => 'array|nullable',
             'price' => 'required|integer',
             'sale' => 'integer|nullable',
             'excerpt' => 'string|nullable',
             'description' => 'string|nullable',
             'is_published' => 'boolean',
-            'featured_picture' => 'nullable|image',
         ];
     }
 }

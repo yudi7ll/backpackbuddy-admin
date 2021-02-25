@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Storage;
 
 class Itinerary extends Model
 {
@@ -14,10 +13,8 @@ class Itinerary extends Model
      */
     protected $fillable = [
         'place_name',
-        'categories',
         'price',
         'sale',
-        'featured_picture',
         'excerpt',
         'description',
         'is_published',
@@ -37,9 +34,9 @@ class Itinerary extends Model
      *
      * @return \Illuminate\Support\Facades\Storage
      */
-    public function getFeaturedPictureAttribute($value)
+    public function getFeaturedPictureAttribute()
     {
-        return Storage::disk('public')->url("featured_picture/{$value}");
+        return $this->mediafiles()->firstWhere('type', 'featured_picture');
     }
 
     /**
@@ -80,5 +77,15 @@ class Itinerary extends Model
     public function reviews()
     {
         return $this->hasMany('App\Review');
+    }
+
+    /**
+     * Get the mediafiles that this itinerary has
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function mediafiles()
+    {
+        return $this->belongsToMany('App\MediaFile');
     }
 }

@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\District;
 use App\Http\Requests\ItineraryRequest;
+use App\Http\Traits\MediaFileTrait;
 use App\Itinerary;
+use App\MediaFile;
 use Session;
 use Storage;
 use Str;
 
 class ItineraryController extends Controller
 {
+    use MediaFileTrait;
+
     /**
      * Create a new controller instance
      *
@@ -59,25 +63,28 @@ class ItineraryController extends Controller
      */
     public function store(ItineraryRequest $request)
     {
-        // get all request except categories
-        $requestData = $request->except(['categories', 'featured_picture']);
-
         // store the data to database
-        $this->data = $this->itinerary->create($requestData);
+        $this->data = $this->itinerary->create($request->all());
 
-        /*
-         * Featured Picture
-         */
-        if ($request->file('featured_picture')) {
+        // Featured Picture
+        if ($request->hasFile('featured_picture')) {
+            if (! $request->file('featured_picture')->isValid()) {
+                return redirect()->back()
+                                 ->with('error', 'Invalid picture!')
+                                 ->withInput();
+            }
+
             $file = $request->file('featured_picture');
-            $imageName = "itinerary-{$this->data->id}.{$request->file('featured_picture')->getClientOriginalExtension()}";
+            $mediafile = $this->getMediaFileInfo($file, $this->data['id']);
 
-            // store the file to public directory
-            $file->storeAs('public/featured_picture', $imageName);
+            // store the image file
+            $this->storeImage($file, $mediafile['path'], $mediafile['name']);
 
-            // save the filename
-            $this->data->featured_picture = $imageName;
-            $this->data->save();
+            // store the media info to database
+            $this->mediafileId = MediaFile::create($mediafile)->id;
+
+            // sync the mediafile relationship
+            $this->data->mediafiles()->sync($this->mediafileId);
         }
 
 

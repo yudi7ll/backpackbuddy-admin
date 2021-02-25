@@ -2,11 +2,47 @@
 
 namespace App\Http\Traits;
 
-use Request;
+use App\MediaFile;
 use Storage;
+use Str;
 
 trait MediaFileTrait
 {
+    /**
+     * Media file types
+     *
+     * @var Array
+     */
+    protected $GALLERIES = 'galleries';
+    protected $FEATURED_PICTURE = 'featured_picture';
+
+    /**
+     * Verify the images
+     *
+     * @param $request
+     * @param string $fieldname
+     * @return true|false
+     */
+    public function verityImage($request, $fieldname)
+    {
+        $file = $request->file($fieldname);
+        if (is_array($file)) {
+            foreach ($file as $f) {
+                if (! $f->isValid()) {
+                    return redirect()->back()->with('error', 'Invalid Picture')->withInput();
+                }
+            }
+
+            return $request->validate([$fieldname => 'array']);
+        } else {
+            if (! $file->isValid()) {
+                return redirect()->back()->with('error', 'Invalid Picture')->withInput();
+            }
+
+            return $request->validate([$fieldname => 'image']);
+        }
+    }
+
     /**
      * This will return required data to be passed to database
      *
@@ -16,9 +52,9 @@ trait MediaFileTrait
      *
      * @return array
      */
-    public function getMediaFileInfo($file, $itineraryId, $fieldname = 'featured_picture')
+    public function getMediaFileInfo($file, $fieldname)
     {
-        $mediafile['name'] = "{$fieldname}-{$itineraryId}.{$file->getClientOriginalExtension()}";
+        $mediafile['name'] = Str::random() . "{$fieldname}.{$file->getClientOriginalExtension()}";
         $mediafile['path'] = "public/{$fieldname}";
         $mediafile['uri'] = Storage::disk('public')->url("{$fieldname}/{$mediafile['name']}");
         $mediafile['file_size'] = $file->getSize();
@@ -35,8 +71,18 @@ trait MediaFileTrait
      * @param string $filename
      * @return $this
      */
-    public function storeImage($file, $path, $filename)
+    public function storeImage($file, $fieldname)
     {
-        return $file->storeAs($path, $filename);
+        // retrieve all required information
+        $mediafile = $this->getMediaFileInfo($file, $fieldname);
+
+        // store the media info to database
+        $this->mediafileId = MediaFile::create($mediafile)->id;
+
+        // move the file to $path
+        $file->storeAs($mediafile['path'], $mediafile['name']);
+
+        // sync the mediafile relationship
+        $this->data->mediafiles()->attach($this->mediafileId);
     }
 }

@@ -108,12 +108,23 @@
                     </button>
                 </section>
                 <section>
-                    <label for="input-featured_picture">Featured Picture</label>
-                    <img class="img-fluid mb-2" id="featured__preview" src="" />
+                    <h4>Featured Picture</h4>
+                    <hr>
+                    <img class="img-fluid mb-2" id="featured-preview" src="" />
                     <input type="file" class="form-control-file @error('featured_picture') is-invalid @enderror"
                         name="featured_picture" id="input-featured_picture" required />
 
                     @error('featured_picture')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </section>
+                <section>
+                    <h4>Gallery</h4>
+                    <hr>
+                    <div class="row" id="gallery-preview"></div>
+                    <input type="file" class="form-control-file @error('galleries') is-invalid @enderror"
+                        name="galleries[]" id="input-gallery" multiple />
+                    @error('galleries')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </section>
@@ -128,7 +139,8 @@
             $('#itinerary-form').submit();
         }
 
-        const featuredPreview = $('#featured__preview');
+        // Featured Picture Preview
+        const featuredPreview = $('#featured-preview');
         const inputFeatured = $('#input-featured_picture');
 
         inputFeatured.on('change', function() {
@@ -145,5 +157,23 @@
             }
         });
 
+        // Image Gallery Preview
+        $('#input-gallery').on('change', function () {
+            const files = this.files;
+
+            if (files) {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const reader = new FileReader();
+                    reader.onload = function () {
+                        const result = reader.result;
+                        const img = '<img class="img-fluid mb-2 px-1 col" src="' + reader.result + '" style="min-width: 50%; object-fit: cover;">'
+                        $(`#gallery-preview`).append(img, null);
+                    }
+
+                    reader.readAsDataURL(file);
+                };
+            }
+        });
     </script>
 @endpush

@@ -67,24 +67,24 @@ class ItineraryController extends Controller
         $this->data = $this->itinerary->create($request->all());
 
         // Featured Picture
-        if ($request->hasFile('featured_picture')) {
-            if (! $request->file('featured_picture')->isValid()) {
-                return redirect()->back()
-                                 ->with('error', 'Invalid picture!')
-                                 ->withInput();
-            }
-
-            $file = $request->file('featured_picture');
-            $mediafile = $this->getMediaFileInfo($file, $this->data['id']);
+        if ($request->hasFile($this->FEATURED_PICTURE)) {
+            $this->verityImage($request, $this->FEATURED_PICTURE);
 
             // store the image file
-            $this->storeImage($file, $mediafile['path'], $mediafile['name']);
+            $this->storeImage(
+                $request->file($this->FEATURED_PICTURE),
+                $this->FEATURED_PICTURE
+            );
+        }
 
-            // store the media info to database
-            $this->mediafileId = MediaFile::create($mediafile)->id;
+        // Galleries
+        if ($request->hasFile($this->GALLERIES)) {
+            $this->verityImage($request, $this->GALLERIES);
 
-            // sync the mediafile relationship
-            $this->data->mediafiles()->sync($this->mediafileId);
+            foreach ($request->file($this->GALLERIES) as $file) {
+                // store the image file
+                $this->storeImage($file, $this->GALLERIES);
+            }
         }
 
 

@@ -14,7 +14,7 @@
                     <th class="text-center">Username</th>
                     <th class="text-center">Email</th>
                     <th class="text-center text-nowrap">Purchasing Count</th>
-                    <th class="text-center">Joined at</th>
+                    <th class="text-center text-nowrap">Joined at</th>
                     <th class="text-center">Action</th>
                 </thead>
                 <tbody>

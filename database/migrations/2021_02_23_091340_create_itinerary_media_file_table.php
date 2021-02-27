@@ -17,6 +17,7 @@ class CreateItineraryMediaFileTable extends Migration
             $table->id();
             $table->unsignedBigInteger('itinerary_id')->index();
             $table->unsignedBigInteger('media_file_id')->index();
+            $table->boolean('isFeatured')->default(false);
         });
     }
 

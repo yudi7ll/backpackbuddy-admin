@@ -58,7 +58,6 @@ trait MediaFileTrait
         $mediafile['path'] = "public/{$fieldname}";
         $mediafile['uri'] = Storage::disk('public')->url("{$fieldname}/{$mediafile['name']}");
         $mediafile['file_size'] = $file->getSize();
-        $mediafile['type'] = $fieldname;
 
         return $mediafile;
     }
@@ -77,12 +76,12 @@ trait MediaFileTrait
         $mediafile = $this->getMediaFileInfo($file, $fieldname);
 
         // store the media info to database
-        $this->mediafileId = MediaFile::create($mediafile)->id;
+        $mediafile['id'] = MediaFile::create($mediafile)->id;
 
         // move the file to the path
         $file->storeAs($mediafile['path'], $mediafile['name']);
 
         // sync the mediafile relationship
-        $this->data->mediafiles()->attach($this->mediafileId);
+        $this->data->mediafiles()->attach($mediafile['id']);
     }
 }

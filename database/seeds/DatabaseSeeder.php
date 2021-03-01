@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             CustomerSeeder::class,
             CustomerInfoSeeder::class,
             ReviewSeeder::class,
-            MediaFileSeeder::class,
+            MediaSeeder::class,
         ]);
     }
 }

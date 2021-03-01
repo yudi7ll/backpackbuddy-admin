@@ -250,33 +250,44 @@ return [
         ],
         ['header' => 'ITINERARY MANAGEMENT'],
         [
-            'text' => 'Add New Itinerary',
-            'icon' => 'fas fa-fw fa-plus',
-            'url' => 'itinerary/create',
-        ],
-        [
             'text' => 'Itineraries',
             'icon' => 'fas fa-fw fa-tasks',
             'url' => 'itinerary',
-            'active' => ['itinerary/*/edit']
+            'active' => ['itinerary/*/edit'],
+            'submenu' => [
+                [
+                    'text' => 'Add New Itinerary',
+                    'icon' => 'fas fa-fw fa-plus',
+                    'shift' => 'ml-3',
+                    'url' => 'itinerary/create',
+                ],
+                [
+                    'text' => 'All Itinerary',
+                    'icon' => 'fas fa-fw fa-tasks',
+                    'shift' => 'ml-3',
+                    'url' => 'itinerary',
+                ],
+                [
+                    'text' => 'Categories',
+                    'icon' => 'fa fa-fw fa-tags',
+                    'url' => 'category',
+                    'shift' => 'ml-3',
+                    'active' => ['category*'],
+                ],
+                [
+                    'text' => 'Districts',
+                    'icon' => 'fa fa-fw fa-map-marker-alt',
+                    'url' => 'district',
+                    'shift' => 'ml-3',
+                    'active' => ['district*'],
+                ],
+            ]
         ],
         [
-            'text' => 'Categories',
-            'icon' => 'fa fa-fw fa-tags',
-            'url' => 'category',
-            'active' => ['category*']
-        ],
-        [
-            'text' => 'Districts',
-            'icon' => 'fa fa-fw fa-map-marker-alt',
-            'url' => 'district',
-            'active' => ['district*']
-        ],
-        [
-            'text' => 'Reviews',
-            'icon' => 'fas fa-fw fa-star',
-            'url' => 'review',
-            'active' => ['review*']
+            'text' => 'Media',
+            'icon' => 'fas fa-fw fa-photo-video',
+            'url' => 'media',
+            'active' => ['media*']
         ],
         ['header' => 'CUSTOMER MANAGEMENT'],
         [
@@ -284,6 +295,12 @@ return [
             'url'  => 'customer',
             'icon' => 'fas fa-fw fa-user',
             'active' => ['customer*']
+        ],
+        [
+            'text' => 'Reviews',
+            'icon' => 'fas fa-fw fa-star',
+            'url' => 'review',
+            'active' => ['review*']
         ],
     ],
 

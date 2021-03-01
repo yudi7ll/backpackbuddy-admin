@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MediaFile extends Model
+class Media extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class MediaFile extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'path', 'uri', 'file_size', 'type'
+        'name', 'path', 'uri', 'alt', 'file_size'
     ];
 
     /**
@@ -22,6 +22,6 @@ class MediaFile extends Model
      */
     public function itineraries()
     {
-        return $this->belongsToMany('App\Itinerary');
+        return $this->belongsToMany('App\Itinerary')->withPivot('isFeatured');
     }
 }

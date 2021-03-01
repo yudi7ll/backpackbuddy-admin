@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class MediaFileSeeder extends Seeder
+class MediaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,8 +18,9 @@ class MediaFileSeeder extends Seeder
             $data[$key]['name'] = $key + 1;
             $data[$key]['path'] = $file;
             $data[$key]['file_size'] = 0;
+            $data[$key]['alt'] = 'Itinerary ' . $data[$key]['name'];
         }
 
-        DB::table('media_files')->insert($data);
+        DB::table('media')->insert($data);
     }
 }

@@ -97,7 +97,7 @@
                 </section>
             </div>
             <div class="col-lg-4">
-                <section class="d-flex align-items-center justify-content-between">
+                <section class="d-flex align-items-center justify-content-between mb-3">
                     <button type="button" class="btn btn-secondary" onclick="submitForm(0)">
                         <i class="fa fa-fw fa-save"></i>
                         Save Draft
@@ -107,7 +107,7 @@
                         Publish
                     </button>
                 </section>
-                <section>
+                <section class="mb-3">
                     <h4>Featured Picture</h4>
                     <hr>
                     <img class="img-fluid mb-2" id="featured-preview" src="" />
@@ -122,8 +122,8 @@
                     <h4>Gallery</h4>
                     <hr>
                     <div class="row mb-2" id="gallery-preview"></div>
-                    <input type="file" class="form-control-file @error('galleries') is-invalid @enderror"
-                        name="galleries[]" id="input-gallery" multiple />
+                    <input type="file" class="form-control-file @error('galleries') is-invalid @enderror" name="galleries[]"
+                        id="input-gallery" multiple />
                     @error('galleries')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -158,16 +158,17 @@
         });
 
         // Image Gallery Preview
-        $('#input-gallery').on('change', function () {
+        $('#input-gallery').on('change', function() {
             const files = this.files;
 
             if (files) {
                 for (let i = 0; i < files.length; i++) {
                     const file = files[i];
                     const reader = new FileReader();
-                    reader.onload = function () {
+                    reader.onload = function() {
                         const result = reader.result;
-                        const img = '<img class="img-fluid mb-2 px-1 col" src="' + reader.result + '" style="min-width: 50%; object-fit: cover;">'
+                        const img = '<img class="img-fluid mb-2 px-1 col" src="' + reader.result +
+                            '" style="min-width: 50%; object-fit: cover;">'
                         $(`#gallery-preview`).append(img, null);
                     }
 
@@ -175,5 +176,6 @@
                 };
             }
         });
+
     </script>
 @endpush

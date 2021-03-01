@@ -126,7 +126,8 @@
                                             </a>
                                         </td>
                                         <td class="text-center">{{ $review->rating }}</td>
-                                        <td class="text-center text-nowrap">{{ $review->created_at->diffForHumans() }}</td>
+                                        <td class="text-center text-nowrap">{{ $review->created_at->diffForHumans() }}
+                                        </td>
                                         <td class="text-center text-nowrap align-middle">
                                             <a class="btn btn-primary btn-sm" href="{{ route('review.edit', $review) }}"
                                                 title="Edit">

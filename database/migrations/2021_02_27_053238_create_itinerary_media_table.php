@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItineraryMediaFileTable extends Migration
+class CreateItineraryMediaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateItineraryMediaFileTable extends Migration
      */
     public function up()
     {
-        Schema::create('itinerary_media_file', function (Blueprint $table) {
+        Schema::create('itinerary_media', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('itinerary_id')->index();
             $table->unsignedBigInteger('media_file_id')->index();
@@ -28,6 +28,6 @@ class CreateItineraryMediaFileTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('itinerary_media_file');
+        Schema::dropIfExists('itinerary_media');
     }
 }

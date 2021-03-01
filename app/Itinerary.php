@@ -84,8 +84,8 @@ class Itinerary extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function mediafiles()
+    public function media()
     {
-        return $this->belongsToMany('App\MediaFile');
+        return $this->belongsToMany('App\Media');
     }
 }

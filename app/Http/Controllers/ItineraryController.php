@@ -5,16 +5,14 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\District;
 use App\Http\Requests\ItineraryRequest;
-use App\Http\Traits\MediaFileTrait;
+use App\Http\Traits\MediaTrait;
 use App\Itinerary;
-use App\MediaFile;
 use Session;
-use Storage;
 use Str;
 
 class ItineraryController extends Controller
 {
-    use MediaFileTrait;
+    use MediaTrait;
 
     /**
      * Create a new controller instance
@@ -67,23 +65,32 @@ class ItineraryController extends Controller
         $this->data = $this->itinerary->create($request->all());
 
         // Featured Picture
-        if ($request->hasFile($this->FEATURED_PICTURE)) {
-            $this->verityImage($request, $this->FEATURED_PICTURE);
+        if ($request->hasFile('featured_picture')) {
+            $file = $request->file('featured_picture');
+
+            // validate featured image
+            $this->verityImage($request, $file, true);
 
             // store the image file
-            $this->storeImage(
-                $request->file($this->FEATURED_PICTURE),
-                $this->FEATURED_PICTURE
-            );
+            $mediaId = $this->storeImage($file, $this->ITINERARY);
+
+            // sync the media relationship
+            $this->data->media()->attach($mediaId, ['isFeatured' => true]);
         }
 
-        // Galleries
-        if ($request->hasFile($this->GALLERIES)) {
-            $this->verityImage($request, $this->GALLERIES);
+        // Itinerary Galleries
+        if ($request->hasFile('galleries')) {
+            $files = $request->file('galleries');
 
-            foreach ($request->file($this->GALLERIES) as $file) {
+            // validate gallery image
+            $this->verityImage($request, $files);
+
+            foreach ($files as $file) {
                 // store the image file
-                $this->storeImage($file, $this->GALLERIES);
+                $mediaId = $this->storeImage($file, $this->ITINERARY);
+
+                // sync the media relationship
+                $this->data->media()->attach($mediaId);
             }
         }
 

@@ -1,0 +1,12 @@
+.media__img {
+    display: block;
+    height: 155px;
+    object-fit: cover;
+    transition: all .3s;
+    width: 100%;
+
+    &:hover {
+        box-shadow: 0px 0px 6px rgba(0,0,0,.2);
+        transform: scale(1.1);
+    }
+}

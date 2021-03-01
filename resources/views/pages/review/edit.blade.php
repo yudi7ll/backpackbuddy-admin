@@ -17,8 +17,8 @@
                     <input type="hidden" name="id" value="{{ $review->id }}" />
                     <div class="form-group">
                         <label for="input-rating" class="col-form-label">Rating:</label>
-                        <input class="form-control @error('rating') is-invalid @enderror" type="number" name="rating" id="rating"
-                            value="{{ old('rating', $review->rating) }}" required />
+                        <input class="form-control @error('rating') is-invalid @enderror" type="number" name="rating"
+                            id="rating" value="{{ old('rating', $review->rating) }}" required />
 
                         @error('rating')
                             <div class="invalid-feedback">{{ $message }}</div>

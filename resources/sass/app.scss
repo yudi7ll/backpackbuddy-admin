@@ -21,6 +21,7 @@
 
 // Custom
 @import 'itinerary';
+@import 'media';
 
 html, body, table {
     box-sizing: border-box;
@@ -30,16 +31,10 @@ html, body, table {
 
 section {
     @extend .bg-white;
-    @extend .mb-4;
     @extend .p-4;
     @extend .rounded;
     @extend .shadow-sm;
 }
 
-.title {
-    font-size: 1.5em;
-}
-
-.table td {
-    vertical-align: middle;
-}
+.title { font-size: 1.5em; }
+.table td { vertical-align: middle; }

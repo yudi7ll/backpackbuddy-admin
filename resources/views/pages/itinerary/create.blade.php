@@ -107,12 +107,15 @@
                         Publish
                     </button>
                 </section>
-                <section class="mb-3">
+                <section id="featured-picture" class="mb-3">
                     <h4>Featured Picture</h4>
                     <hr>
                     <img class="img-fluid mb-2" id="featured-preview" src="" />
-                    <input type="file" class="form-control-file @error('featured_picture') is-invalid @enderror"
-                        name="featured_picture" id="input-featured_picture" required />
+                    <button id="input-featured_picture"
+                        class="btn btn-outline-success @error('featured_picture') is-invalid @enderror" type="button"
+                        data-toggle="modal" data-target="#gallery-modal">
+                        Select Pictures
+                    </button>
 
                     @error('featured_picture')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -131,6 +134,9 @@
             </div>
         </div>
     </form>
+    <div id="gallery">
+        <x-gallery />
+    </div>
 @endsection
 @push('js')
     <script>

@@ -78,6 +78,6 @@ trait MediaTrait
         $file->storeAs($media['path'], $media['name']);
 
         // store the media info to database
-        return Media::create($media)->id;
+        return Media::create($media);
     }
 }

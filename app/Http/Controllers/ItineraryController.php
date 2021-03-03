@@ -7,6 +7,7 @@ use App\District;
 use App\Http\Requests\ItineraryRequest;
 use App\Http\Traits\MediaTrait;
 use App\Itinerary;
+use App\Media;
 use Session;
 use Str;
 
@@ -72,7 +73,7 @@ class ItineraryController extends Controller
             $this->verityImage($request, $file, true);
 
             // store the image file
-            $mediaId = $this->storeImage($file, $this->ITINERARY);
+            $mediaId = $this->storeImage($file, $this->ITINERARY)->id;
 
             // sync the media relationship
             $this->data->media()->attach($mediaId, ['isFeatured' => true]);
@@ -87,7 +88,7 @@ class ItineraryController extends Controller
 
             foreach ($files as $file) {
                 // store the image file
-                $mediaId = $this->storeImage($file, $this->ITINERARY);
+                $mediaId = $this->storeImage($file, $this->ITINERARY)->id;
 
                 // sync the media relationship
                 $this->data->media()->attach($mediaId);

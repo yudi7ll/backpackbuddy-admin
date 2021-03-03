@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MediaRequest;
+use App\Http\Traits\MediaTrait;
 use App\Media;
 use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {
+    use MediaTrait;
+
     public function __construct(Media $media)
     {
         $this->middleware('auth');
@@ -20,7 +24,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        $this->data['media'] = $this->media->all();
+        $this->data['media'] = $this->media->latest()->get();
         return view('pages.media.index', $this->data);
     }
 
@@ -37,12 +41,12 @@ class MediaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\MediaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MediaRequest $request)
     {
-        //
+        return $this->storeImage($request->file('image'), $this->ITINERARY);
     }
 
     /**

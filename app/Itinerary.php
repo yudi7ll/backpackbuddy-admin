@@ -30,16 +30,6 @@ class Itinerary extends Model
     ];
 
     /**
-     * Get the picture attributes
-     *
-     * @return \Illuminate\Support\Facades\Storage
-     */
-    public function getFeaturedPictureAttribute()
-    {
-        return $this->mediafiles()->firstWhere('type', 'featured_picture');
-    }
-
-    /**
      * Filter the itinerary whether is published or not
      *
      * @return \App\Itinerary

@@ -262,7 +262,7 @@ return [
                     'url' => 'itinerary/create',
                 ],
                 [
-                    'text' => 'All Itinerary',
+                    'text' => 'All Itineraries',
                     'icon' => 'fas fa-fw fa-tasks',
                     'shift' => 'ml-3',
                     'url' => 'itinerary',

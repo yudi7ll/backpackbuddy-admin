@@ -46,7 +46,13 @@ class MediaController extends Controller
      */
     public function store(MediaRequest $request)
     {
-        return $this->storeImage($request->file('image'), $this->ITINERARY);
+        $uploadedImage = $this->storeImage($request->file('image'), $this->ITINERARY);
+
+        if ($request->ajax()) {
+            return $uploadedImage;
+        }
+
+        return redirect()->back()->with('success', 'Data has been uploaded!');
     }
 
     /**

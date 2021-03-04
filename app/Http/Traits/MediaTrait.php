@@ -53,7 +53,7 @@ trait MediaTrait
      */
     public function getMediaFileInfo($file, $fieldname)
     {
-        $media['name'] = Str::random() . "{$fieldname}.{$file->getClientOriginalExtension()}";
+        $media['name'] = Str::random() . "-{$fieldname}.{$file->getClientOriginalExtension()}";
         $media['path'] = "public/{$fieldname}";
         $media['uri'] = Storage::disk('public')->url("{$fieldname}/{$media['name']}");
         $media['file_size'] = $file->getSize();

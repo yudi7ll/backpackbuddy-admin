@@ -1,12 +1,29 @@
-.media__img {
-    display: block;
-    height: 155px;
-    object-fit: cover;
-    transition: all .3s;
-    width: 100%;
+.media {
+    &__img {
+        display: block;
+        height: 180px;
+        object-fit: cover;
+        transition: all .3s;
+        width: 100%;
 
-    &:hover {
-        box-shadow: 0px 0px 6px rgba(0,0,0,.2);
-        transform: scale(1.1);
+        &:hover {
+            box-shadow: 0px 0px 6px rgba(0,0,0,.2);
+            transform: scale(1.1);
+        }
+    }
+
+    &__input {
+
+        &:checked + img {
+            box-shadow: 0 0 4px rgba(52, 144, 220,.2);
+        }
+
+        &__label {
+            cursor: pointer;
+        }
+    }
+
+    &__active {
+        box-shadow: 0 0 4px rgba(52, 144, 220,.2);
     }
 }

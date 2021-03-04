@@ -21,5 +21,5 @@ Route::middleware('auth:web')->group(function () {
             return redirect()->route('customer.edit', $customer);
         });
     });
-    Route::resource('media', 'MediaController');
+    Route::resource('media', 'MediaController')->except(['edit', 'update']);
 });

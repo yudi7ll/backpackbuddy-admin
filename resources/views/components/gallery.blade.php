@@ -8,29 +8,30 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="media text-center my-5">
-                    <form id="media-form" class="media text-center d-block" method="POST"
-                        action="{{ route('media.store') }}" enctype="multipart/form-data">
-                        @csrf
-                        <input id="media-input" class="d-none" type="file" name="image" />
-                        <button id="media-upload-btn" class="btn btn-outline-dark" type="button">
-                            Upload new image
-                        </button>
-                        <label for="media-upload-btn" style="font-weight: normal;">or Drag n Drop here</label>
-                    </form>
-                </div>
+                <form id="media-upload" class="text-center d-block my-5" method="POST"
+                    action="{{ route('media.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <input id="media-upload-input" class="d-none" type="file" name="image" />
+                    <button id="media-upload-btn" class="btn btn-outline-dark" type="button">
+                        Upload new image
+                    </button>
+                </form>
                 <hr>
                 <div class="container">
-                    <div id="media-display" class="row">
+                    <form id="media-display" class="row" method="POST">
                         @foreach ($media as $m)
                             <div class="col-12 col-sm-6 col-lg-3 p-2">
-                                <a href="javascript:void" class="d-block overflow-hidden border">
-                                    <img class="img-fluid media__img" src="{{ $m->uri }}"
-                                        alt="{{ $m->alt }}">
-                                </a>
+                                <div class="d-block overflow-hidden border">
+                                    <input id="media-{{ $m->id }}" class="media__input d-none" type="radio"
+                                        name="selected-image" value="{{ $m->id }}" />
+                                    <label for="media-{{ $m->id }}" class="media__input__label d-block m-0">
+                                        <img class="img-fluid media__img" src="{{ $m->uri }}"
+                                            alt="{{ $m->alt }}" />
+                                    </label>
+                                </div>
                             </div>
                         @endforeach
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -39,12 +40,14 @@
 
 @push('js')
     <script>
+        // trigger file input
         $('#media-upload-btn').click(function(e) {
             e.preventDefault();
-            $('#media-input').click();
+            $('#media-upload-input').click();
         });
 
-        $('#media-input').change(function(e) {
+        // upload new image
+        $('#media-upload-input').change(function(e) {
             e.preventDefault();
 
             const config = {
@@ -60,14 +63,19 @@
                 .then(res => {
                     $('#media-display').prepend(`
                         <div class="col-12 col-sm-6 col-lg-3 p-2">
-                            <a href="javascript:void" class="d-block overflow-hidden border">
-                                <img class="img-fluid media__img" src="${res.data.uri}"
-                                    alt="${res.data.alt}">
-                            </a>
+                            <div class="d-block overflow-hidden border">
+                                <input id="media-${res.data.id}" class="media__input d-none" type="radio"
+                                    name="selected-image" value="${res.data.id}" />
+                                <label for="media-${res.data.id}" class="media__input__label d-block m-0">
+                                    <img class="img-fluid media__img" src="${res.data.uri}"
+                                        alt="${res.data.alt}" />
+                                </label>
+                            </div>
                         </div>
-                    `)
+                    `);
                 });
         });
+
 
     </script>
 @endpush

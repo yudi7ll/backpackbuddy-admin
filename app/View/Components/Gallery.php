@@ -12,9 +12,10 @@ class Gallery extends Component
      *
      * @return void
      */
-    public function __construct(Media $media)
+    public function __construct(Media $media, $targetForm)
     {
         $this->media = $media;
+        $this->targetForm = $targetForm;
     }
 
     /**
@@ -25,6 +26,7 @@ class Gallery extends Component
     public function render()
     {
         $this->data['media'] = $this->media->latest()->get();
+        $this->data['targetForm'] = $this->targetForm;
         return view('components.gallery', $this->data);
     }
 }

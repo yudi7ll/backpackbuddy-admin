@@ -135,7 +135,7 @@
         </div>
     </form>
     <div id="gallery">
-        <x-gallery />
+        <x-gallery targetForm="itinerary-form" />
     </div>
 @endsection
 @push('js')

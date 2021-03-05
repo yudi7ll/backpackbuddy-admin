@@ -3,6 +3,7 @@
 namespace App\Http\Traits;
 
 use App\Media;
+use Intervention\Image\Facades\Image;
 use Storage;
 use Str;
 
@@ -54,8 +55,10 @@ trait MediaTrait
     public function getMediaFileInfo($file, $fieldname)
     {
         $media['name'] = Str::random() . "-{$fieldname}.{$file->getClientOriginalExtension()}";
-        $media['path'] = "public/{$fieldname}";
-        $media['uri'] = Storage::disk('public')->url("{$fieldname}/{$media['name']}");
+        $media['type'] = $fieldname;
+        $media['path'] = public_path("storage/{$media['type']}");
+        $media['url'] = Storage::disk('public')->url("{$fieldname}/{$media['name']}");
+        $media['thumbnail_url'] = Storage::disk('public')->url("{$fieldname}/thumb/{$media['name']}");
         $media['file_size'] = $file->getSize();
         $media['alt'] = "{$fieldname}-{$media['name']}";
 
@@ -73,9 +76,15 @@ trait MediaTrait
     {
         // retrieve all required information
         $media = $this->getMediaFileInfo($file, $fieldname);
+        $thumbPath = "{$media['path']}/thumb/{$media['name']}";
 
         // move the file to the path
         $file->storeAs($media['path'], $media['name']);
+
+        // thumbnail
+        Image::make($file)
+            ->fit(300, 250)
+            ->save($thumbPath);
 
         // store the media info to database
         return Media::create($media);

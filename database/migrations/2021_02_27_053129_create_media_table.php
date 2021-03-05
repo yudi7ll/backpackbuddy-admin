@@ -15,12 +15,13 @@ class CreateMediaTable extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->string('uri');
-            $table->string('name');
+            $table->string('url');
+            $table->string('thumbnail_url');
             $table->string('path');
+            $table->string('name');
             $table->string('alt');
             $table->integer('file_size');
-            $table->string('type')->default('itinerary');
+            $table->string('type')->default('Itinerary');
             $table->timestamps();
         });
     }

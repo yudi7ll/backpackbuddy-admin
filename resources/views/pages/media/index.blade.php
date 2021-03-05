@@ -19,13 +19,14 @@
                 @foreach ($media as $m)
                     <button class="btn col-12 col-sm-6 col-md-4 col-lg-3 p-2">
                         <div class="overflow-hidden">
-                            <img class="media__img img-fluid" src="{{ $m->uri }}" alt="{{ $m->name }}" />
+                            <img class="media__img img-fluid" src="{{ $m->thumbnail_url }}" alt="{{ $m->name }}" />
                         </div>
                     </button>
                 @endforeach
             </div>
         </div>
     </section>
+
 @endsection
 @push('js')
     <script>

@@ -15,11 +15,13 @@ class MediaSeeder extends Seeder
         $data = [];
 
         foreach ($files as $key => $file) {
-            $data[$key]['uri'] = Storage::disk('public')->url($file);
+            $data[$key]['url'] = Storage::disk('public')->url($file);
+            $data[$key]['thumbnail_url'] = Storage::disk('public')->url($file);
             $data[$key]['name'] = $key + 1;
-            $data[$key]['path'] = 'samples';
+            $data[$key]['path'] = public_path("storage/samples");
             $data[$key]['file_size'] = 0;
             $data[$key]['alt'] = 'Itinerary ' . $data[$key]['name'];
+            $data[$key]['type'] = 'Itinerary';
         }
 
         DB::table('media')->insert($data);

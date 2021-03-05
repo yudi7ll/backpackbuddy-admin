@@ -12,7 +12,7 @@ class Media extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'path', 'uri', 'alt', 'file_size'
+        'name', 'path', 'url', 'thumbnail_url', 'alt', 'file_size', 'type',
     ];
 
     /**

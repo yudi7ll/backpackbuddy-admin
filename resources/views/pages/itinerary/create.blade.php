@@ -110,12 +110,13 @@
                 <section id="featured-picture" class="mb-3">
                     <h4>Featured Picture</h4>
                     <hr>
-                    <img class="img-fluid mb-2" id="featured-preview" src="" />
+                    <img class="img-fluid mb-2" id="featured-picture-preview" src="" />
                     <button id="input-featured_picture"
                         class="btn btn-outline-success @error('featured_picture') is-invalid @enderror" type="button"
                         data-toggle="modal" data-target="#gallery-modal">
                         Select Pictures
                     </button>
+                    <input type="hidden" name="featured-picture" value="1" />
 
                     @error('featured_picture')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -135,7 +136,7 @@
         </div>
     </form>
     <div id="gallery">
-        <x-gallery targetForm="itinerary-form" />
+        <x-gallery targetInput="featured-picture" />
     </div>
 @endsection
 @push('js')
@@ -144,24 +145,6 @@
             $('input[name="is_published"]').attr('value', isPublished);
             $('#itinerary-form').submit();
         }
-
-        // Featured Picture Preview
-        const featuredPreview = $('#featured-preview');
-        const inputFeatured = $('#input-featured_picture');
-
-        inputFeatured.on('change', function() {
-            const file = this.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function() {
-                    const result = reader.result;
-                    featuredPreview.attr('src', result);
-                }
-
-                reader.readAsDataURL(file);
-            }
-        });
 
         // Image Gallery Preview
         $('#input-gallery').on('change', function() {

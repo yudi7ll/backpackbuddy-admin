@@ -18,7 +18,6 @@ class MediaSeeder extends Seeder
             $data[$key]['url'] = Storage::disk('public')->url($file);
             $data[$key]['thumbnail_url'] = Storage::disk('public')->url($file);
             $data[$key]['name'] = $key + 1;
-            $data[$key]['path'] = public_path("storage/samples");
             $data[$key]['file_size'] = 0;
             $data[$key]['alt'] = 'Itinerary ' . $data[$key]['name'];
             $data[$key]['type'] = 'Itinerary';

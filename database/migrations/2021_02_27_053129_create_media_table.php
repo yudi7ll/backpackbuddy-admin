@@ -17,7 +17,6 @@ class CreateMediaTable extends Migration
             $table->id();
             $table->string('url');
             $table->string('thumbnail_url');
-            $table->string('path');
             $table->string('name');
             $table->string('alt');
             $table->integer('file_size');

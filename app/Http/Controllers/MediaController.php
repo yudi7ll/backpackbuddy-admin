@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MediaRequest;
 use App\Http\Traits\MediaTrait;
 use App\Media;
-use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {
@@ -29,16 +28,6 @@ class MediaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Requests\MediaRequest  $request
@@ -56,14 +45,13 @@ class MediaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the specified data form
      *
-     * @param  \App\Media  $media
-     * @return \Illuminate\Http\Response
+     * @param \App\Media $media
      */
-    public function show(Media $media)
+    public function edit(Media $media)
     {
-        //
+        return view('pages.media.edit', compact('media'))->toHtml();
     }
 
     /**

@@ -56,9 +56,8 @@ trait MediaTrait
     {
         $media['name'] = Str::random() . "-{$fieldname}.{$file->getClientOriginalExtension()}";
         $media['type'] = $fieldname;
-        $media['path'] = public_path("storage/{$media['type']}");
-        $media['url'] = Storage::disk('public')->url("{$fieldname}/{$media['name']}");
-        $media['thumbnail_url'] = Storage::disk('public')->url("{$fieldname}/thumb/{$media['name']}");
+        $media['url'] = Storage::disk('public')->url("{$media['type']}/{$media['name']}");
+        $media['thumbnail_url'] = Storage::disk('public')->url("{$media['type']}/thumb/{$media['name']}");
         $media['file_size'] = $file->getSize();
         $media['alt'] = "{$fieldname}-{$media['name']}";
 
@@ -76,15 +75,20 @@ trait MediaTrait
     {
         // retrieve all required information
         $media = $this->getMediaFileInfo($file, $fieldname);
-        $thumbPath = "{$media['path']}/thumb/{$media['name']}";
+        $thumbPath = public_path("storage/{$media['type']}/thumb");
 
         // move the file to the path
-        $file->storeAs($media['path'], $media['name']);
+        $file->storeAs("public/{$media['type']}", $media['name']);
+
+        // check if the thumb path is exists
+        if (! is_dir($thumbPath)) {
+            mkdir($thumbPath, 0775, true);
+        }
 
         // thumbnail
         Image::make($file)
             ->fit(300, 250)
-            ->save($thumbPath);
+            ->save("{$thumbPath}/{$media['name']}");
 
         // store the media info to database
         return Media::create($media);

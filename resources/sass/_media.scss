@@ -1,4 +1,8 @@
-.media {
+.media-display {
+    &__content {
+        cursor: pointer;
+    }
+
     &__img {
         display: block;
         height: 180px;
@@ -14,16 +18,11 @@
 
     &__input {
 
-        &:checked + img {
-            box-shadow: 0 0 4px rgba(52, 144, 220,.2);
-        }
+        &:checked + .media-display__image {
+            @extend .border-primary;
+            @extend .shadow;
 
-        &__label {
-            cursor: pointer;
+            border-width: 4px !important;
         }
-    }
-
-    &__active {
-        box-shadow: 0 0 4px rgba(52, 144, 220,.2);
     }
 }

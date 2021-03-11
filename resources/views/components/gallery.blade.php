@@ -67,18 +67,18 @@
             axios.post('/media', formData, config)
                 .then(res => {
                     $('#media-display').prepend(`
-                                <div class="media-display__content col-12 col-sm-6 col-lg-3 p-2">
-                                    <input id="media-${res.data.id}" class="media-display__input d-none" type="radio"
-                                        name="selected-image" value="${res.data.id}"
-                                        data-src="${res.data.thumbnail_url}" />
-                                    <div class="media-display__image d-block overflow-hidden border rounded">
-                                        <label for="media-${res.data.id}" class="media-display__input__label d-block m-0">
-                                            <img class="img-fluid media-display__img" src="${res.data.thumbnail_url}"
-                                                alt="${res.data.alt}" />
-                                        </label>
+                                    <div class="media-display__content col-12 col-sm-6 col-lg-3 p-2">
+                                        <input id="media-${res.data.id}" class="media-display__input d-none" type="radio"
+                                            name="selected-image" value="${res.data.id}"
+                                            data-src="${res.data.thumbnail_url}" />
+                                        <div class="media-display__image d-block overflow-hidden border rounded">
+                                            <label for="media-${res.data.id}" class="media-display__input__label d-block m-0">
+                                                <img class="img-fluid media-display__img" src="${res.data.thumbnail_url}"
+                                                    alt="${res.data.alt}" />
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
-                            `);
+                                `);
                 });
         });
 

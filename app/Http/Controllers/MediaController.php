@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MediaRequest;
 use App\Http\Traits\MediaTrait;
 use App\Media;
+use Request;
+use Validator;
 
 class MediaController extends Controller
 {
@@ -49,9 +51,21 @@ class MediaController extends Controller
      *
      * @param \App\Media $media
      */
-    public function edit(Media $media)
+    public function edit($id)
     {
-        return view('pages.media.edit', compact('media'))->toHtml();
+        $this->data['media'] = $this->media->findOrFail($id);
+        return view('pages.media.edit-modal', $this->data);
+    }
+
+    /**
+     * Update the specified data
+     *
+     * @param $id
+     */
+    public function update($id)
+    {
+        $this->data = Validator::make(request()->all(), ['alt' => 'string']);
+        return $this->media->find($id)->update(request()->all());
     }
 
     /**
@@ -60,8 +74,8 @@ class MediaController extends Controller
      * @param  \App\Media  $media
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Media $media)
+    public function destroy($id)
     {
-        //
+        return $this->media->find($id)->delete();
     }
 }

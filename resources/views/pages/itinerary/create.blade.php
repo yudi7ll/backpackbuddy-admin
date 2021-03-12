@@ -110,7 +110,9 @@
                 <section id="featured-picture" class="mb-3">
                     <h4>Featured Picture</h4>
                     <hr>
-                    <img class="img-fluid mb-2" id="featured-picture-preview" src="" />
+                    <div>
+                        <img class="img-fluid mb-2" id="featured-picture-preview" src="" />
+                    </div>
                     <button id="input-featured_picture"
                         class="btn btn-outline-success @error('featured_picture') is-invalid @enderror" type="button"
                         data-toggle="modal" data-target="#gallery-modal">

@@ -20,6 +20,10 @@
                                 <span id="filesize">{{ $media->file_size }}</span>
                             </div>
                             <div class="form-group">
+                                <label for="itinerary_count">Itinerary Count : </label>
+                                <span id="itinerary_count">{{ $media->itineraries()->count() }}</span>
+                            </div>
+                            <div class="form-group">
                                 <label for="input-alt">Alt : </label>
                                 <input id="input-alt" class="form-control" type="text" name="alt"
                                     value="{{ $media->alt }}" />

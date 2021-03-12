@@ -65,31 +65,27 @@
             formData.append('image', e.target.files[0]);
 
             axios.post('/media', formData, config)
-                .then(res => {
-                    $('#media-display').prepend(`
-                                    <div class="media-display__content col-12 col-sm-6 col-lg-3 p-2">
-                                        <input id="media-${res.data.id}" class="media-display__input d-none" type="radio"
-                                            name="selected-image" value="${res.data.id}"
-                                            data-src="${res.data.thumbnail_url}" />
-                                        <div class="media-display__image d-block overflow-hidden border rounded">
-                                            <label for="media-${res.data.id}" class="media-display__input__label d-block m-0">
-                                                <img class="img-fluid media-display__img" src="${res.data.thumbnail_url}"
-                                                    alt="${res.data.alt}" />
-                                            </label>
-                                        </div>
-                                    </div>
-                                `);
-                });
+                .then(res => $('#media-display').prepend(`
+                            <div class="media-display__content col-12 col-sm-6 col-lg-3 p-2">
+                                <input id="media-${res.data.id}" class="media-display__input d-none" type="radio"
+                                    name="selected-image" value="${res.data.id}"
+                                    data-src="${res.data.thumbnail_url}" />
+                                <div class="media-display__image d-block overflow-hidden border rounded">
+                                    <label for="media-${res.data.id}" class="media-display__input__label d-block m-0">
+                                        <img class="img-fluid media-display__img" src="${res.data.thumbnail_url}"
+                                            alt="${res.data.alt}" />
+                                    </label>
+                                </div>
+                            </div>
+                        `));
         });
 
-        // enable gallery-select
-        $('.media-display__input').change(function(e) {
+        // enable select btn
+        $('#media-display').change(function(e) {
             $('#gallery-select-btn').removeAttr('disabled');
         });
 
-        // select the image
-        $('#gallery-select-btn').click(function(e) {
-            $('.modal').modal('hide');
+        function previewSelectedFeaturedPicture() {
             const selectedInput = $('input[name="selected-image"]:checked');
             const id = selectedInput.val();
             const src = selectedInput.data('src')
@@ -98,7 +94,15 @@
             $('input[name="{{ $targetInput }}"]').val(id);
             // update $targetInput preview src
             $('#{{ $targetInput }}-preview').attr('src', src);
+        }
+
+        // select the image
+        $('#gallery-select-btn').click(function(e) {
+            $('.modal').modal('hide');
+            previewSelectedFeaturedPicture();
         });
 
+        // preview the image when already selected
+        previewSelectedFeaturedPicture();
     </script>
 @endpush

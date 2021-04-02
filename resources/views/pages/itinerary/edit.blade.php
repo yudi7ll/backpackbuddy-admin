@@ -181,8 +181,8 @@
                 </section>
                 <section>
                     <h5>Featured picture</h5>
-                    <a href="{{ $itinerary->featured_picture }}" target="_blank">
-                        <img id="featured_picture-preview" src="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->url }}"
+                    <a href="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->url }}" target="_blank">
+                        <img id="featured_picture-preview" src="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->thumbnail_url }}"
                             alt="{{ $itinerary->place_name }}" class="img-fluid" />
                     </a>
                     <input class="d-none" type="file" name="featured_picture" id="input-featured_picture">

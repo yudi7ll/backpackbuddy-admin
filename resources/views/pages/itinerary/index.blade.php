@@ -6,10 +6,10 @@
     <h1 class="title"><i class="fa fa-fw fa-tasks"></i> All Itineraries</h1>
     <hr>
     <section>
-        <button id="add-itinerary" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#itinerary-modal">
+        <a href="{{ route('itinerary.create') }}" class="btn btn-primary btn-sm mb-4">
             <i class="fa fa-fw fa-plus"></i>
-            Quick Add
-        </button>
+            Add New Itinerary
+        </a>
         <div class="table-responsive">
             <table id="datatables" class="table table-striped table-bordered">
                 <thead>
@@ -30,7 +30,8 @@
                             <td class="text-center align-middle">{{ $key + 1 }}</td>
                             <td class="text-center align-middle">
                                 <a href="{{ route('itinerary.edit', $itinerary) }}">
-                                    <img class="img__featured img-fluid" src="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->url }}"
+                                    <img class="img__featured img-fluid"
+                                        src="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->thumbnail_url }}"
                                         alt="{{ $itinerary->place_name }}" />
                                 </a>
                             </td>
@@ -68,7 +69,6 @@
         </div>
     </section>
 @endsection
-@include('pages.itinerary.quick-add')
 
 @if ($errors->any())
     @push('js')

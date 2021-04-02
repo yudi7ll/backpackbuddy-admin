@@ -70,6 +70,7 @@ class ItineraryController extends Controller
             $this->data->media()->attach($request->featured_picture, ['isFeatured' => true]);
         }
 
+        // temp
         $this->data->media()->attach(1);
         // Itinerary Galleries
         if ($request->has('galleries')) {

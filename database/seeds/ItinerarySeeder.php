@@ -19,6 +19,9 @@ class ItinerarySeeder extends Seeder
         $categories = Category::all();
 
         Itinerary::all()->each(function ($itinerary) use ($districts, $categories) {
+            // populate default media
+            $itinerary->media()->attach(1, ['isFeatured' => true]);
+
             // populate districts
             $itinerary->districts()->sync(
                 $districts->random(rand(1, 3))->pluck('id')->toArray()

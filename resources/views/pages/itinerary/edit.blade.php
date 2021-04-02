@@ -133,7 +133,7 @@
                                                 title="Edit">
                                                 <i class="fa fa-fw fa-pencil-alt"></i>
                                             </a>
-                                            <button type="button" onclick="handleDelete({{ $review->id }})"
+                                            <button type="button" onclick="handleDelete('{{ $review->id }}')"
                                                 class="btn btn-sm btn-danger">
                                                 <i class="fa fa-fw fa-trash"></i>
                                             </button>
@@ -182,7 +182,7 @@
                 <section>
                     <h5>Featured picture</h5>
                     <a href="{{ $itinerary->featured_picture }}" target="_blank">
-                        <img id="featured_picture-preview" src="{{ $itinerary->featured_picture }}"
+                        <img id="featured_picture-preview" src="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->url }}"
                             alt="{{ $itinerary->place_name }}" class="img-fluid" />
                     </a>
                     <input class="d-none" type="file" name="featured_picture" id="input-featured_picture">
@@ -197,7 +197,7 @@
                 <section>
                     <h5 class="text-danger">Danger Zone</h5>
                     <hr />
-                    <button class="btn btn-outline-danger" onclick="deleteHandle({{ $itinerary->id }})" type="button">
+                    <button class="btn btn-outline-danger" onclick="deleteHandle('{{ $itinerary->id }}')" type="button">
                         <i class="fa fa-fw fa-trash"></i>
                         Delete
                     </button>
@@ -207,47 +207,47 @@
     </form>
 @endsection
 @push('js')
-    <script>
-        $('#change-btn').on('click', () => $('#input-featured_picture').click());
-        $('.action-image-btn').hide();
+<script>
+$('#change-btn').on('click', () => $('#input-featured_picture').click());
+$('.action-image-btn').hide();
 
-        // image preview
-        $('#input-featured_picture').on('change', function(e) {
-            const file = this.files[0];
+// image preview
+$('#input-featured_picture').on('change', function(e) {
+    const file = this.files[0];
 
-            if (file) {
-                $('.action-image-btn').show();
-                // preview the image
-                const reader = new FileReader();
-                reader.onload = () => {
-                    const result = reader.result;
-                    $('#featured_picture-preview').attr('src', result);
-                }
+    if (file) {
+        $('.action-image-btn').show();
+        // preview the image
+        const reader = new FileReader();
+        reader.onload = () => {
+        const result = reader.result;
+        $('#featured_picture-preview').attr('src', result);
+        }
 
-                reader.readAsDataURL(file);
-            }
+        reader.readAsDataURL(file);
+    }
+});
+
+async function deleteHandle(id) {
+    const willDelete = await swal({
+    title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+})
+
+    if (willDelete) {
+        try {
+            await axios.delete(`/itinerary/${id}`)
+                document.location.href = '/itinerary';
+        } catch (e) {
+            await swal("Error! Something have been wrong!", {
+            icon: "error"
         });
+        }
+    }
+};
 
-        async function deleteHandle(id) {
-            const willDelete = await swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-
-            if (willDelete) {
-                try {
-                    await axios.delete(`/itinerary/${id}`)
-                    document.location.href = '/itinerary';
-                } catch (e) {
-                    await swal("Error! Something have been wrong!", {
-                        icon: "error"
-                    });
-                }
-            }
-        };
-
-    </script>
+</script>
 @endpush

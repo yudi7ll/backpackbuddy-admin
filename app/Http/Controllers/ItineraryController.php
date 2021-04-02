@@ -7,7 +7,6 @@ use App\District;
 use App\Http\Requests\ItineraryRequest;
 use App\Http\Traits\MediaTrait;
 use App\Itinerary;
-use App\Media;
 use Session;
 use Str;
 
@@ -66,35 +65,17 @@ class ItineraryController extends Controller
         $this->data = $this->itinerary->create($request->all());
 
         // Featured Picture
-        if ($request->hasFile('featured_picture')) {
-            $file = $request->file('featured_picture');
-
-            // validate featured image
-            $this->verityImage($request, $file, true);
-
-            // store the image file
-            $mediaId = $this->storeImage($file, $this->ITINERARY)->id;
-
+        if ($request->has('featured_picture')) {
             // sync the media relationship
-            $this->data->media()->attach($mediaId, ['isFeatured' => true]);
+            $this->data->media()->attach($request->featured_picture, ['isFeatured' => true]);
         }
 
+        $this->data->media()->attach(1);
         // Itinerary Galleries
-        if ($request->hasFile('galleries')) {
-            $files = $request->file('galleries');
-
-            // validate gallery image
-            $this->verityImage($request, $files);
-
-            foreach ($files as $file) {
-                // store the image file
-                $mediaId = $this->storeImage($file, $this->ITINERARY)->id;
-
+        if ($request->has('galleries')) {
                 // sync the media relationship
-                $this->data->media()->attach($mediaId);
-            }
+            $this->data->media()->attach($request->galleries);
         }
-
 
         /*
          * Category

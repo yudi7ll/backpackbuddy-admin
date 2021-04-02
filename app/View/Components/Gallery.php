@@ -7,15 +7,37 @@ use Illuminate\View\Component;
 
 class Gallery extends Component
 {
+    /*
+     * The media data
+     *
+     * @var App\Media
+     */
+    public $media;
+
+    /*
+     * The gallery target name
+     *
+     * @var string
+     */
+    public $target;
+
+    /*
+     * The gallery type
+     *
+     * @var string
+     */
+    public $type;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(Media $media, $targetInput)
+    public function __construct(Media $media, $target, $type = '')
     {
-        $this->media = $media;
-        $this->targetInput = $targetInput;
+        $this->media = $media->latest()->get();
+        $this->target = $target;
+        $this->type = $type;
     }
 
     /**
@@ -25,8 +47,6 @@ class Gallery extends Component
      */
     public function render()
     {
-        $this->data['media'] = $this->media->latest()->get();
-        $this->data['targetInput'] = $this->targetInput;
-        return view('components.gallery', $this->data);
+        return view('components.gallery');
     }
 }

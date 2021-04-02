@@ -115,10 +115,10 @@
                     </div>
                     <button id="input-featured_picture"
                         class="btn btn-outline-success @error('featured_picture') is-invalid @enderror" type="button"
-                        data-toggle="modal" data-target="#gallery-modal">
+                        data-toggle="modal" data-target="#featured-picture-modal">
                         Select Pictures
                     </button>
-                    <input type="hidden" name="featured-picture" value="1" />
+                    <input type="hidden" id="input-featured-picture" name="featured_picture" value="1" />
 
                     @error('featured_picture')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -128,8 +128,11 @@
                     <h4>Gallery</h4>
                     <hr>
                     <div class="row mb-2" id="gallery-preview"></div>
-                    <input type="file" class="form-control-file @error('galleries') is-invalid @enderror" name="galleries[]"
-                        id="input-gallery" multiple />
+                    <button id="input-galleries" class="btn btn-outline-success @error('galleries') is-invalid @enderror"
+                        data-toggle="modal" data-target="#gallery-modal">
+                        Select Pictures
+                    </button>
+                    <input type="file" id="input-gallery" class="d-none" name="galleries[]" multiple />
                     @error('galleries')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -137,9 +140,7 @@
             </div>
         </div>
     </form>
-    <div id="gallery">
-        <x-gallery targetInput="featured-picture" />
-    </div>
+    <x-gallery target="featured-picture" />
 @endsection
 @push('js')
     <script>
@@ -149,24 +150,26 @@
         }
 
         // Image Gallery Preview
-        $('#input-gallery').on('change', function() {
-            const files = this.files;
+        /*
+            $('#input-galleries').on('change', function() {
+                const files = this.files;
 
-            if (files) {
-                for (let i = 0; i < files.length; i++) {
-                    const file = files[i];
-                    const reader = new FileReader();
-                    reader.onload = function() {
-                        const result = reader.result;
-                        const img = '<img class="img-fluid mb-2 px-1 col" src="' + reader.result +
-                            '" style="min-width: 50%; object-fit: cover;">'
-                        $(`#gallery-preview`).append(img, null);
-                    }
+                if (files) {
+                    for (let i = 0; i < files.length; i++) {
+                        const file = files[i];
+                        const reader = new FileReader();
+                        reader.onload = function() {
+                            const result = reader.result;
+                            const img = '<img class="img-fluid mb-2 px-1 col" src="' + reader.result +
+                                '" style="min-width: 50%; object-fit: cover;">'
+                            $(`#gallery-preview`).append(img, null);
+                        }
 
-                    reader.readAsDataURL(file);
-                };
-            }
-        });
+                        reader.readAsDataURL(file);
+                    };
+                }
+            });
+           */
 
     </script>
 @endpush

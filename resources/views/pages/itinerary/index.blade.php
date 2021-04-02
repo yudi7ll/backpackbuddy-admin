@@ -30,7 +30,7 @@
                             <td class="text-center align-middle">{{ $key + 1 }}</td>
                             <td class="text-center align-middle">
                                 <a href="{{ route('itinerary.edit', $itinerary) }}">
-                                    <img class="img__featured img-fluid" src="{{ $itinerary->media()->url ?: '' }}"
+                                    <img class="img__featured img-fluid" src="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->url }}"
                                         alt="{{ $itinerary->place_name }}" />
                                 </a>
                             </td>

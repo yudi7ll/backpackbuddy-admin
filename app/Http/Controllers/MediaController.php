@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MediaRequest;
 use App\Http\Traits\MediaTrait;
 use App\Media;
-use Request;
 use Validator;
 
 class MediaController extends Controller

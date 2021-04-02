@@ -76,6 +76,6 @@ class Itinerary extends Model
      */
     public function media()
     {
-        return $this->belongsToMany('App\Media');
+        return $this->belongsToMany('App\Media')->withPivot('isFeatured');
     }
 }

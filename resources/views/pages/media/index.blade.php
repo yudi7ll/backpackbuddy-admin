@@ -32,10 +32,24 @@
             </div>
         </div>
     </section>
-    <div id="modal-wrapper" />
+    <div id="modal-wrapper" >
+        <div id="media-edit-modal" class="modal fade" aria-hidden="true" tabindex="-1" aria-labelledby="select-files">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title ml-auto" style="font-weight: 300;">Media</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('js')
-    <script>
+    <script charset="utf-8">
         $('#media-input').change(function(e) {
             $('#media-form').submit();
         });
@@ -49,11 +63,13 @@
                 return;
             }
 
-            $('#modal-wrapper').html('');
-            axios.get(`/media/${id}/edit`)
-                .then(res => $('#modal-wrapper').html(res.data))
-                .catch(err => console.error(err))
-                .finally(() => $('#media-edit-modal').modal('show'));
+            const loading = `
+                <div class="d-flex justify-content-center align-items-center" height: 200px">
+                    <h3 class="font-weight-normal">Fetching data ...</h3>
+                </div>
+            `;
+
+            $('.modal-body').html(loading).load(`/media/${id}/edit`);
         });
 
     </script>

@@ -151,19 +151,15 @@ class ItineraryController extends Controller
         // update itinerary
         $this->data->update($request->except('categories'));
 
-        /*
-         * Featured Picture
-         */
-        if ($request->file('featured_picture')) {
-            $file = $request->file('featured_picture');
-            $imageName = "itinerary-{$this->data->id}.{$request->file('featured_picture')->getClientOriginalExtension()}";
+        /* Galleries */
+        if ($request->has('galleries')) {
+            $this->data->media()->sync($request->galleries);
+        }
 
-            // store the file to public directory
-            $file->storeAs('public/featured_picture', $imageName);
-
-            // save the filename
-            $this->data->featured_picture = $imageName;
-            $this->data->save();
+        /* Featured Picture */
+        if ($request->has('featured_picture')) {
+            $this->data->media()->detach($request->featured_picture);
+            $this->data->media()->attach($request->featured_picture, [ 'isFeatured' => true ]);
         }
 
         /*

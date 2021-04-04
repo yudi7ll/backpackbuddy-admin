@@ -102,12 +102,14 @@
                 const id = selectedInput[i].value;
                 const src = selectedInput[i].dataset.src;
 
-                imgElements += `<img class="img-fluid col-6 mb-3 px-2 h-100" src="${src}" alt="${id}" />`;
 
-                if (targetElement == 'gallery')
+                if (targetElement == 'gallery') {
+                    imgElements += `<img class="gallery__thumbnail col-6 mb-3 px-2" src="${src}" alt="${id}" />`;
                     inputGallery += `<input type="text" class="d-none" name="galleries[]" multiple value="${id}" />`;
-                else
+                } else {
+                    imgElements += `<img class="img-fluid mb-3 h-100" src="${src}" alt="${id}" />`;
                     inputGallery += `<input type="text" class="d-none" name="featured_picture" value="${id}" />`;
+                }
 
             }
 

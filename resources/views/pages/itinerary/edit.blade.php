@@ -181,37 +181,51 @@
                 </section>
                 <section class="mt-4">
                     <h5>Featured picture</h5>
-                    <a href="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->url }}" target="_blank">
-                        <img id="featured_picture-preview" src="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->thumbnail_url }}"
-                            alt="{{ $itinerary->place_name }}" class="img-fluid" />
-                    </a>
+
+                    <div id="featured-picture-preview">
+                        <a href="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->url }}" target="_blank">
+                            <img class="img-fluid h-100" id="featured_picture-preview" src="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->thumbnail_url }}"
+                                alt="{{ $itinerary->place_name }}" />
+                        </a>
+                    </div>
                     <input class="d-none" type="file" name="featured_picture" id="input-featured_picture">
                     <div class="mt-2 d-flex justify-content-between">
-                        <button type="button" id="change-btn" class="btn btn-info btn-sm">Change Picture</button>
+                        <button id="featured-picture-btn"
+                            class="btn btn-outline-success @error('featured_picture') is-invalid @enderror" type="button"
+                            data-toggle="modal" data-target="#gallery-modal" data-type="featured-picture">
+                            Change Picture
+                        </button>
                         <button type="submit" class="action-image-btn btn btn-primary btn-sm">
                             <i class="fa fa-fw fa-save"></i>
                             Update
                         </button>
                     </div>
+                    <div id="input-featured-picture"></div>
                 </section>
                 <section class="mt-4">
                     <h5>Gallery</h5>
-                    <div class="row">
+                    <div id="gallery-preview" class="row px-2">
                         @foreach ($itinerary->media as $media)
                             <a class="d-block col-6 px-2 mb-3" href="{{ $media->url }}" target="_blank">
-                                <img class="img-fluid h-100" id="featured_picture-preview" src="{{ $media->thumbnail_url }}"
+                                <img class="gallery__thumbnail" id="featured_picture-preview" src="{{ $media->thumbnail_url }}"
                                     alt="{{ $media->name }}" />
                             </a>
                         @endforeach
                     </div>
                     <input class="d-none" type="file" name="featured_picture" id="input-featured_picture">
                     <div class="mt-2 d-flex justify-content-between">
-                        <button type="button" id="change-btn" class="btn btn-info btn-sm">Change Picture</button>
+                        <button id="gallery-btn"
+                            class="btn btn-outline-success @error('galleries') is-invalid @enderror" type="button"
+                            data-toggle="modal" data-target="#gallery-modal" data-type="gallery">
+                            Change Pictures
+                        </button>
                         <button type="submit" class="action-image-btn btn btn-primary btn-sm">
                             <i class="fa fa-fw fa-save"></i>
                             Update
                         </button>
                     </div>
+
+                    <div id="input-gallery"></div>
                 </section>
                 <section class="mt-4">
                     <h5 class="text-danger">Danger Zone</h5>
@@ -224,6 +238,7 @@
             </div>
         </div>
     </form>
+    <x-gallery />
 @endsection
 @push('js')
 <script>

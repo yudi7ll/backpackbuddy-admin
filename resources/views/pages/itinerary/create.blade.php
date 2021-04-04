@@ -107,32 +107,31 @@
                         Publish
                     </button>
                 </section>
-                <section id="featured-picture" class="mb-3">
+                <section>
                     <h4>Featured Picture</h4>
                     <hr>
-                    <div>
-                        <img class="img-fluid mb-2" id="featured-picture-preview" src="" />
-                    </div>
-                    <button id="input-featured_picture"
+                    <div id="featured-picture-preview" class="row mb-2"></div>
+                    <button id="featured-picture-btn"
                         class="btn btn-outline-success @error('featured_picture') is-invalid @enderror" type="button"
-                        data-toggle="modal" data-target="#featured-picture-modal">
+                        data-toggle="modal" data-target="#gallery-modal" data-type="featured-picture">
                         Select Pictures
                     </button>
-                    <input type="hidden" id="input-featured-picture" name="featured_picture" value="1" />
+                    <div id="input-featured-picture"></div>
 
                     @error('featured_picture')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </section>
-                <section>
+                <section class="mt-3">
                     <h4>Gallery</h4>
                     <hr>
                     <div class="row mb-2" id="gallery-preview"></div>
-                    <button id="input-galleries" class="btn btn-outline-success @error('galleries') is-invalid @enderror"
-                        data-toggle="modal" data-target="#gallery-modal">
+                    <button id="gallery-btn"
+                        class="btn btn-outline-success @error('galleries') is-invalid @enderror" type="button"
+                        data-toggle="modal" data-target="#gallery-modal" data-type="gallery">
                         Select Pictures
                     </button>
-                    <input type="file" id="input-gallery" class="d-none" name="galleries[]" multiple />
+                    <div id="input-gallery"></div>
                     @error('galleries')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -140,36 +139,14 @@
             </div>
         </div>
     </form>
-    <x-gallery target="featured-picture" />
+    <x-gallery />
 @endsection
 @push('js')
-    <script>
+    <script charset="utf-8">
         function submitForm(isPublished) {
             $('input[name="is_published"]').attr('value', isPublished);
             $('#itinerary-form').submit();
         }
-
-        // Image Gallery Preview
-        /*
-            $('#input-galleries').on('change', function() {
-                const files = this.files;
-
-                if (files) {
-                    for (let i = 0; i < files.length; i++) {
-                        const file = files[i];
-                        const reader = new FileReader();
-                        reader.onload = function() {
-                            const result = reader.result;
-                            const img = '<img class="img-fluid mb-2 px-1 col" src="' + reader.result +
-                                '" style="min-width: 50%; object-fit: cover;">'
-                            $(`#gallery-preview`).append(img, null);
-                        }
-
-                        reader.readAsDataURL(file);
-                    };
-                }
-            });
-           */
 
     </script>
 @endpush

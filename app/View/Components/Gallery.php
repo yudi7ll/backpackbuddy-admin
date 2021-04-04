@@ -14,30 +14,14 @@ class Gallery extends Component
      */
     public $media;
 
-    /*
-     * The gallery target name
-     *
-     * @var string
-     */
-    public $target;
-
-    /*
-     * The gallery type
-     *
-     * @var string
-     */
-    public $type;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(Media $media, $target, $type = '')
+    public function __construct(Media $media)
     {
         $this->media = $media->latest()->get();
-        $this->target = $target;
-        $this->type = $type;
     }
 
     /**

@@ -1,4 +1,4 @@
-<div id="{{ $target }}-modal" class="modal fade" aria-hidden="true" tabindex="-1" aria-labelledby="select-files">
+<div id="gallery-modal" class="modal fade" aria-hidden="true" tabindex="-1" aria-labelledby="select-files">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,20 +8,20 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="gallery-form" class="text-center d-block my-5" method="POST"
+                <form id="gallery-gallery-form" class="text-center d-block my-5" method="POST"
                     action="{{ route('media.store') }}" enctype="multipart/form-data">
                     @csrf
-                    <input id="gallery-upload-input" class="d-none" type="file" name="image" />
-                    <button id="gallery-upload-btn" class="btn btn-outline-dark" type="button">
+                    <input id="gallery-gallery-upload-input" class="d-none" type="file" name="image" />
+                    <button id="gallery-gallery-upload-btn" class="btn btn-outline-dark" type="button">
                         Upload new image
                     </button>
                 </form>
                 <hr>
                 <div class="container">
-                    <form id="media-display" class="media-display row" method="POST">
+                    <form id="gallery-media-display" class="media-display row" method="POST">
                         @foreach ($media as $m)
                             <div class="media-display__content col-12 col-sm-6 col-lg-3 p-2">
-                                <input id="media-{{ $m->id }}" class="media-display__input d-none" type="radio"
+                                <input id="media-{{ $m->id }}" class="media-display__input d-none" type="checkbox"
                                     name="selected-image" value="{{ $m->id }}"
                                     data-src="{{ $m->thumbnail_url }}" />
                                 <div class="media-display__image d-block overflow-hidden border rounded">
@@ -37,22 +37,30 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="gallery-select-btn" class="btn btn-lg btn-primary" disabled>Select</button>
+                <button id="gallery-select-btn" class="btn btn-lg btn-primary" disabled type="button">Select</button>
             </div>
         </div>
     </div>
 </div>
 
 @push('js')
-    <script>
+    <script charset="utf-8">
+        let targetElement;
+
+        $('button[data-toggle="modal"]').on('click', function (e) {
+            const type = e.target.dataset.type;
+            targetElement = type;
+            $('.media-display__input').attr('type', type == 'gallery' ? 'checkbox' : 'radio');
+        });
+
         // trigger file input
-        $('#gallery-upload-btn').click(function(e) {
+        $('#gallery-gallery-upload-btn').click(function(e) {
             e.preventDefault();
-            $('#gallery-upload-input').click();
+            $('#gallery-gallery-upload-input').click();
         });
 
         // upload new image
-        $('#gallery-upload-input').change(function(e) {
+        $('#gallery-gallery-upload-input').change(function(e) {
             e.preventDefault();
 
             const config = {
@@ -65,7 +73,7 @@
             formData.append('image', e.target.files[0]);
 
             axios.post('/media', formData, config)
-                .then(res => $('#media-display').prepend(`
+                .then(res => $('#gallery-media-display').prepend(`
                     <div class="media-display__content col-12 col-sm-6 col-lg-3 p-2">
                         <input id="media-${res.data.id}" class="media-display__input d-none" type="radio"
                             name="selected-image" value="${res.data.id}"
@@ -81,29 +89,43 @@
         });
 
         // enable select btn
-        $('#media-display').change(function(e) {
+        $('#gallery-media-display').change(function(e) {
             $('#gallery-select-btn').removeAttr('disabled');
         });
 
         function previewSelectedFeaturedPicture() {
             const selectedInput = $('input[name="selected-image"]:checked');
-            const id = selectedInput.val();
-            const src = selectedInput.data('src')
+
+            let imgElements = '';
+            let inputGallery = '';
+            for (let i = 0; i < selectedInput.length; i++) {
+                const id = selectedInput[i].value;
+                const src = selectedInput[i].dataset.src;
+
+                imgElements += `<img class="img-fluid col-6 mb-3 px-2 h-100" src="${src}" alt="${id}" />`;
+
+                if (targetElement == 'gallery')
+                    inputGallery += `<input type="text" class="d-none" name="galleries[]" multiple value="${id}" />`;
+                else
+                    inputGallery += `<input type="text" class="d-none" name="featured_picture" value="${id}" />`;
+
+            }
+
+            $(`#${targetElement}-preview`).html(imgElements);
 
             // update $target value
-            $('#input-{{ $target }}').val(id);
-            // update $target preview src
-            $('#{{ $target }}-preview').attr('src', src);
+            $(`#input-${targetElement}`).html(inputGallery);
         }
 
         // select the image
         $('#gallery-select-btn').click(function(e) {
-            $('.modal').modal('hide');
+            $('#gallery-modal').modal('hide');
             previewSelectedFeaturedPicture();
         });
 
         // preview the image when already selected
         previewSelectedFeaturedPicture();
+        console.log('gallery');
 
     </script>
 @endpush

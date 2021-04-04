@@ -64,18 +64,20 @@ class ItineraryController extends Controller
         // store the data to database
         $this->data = $this->itinerary->create($request->all());
 
-        // Featured Picture
-        if ($request->has('featured_picture')) {
-            // sync the media relationship
-            $this->data->media()->attach($request->featured_picture, ['isFeatured' => true]);
-        }
-
-        // temp
-        $this->data->media()->attach(1);
         // Itinerary Galleries
         if ($request->has('galleries')) {
-                // sync the media relationship
+            // sync the media relationship
             $this->data->media()->attach($request->galleries);
+        }
+
+        // Featured Picture
+        if ($request->has('featured_picture')) {
+            // prevent duplicate
+            $this->data->media()->detach($request->featured_picture);
+            $this->data->media()->attach($request->featured_picture, ['isFeatured' => true]);
+        } else {
+            $this->data->media()->detach(1);
+            $this->data->media()->attach(1, ['isFeatured' => true]);
         }
 
         /*

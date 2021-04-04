@@ -188,8 +188,7 @@
                                 alt="{{ $itinerary->place_name }}" />
                         </a>
                     </div>
-                    <input class="d-none" type="file" name="featured_picture" id="input-featured_picture">
-                    <div class="mt-2 d-flex justify-content-between">
+                    <div class="mt-3 d-flex justify-content-between">
                         <button id="featured-picture-btn"
                             class="btn btn-outline-success @error('featured_picture') is-invalid @enderror" type="button"
                             data-toggle="modal" data-target="#gallery-modal" data-type="featured-picture">
@@ -212,8 +211,7 @@
                             </a>
                         @endforeach
                     </div>
-                    <input class="d-none" type="file" name="featured_picture" id="input-featured_picture">
-                    <div class="mt-2 d-flex justify-content-between">
+                    <div class="d-flex justify-content-between">
                         <button id="gallery-btn"
                             class="btn btn-outline-success @error('galleries') is-invalid @enderror" type="button"
                             data-toggle="modal" data-target="#gallery-modal" data-type="gallery">

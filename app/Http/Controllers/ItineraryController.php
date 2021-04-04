@@ -151,16 +151,24 @@ class ItineraryController extends Controller
         // update itinerary
         $this->data->update($request->except('categories'));
 
+        $currentFeaturedPicture = $this->data->media()->wherePivot('isFeatured', true)->exists() ? $this->data->media()->wherePivot('isFeatured', true)->first()->id : 1;
+        $currentGalleries = $this->data->media()->wherePivot('isFeatured', false)->get()->pluck('id');
+
         /* Galleries */
         if ($request->has('galleries')) {
-            $this->data->media()->sync($request->galleries);
+            $currentGalleries = $request->galleries;
         }
+        // Sync the gallery
+        $this->data->media()->sync($currentGalleries);
 
         /* Featured Picture */
         if ($request->has('featured_picture')) {
-            $this->data->media()->detach($request->featured_picture);
-            $this->data->media()->attach($request->featured_picture, [ 'isFeatured' => true ]);
+            $currentFeaturedPicture = $request->featured_picture;
         }
+
+        // Sync the featured picture
+        $this->data->media()->syncWithoutDetaching([ $currentFeaturedPicture => [ 'isFeatured' => true ] ]);
+
 
         /*
          * Category

@@ -183,9 +183,9 @@
                     <h5>Featured picture</h5>
 
                     <div id="featured-picture-preview">
-                        <a href="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->url }}" target="_blank">
-                            <img class="img-fluid h-100" id="featured_picture-preview" src="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->thumbnail_url }}"
-                                alt="{{ $itinerary->place_name }}" />
+                        <a href="{{ $itinerary->featured_picture }}" target="_blank">
+                            <img id="featured_picture-preview"
+                                src="{{ $itinerary->featured_picture_thumb }}" alt="{{ $itinerary->place_name }}" />
                         </a>
                     </div>
                     <div class="mt-3 d-flex justify-content-between">
@@ -206,15 +206,14 @@
                     <div id="gallery-preview" class="row px-2">
                         @foreach ($itinerary->media as $media)
                             <a class="d-block col-6 px-2 mb-3" href="{{ $media->url }}" target="_blank">
-                                <img class="gallery__thumbnail" id="featured_picture-preview" src="{{ $media->thumbnail_url }}"
-                                    alt="{{ $media->name }}" />
+                                <img class="gallery__thumbnail" id="featured_picture-preview"
+                                    src="{{ $media->thumbnail_url }}" alt="{{ $media->name }}" />
                             </a>
                         @endforeach
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button id="gallery-btn"
-                            class="btn btn-outline-success @error('galleries') is-invalid @enderror" type="button"
-                            data-toggle="modal" data-target="#gallery-modal" data-type="gallery">
+                        <button id="gallery-btn" class="btn btn-outline-success @error('galleries') is-invalid @enderror"
+                            type="button" data-toggle="modal" data-target="#gallery-modal" data-type="gallery">
                             Change Pictures
                         </button>
                         <button type="submit" class="action-image-btn btn btn-primary btn-sm">
@@ -239,47 +238,47 @@
     <x-gallery />
 @endsection
 @push('js')
-<script>
-$('#change-btn').on('click', () => $('#input-featured_picture').click());
-$('.action-image-btn').hide();
+    <script>
+        $('#change-btn').on('click', () => $('#input-featured_picture').click());
+        $('.action-image-btn').hide();
 
-// image preview
-$('#input-featured_picture').on('change', function(e) {
-    const file = this.files[0];
+        // image preview
+        $('#input-featured_picture').on('change', function(e) {
+            const file = this.files[0];
 
-    if (file) {
-        $('.action-image-btn').show();
-        // preview the image
-        const reader = new FileReader();
-        reader.onload = () => {
-        const result = reader.result;
-        $('#featured_picture-preview').attr('src', result);
-        }
+            if (file) {
+                $('.action-image-btn').show();
+                // preview the image
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const result = reader.result;
+                    $('#featured_picture-preview').attr('src', result);
+                }
 
-        reader.readAsDataURL(file);
-    }
-});
-
-async function deleteHandle(id) {
-    const willDelete = await swal({
-    title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this imaginary file!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-})
-
-    if (willDelete) {
-        try {
-            await axios.delete(`/itinerary/${id}`)
-                document.location.href = '/itinerary';
-        } catch (e) {
-            await swal("Error! Something have been wrong!", {
-            icon: "error"
+                reader.readAsDataURL(file);
+            }
         });
-        }
-    }
-};
 
-</script>
+        async function deleteHandle(id) {
+            const willDelete = await swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+
+            if (willDelete) {
+                try {
+                    await axios.delete(`/itinerary/${id}`)
+                    document.location.href = '/itinerary';
+                } catch (e) {
+                    await swal("Error! Something have been wrong!", {
+                        icon: "error"
+                    });
+                }
+            }
+        };
+
+    </script>
 @endpush

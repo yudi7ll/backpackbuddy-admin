@@ -34,9 +34,8 @@ class ItineraryController extends Controller
      */
     public function index()
     {
-        $this->data['itineraries'] = $this->itinerary->all();
-        $this->data['categories'] = $this->category->all();
-        $this->data['districts'] = $this->district->all();
+        $this->data['itineraries'] = $this->itinerary
+            ->with(['media', 'categories', 'districts'])->get();
 
         return view('pages.itinerary.index', $this->data);
     }
@@ -74,10 +73,10 @@ class ItineraryController extends Controller
         if ($request->has('featured_picture')) {
             // prevent duplicate
             $this->data->media()->detach($request->featured_picture);
-            $this->data->media()->attach($request->featured_picture, ['isFeatured' => true]);
+            $this->data->media()->attach($request->featured_picture, ['featured' => true]);
         } else {
             $this->data->media()->detach(1);
-            $this->data->media()->attach(1, ['isFeatured' => true]);
+            $this->data->media()->attach(1, ['featured' => true]);
         }
 
         /*
@@ -151,8 +150,8 @@ class ItineraryController extends Controller
         // update itinerary
         $this->data->update($request->except('categories'));
 
-        $currentFeaturedPicture = $this->data->media()->wherePivot('isFeatured', true)->exists() ? $this->data->media()->wherePivot('isFeatured', true)->first()->id : 1;
-        $currentGalleries = $this->data->media()->wherePivot('isFeatured', false)->get()->pluck('id');
+        $currentFeaturedPicture = $this->data->media()->wherePivot('featured', true)->exists() ? $this->data->media()->wherePivot('featured', true)->first()->id : 1;
+        $currentGalleries = $this->data->media()->wherePivot('featured', false)->get()->pluck('id');
 
         /* Galleries */
         if ($request->has('galleries')) {
@@ -167,7 +166,7 @@ class ItineraryController extends Controller
         }
 
         // Sync the featured picture
-        $this->data->media()->syncWithoutDetaching([ $currentFeaturedPicture => [ 'isFeatured' => true ] ]);
+        $this->data->media()->syncWithoutDetaching([$currentFeaturedPicture => ['featured' => true]]);
 
 
         /*

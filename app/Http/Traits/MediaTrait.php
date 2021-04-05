@@ -12,7 +12,7 @@ trait MediaTrait
     /**
      * Media file types
      *
-     * @var Array
+     * @var String
      */
     protected $ITINERARY = 'Itinerary';
     protected $REVIEW = 'Review';
@@ -24,17 +24,17 @@ trait MediaTrait
      * @param $file
      * @return true|false
      */
-    public function verityImage($request, $file, $isFeatured = false)
+    public function verityImage($request, $file, $featured = false)
     {
-        if ($isFeatured) {
-            if (! $file->isValid()) {
+        if ($featured) {
+            if (!$file->isValid()) {
                 return redirect()->back()->with('error', 'Invalid Picture')->withInput();
             }
 
             return $request->validate(['featured_picture' => 'image']);
         } else {
             foreach ($file as $f) {
-                if (! $f->isValid()) {
+                if (!$f->isValid()) {
                     return redirect()->back()->with('error', 'Invalid Picture')->withInput();
                 }
             }
@@ -81,7 +81,7 @@ trait MediaTrait
         $file->storeAs("public/{$media['type']}", $media['name']);
 
         // check if the thumb path is exists
-        if (! is_dir($thumbPath)) {
+        if (!is_dir($thumbPath)) {
             mkdir($thumbPath, 0775, true);
         }
 

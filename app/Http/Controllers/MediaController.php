@@ -75,6 +75,7 @@ class MediaController extends Controller
      */
     public function destroy($id)
     {
+        /* TODO: Delete the file */
         return $this->media->find($id)->delete();
     }
 }

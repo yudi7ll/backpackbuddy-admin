@@ -31,7 +31,7 @@
                             <td class="text-center align-middle">
                                 <a href="{{ route('itinerary.edit', $itinerary) }}">
                                     <img class="img__featured img-fluid"
-                                        src="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->thumbnail_url }}"
+                                         src="{{ $itinerary->featured_picture_thumb }}"
                                         alt="{{ $itinerary->place_name }}" />
                                 </a>
                             </td>

@@ -36,6 +36,11 @@ section {
     @extend .shadow-sm;
 }
 
+img {
+    @extend .img-fluid;
+    object-fit: cover !important;
+}
+
 .title { font-size: 1.5em; }
 .table td { vertical-align: middle; }
 .loading {

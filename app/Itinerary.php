@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Storage;
 
 class Itinerary extends Model
 {
@@ -19,6 +20,49 @@ class Itinerary extends Model
         'description',
         'is_published',
     ];
+
+    /**
+     * Append attributes
+     *
+     * @var Array
+     */
+    protected $append = [
+        'featured_picture_thumb',
+        'featured_picture'
+    ];
+
+    /**
+     * Get the itinerary featured picture url
+     *
+     * @return string
+     */
+    public function getFeaturedPictureAttribute()
+    {
+        $featuredPicture = $this->media()->wherePivot('featured', true);
+
+        if ($featuredPicture->exists()) {
+            return $featuredPicture->first()->url;
+        }
+
+        return Storage::disk('public')->url('samples/0.webp');
+    }
+
+    /**
+     * Get the itinerary featured picture thumb
+     *
+     * @return string
+     */
+    public function getFeaturedPictureThumbAttribute()
+    {
+        $featuredPicture = $this->media()->wherePivot('featured', true);
+
+        if ($featuredPicture->exists()) {
+            return $featuredPicture->first()->thumbnail_url;
+        }
+
+        return Storage::disk('public')->url('samples/0.webp');
+    }
+
 
     /**
      * The attributes that should be cast.
@@ -76,6 +120,6 @@ class Itinerary extends Model
      */
     public function media()
     {
-        return $this->belongsToMany('App\Media')->withPivot('isFeatured');
+        return $this->belongsToMany('App\Media')->withPivot(['featured']);
     }
 }

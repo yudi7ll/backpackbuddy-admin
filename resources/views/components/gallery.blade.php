@@ -21,8 +21,8 @@
                     <form id="gallery-media-display" class="media-display row" method="POST">
                         @foreach ($media as $m)
                             <div class="media-display__content col-12 col-sm-6 col-lg-3 p-2">
-                                <input id="media-{{ $m->id }}" class="media-display__input d-none" type="checkbox"
-                                    name="selected-image" value="{{ $m->id }}"
+                                <input id="media-{{ $m->id }}" class="media-display__input d-none"
+                                    type="checkbox" name="selected-image" value="{{ $m->id }}"
                                     data-src="{{ $m->thumbnail_url }}" />
                                 <div class="media-display__image d-block overflow-hidden border rounded">
                                     <label for="media-{{ $m->id }}"
@@ -47,7 +47,7 @@
     <script charset="utf-8">
         let targetElement;
 
-        $('button[data-toggle="modal"]').on('click', function (e) {
+        $('button[data-toggle="modal"]').on('click', function(e) {
             const type = e.target.dataset.type;
             targetElement = type;
             $('.media-display__input').attr('type', type == 'gallery' ? 'checkbox' : 'radio');
@@ -74,18 +74,18 @@
 
             axios.post('/media', formData, config)
                 .then(res => $('#gallery-media-display').prepend(`
-                    <div class="media-display__content col-12 col-sm-6 col-lg-3 p-2">
-                        <input id="media-${res.data.id}" class="media-display__input d-none" type="radio"
-                            name="selected-image" value="${res.data.id}"
-                            data-src="${res.data.thumbnail_url}" />
-                        <div class="media-display__image d-block overflow-hidden border rounded">
-                            <label for="media-${res.data.id}" class="media-display__input__label d-block m-0">
-                                <img class="img-fluid media-display__img" src="${res.data.thumbnail_url}"
-                                    alt="${res.data.alt}" />
-                            </label>
-                        </div>
-                    </div>
-                `));
+                            <div class="media-display__content col-12 col-sm-6 col-lg-3 p-2">
+                                <input id="media-${res.data.id}" class="media-display__input d-none" type="radio"
+                                    name="selected-image" value="${res.data.id}"
+                                    data-src="${res.data.thumbnail_url}" />
+                                <div class="media-display__image d-block overflow-hidden border rounded">
+                                    <label for="media-${res.data.id}" class="media-display__input__label d-block m-0">
+                                        <img class="img-fluid media-display__img" src="${res.data.thumbnail_url}"
+                                            alt="${res.data.alt}" />
+                                    </label>
+                                </div>
+                            </div>
+                        `));
         });
 
         // enable select btn
@@ -107,7 +107,7 @@
                     imgElements += `<img class="gallery__thumbnail col-6 mb-3 px-2" src="${src}" alt="${id}" />`;
                     inputGallery += `<input type="hidden" name="galleries[]" multiple value="${id}" />`;
                 } else {
-                    imgElements += `<img class="img-fluid mb-3 h-100" src="${src}" alt="${id}" />`;
+                    imgElements += `<img class="mb-3" src="${src}" alt="${id}" />`;
                     inputGallery += `<input type="hidden" name="featured_picture" value="${id}" />`;
                 }
 

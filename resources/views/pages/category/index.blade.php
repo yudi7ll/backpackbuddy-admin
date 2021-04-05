@@ -28,7 +28,8 @@
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td class="text-center">
                                 <a class="text-dark" href="{{ route('category.edit', $category) }}">
-                                    {{ $category->name }} </a>
+                                    {{ $category->name }}
+                                </a>
                             </td>
                             <td class="text-center">{{ $category->slug }}</td>
                             <td class="text-center">{{ $category->itineraries()->count() }}</td>

@@ -20,7 +20,7 @@ class ItinerarySeeder extends Seeder
 
         Itinerary::all()->each(function ($itinerary) use ($districts, $categories) {
             // populate default media
-            $itinerary->media()->attach(1, ['isFeatured' => true]);
+            $itinerary->media()->attach(1, ['featured' => true]);
 
             // populate districts
             $itinerary->districts()->sync(

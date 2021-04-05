@@ -1,13 +1,13 @@
 # Itinerary (GET)
     ## Index
-        - All Itinerary data
-        - Featured Picture
-        - Category
-        - District
+        - All Itineraries data
+        - Join Featured Picture
+        - Join Category
+        - Join District
     ## Edit
         - All Itinerary data
-        - Featured Picture
-        - Gallery
-        - Category
-        - District
-        - Review
+        - Join Featured Picture
+        - Join Gallery
+        - Category & Join Category
+        - District & Join District
+        - Join Review

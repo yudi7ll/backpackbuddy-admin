@@ -71,8 +71,8 @@
                                 <td class="text-center">{{ $key + 1 }}</td>
                                 <td class="text-center">
                                     <img class="img__featured img-fluid"
-                                        src="{{ $itinerary->media()->wherePivot('featured', true)->first()->thumbnail_url }}"
-                                        alt="{{ $itinerary->media()->wherePivot('featured', true)->first()->alt }}" />
+                                        src="{{ $itinerary->media()->wherePivot('is_featured', true)->first()->thumbnail_url }}"
+                                        alt="{{ $itinerary->media()->wherePivot('is_featured', true)->first()->alt }}" />
                                 </td>
                                 <td>
                                     <a class="text-dark" href="{{ route('itinerary.edit', $itinerary) }}">

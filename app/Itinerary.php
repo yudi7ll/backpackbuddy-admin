@@ -38,7 +38,7 @@ class Itinerary extends Model
      */
     public function getFeaturedPictureAttribute()
     {
-        $featuredPicture = $this->media()->wherePivot('featured', true);
+        $featuredPicture = $this->media()->wherePivot('is_featured', true);
 
         if ($featuredPicture->exists()) {
             return $featuredPicture->first()->url;
@@ -54,7 +54,7 @@ class Itinerary extends Model
      */
     public function getFeaturedPictureThumbAttribute()
     {
-        $featuredPicture = $this->media()->wherePivot('featured', true);
+        $featuredPicture = $this->media()->wherePivot('is_featured', true);
 
         if ($featuredPicture->exists()) {
             return $featuredPicture->first()->thumbnail_url;
@@ -120,6 +120,6 @@ class Itinerary extends Model
      */
     public function media()
     {
-        return $this->belongsToMany('App\Media')->withPivot(['featured']);
+        return $this->belongsToMany('App\Media')->withPivot(['is_featured']);
     }
 }

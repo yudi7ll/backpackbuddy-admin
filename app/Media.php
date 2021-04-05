@@ -22,6 +22,6 @@ class Media extends Model
      */
     public function itineraries()
     {
-        return $this->belongsToMany('App\Itinerary')->withPivot('featured');
+        return $this->belongsToMany('App\Itinerary')->withPivot('is_featured');
     }
 }

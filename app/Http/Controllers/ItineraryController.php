@@ -73,10 +73,10 @@ class ItineraryController extends Controller
         if ($request->has('featured_picture')) {
             // prevent duplicate
             $this->data->media()->detach($request->featured_picture);
-            $this->data->media()->attach($request->featured_picture, ['featured' => true]);
+            $this->data->media()->attach($request->featured_picture, ['is_featured' => true]);
         } else {
             $this->data->media()->detach(1);
-            $this->data->media()->attach(1, ['featured' => true]);
+            $this->data->media()->attach(1, ['is_featured' => true]);
         }
 
         /*
@@ -150,8 +150,8 @@ class ItineraryController extends Controller
         // update itinerary
         $this->data->update($request->except('categories'));
 
-        $currentFeaturedPicture = $this->data->media()->wherePivot('featured', true)->exists() ? $this->data->media()->wherePivot('featured', true)->first()->id : 1;
-        $currentGalleries = $this->data->media()->wherePivot('featured', false)->get()->pluck('id');
+        $currentFeaturedPicture = $this->data->media()->wherePivot('is_featured', true)->exists() ? $this->data->media()->wherePivot('is_featured', true)->first()->id : 1;
+        $currentGalleries = $this->data->media()->wherePivot('is_featured', false)->get()->pluck('id');
 
         /* Galleries */
         if ($request->has('galleries')) {
@@ -166,7 +166,7 @@ class ItineraryController extends Controller
         }
 
         // Sync the featured picture
-        $this->data->media()->syncWithoutDetaching([$currentFeaturedPicture => ['featured' => true]]);
+        $this->data->media()->syncWithoutDetaching([$currentFeaturedPicture => ['is_featured' => true]]);
 
 
         /*

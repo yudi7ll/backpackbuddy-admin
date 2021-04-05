@@ -59,7 +59,7 @@
                     <thead>
                         <tr class="text-center">
                             <th>No.</th>
-                            <th class="text-nowrap">Picture</th>
+                            <th class="text-nowrap">Thumb</th>
                             <th class="text-nowrap">Place Name</th>
                             <th class="text-nowrap">Last Updated</th>
                             <th>Action</th>
@@ -70,8 +70,9 @@
                             <tr>
                                 <td class="text-center">{{ $key + 1 }}</td>
                                 <td class="text-center">
-                                    <img class="img__featured img-fluid" src="{{ $itinerary->featured_picture }}"
-                                        alt="{{ $itinerary->place_name }}" />
+                                    <img class="img__featured img-fluid"
+                                        src="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->thumbnail_url }}"
+                                        alt="{{ $itinerary->media()->wherePivot('isFeatured', true)->first()->alt }}" />
                                 </td>
                                 <td>
                                     <a class="text-dark" href="{{ route('itinerary.edit', $itinerary) }}">

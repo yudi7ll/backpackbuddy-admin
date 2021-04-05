@@ -1,0 +1,13 @@
+# Itinerary (GET)
+    ## Index
+        - All Itinerary data
+        - Featured Picture
+        - Category
+        - District
+    ## Edit
+        - All Itinerary data
+        - Featured Picture
+        - Gallery
+        - Category
+        - District
+        - Review

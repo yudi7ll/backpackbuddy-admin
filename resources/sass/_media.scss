@@ -28,9 +28,12 @@
     }
 }
 
-.gallery {
-    &__thumbnail {
-        height: 100px;
-        width: 100%;
+.img {
+    &--sm { height: 100px; }
+
+    &__featured {
+        height: 35px;
+        width: 50px;
     }
 }
+

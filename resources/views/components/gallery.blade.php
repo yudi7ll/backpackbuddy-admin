@@ -104,30 +104,28 @@
 
 
                 if (targetElement == 'gallery') {
-                    imgElements += `<img class="gallery__thumbnail col-6 mb-3 px-2" src="${src}" alt="${id}" />`;
+                    imgElements += `<img class="img-fluid col-6 px-2 mb-3" src="${src}" alt="${id}" />`;
                     inputGallery += `<input type="hidden" name="galleries[]" multiple value="${id}" />`;
                 } else {
-                    imgElements += `<img class="mb-3" src="${src}" alt="${id}" />`;
+                    imgElements += `<img class="img-fluid w-100" src="${src}" alt="${id}" />`;
                     inputGallery += `<input type="hidden" name="featured_picture" value="${id}" />`;
                 }
 
             }
 
             $(`#${targetElement}-preview`).html(imgElements);
-
-            // update $target value
             $(`#input-${targetElement}`).html(inputGallery);
         }
 
-        // select the image
+        // select the image and send to preview
         $('#gallery-select-btn').click(function(e) {
+            e.preventDefault();
             $('#gallery-modal').modal('hide');
             previewSelectedFeaturedPicture();
         });
 
         // preview the image when already selected
         previewSelectedFeaturedPicture();
-        console.log('gallery');
 
     </script>
 @endpush

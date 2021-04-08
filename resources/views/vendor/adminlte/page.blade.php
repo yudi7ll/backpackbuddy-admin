@@ -53,9 +53,7 @@
                 </div>
 
                 {{-- Footer --}}
-                @hasSection('footer')
-                    @include('adminlte::partials.footer.footer')
-                @endif
+                @include('components.footer')
 
                 {{-- Right Control Sidebar --}}
                 @if (config('adminlte.right_sidebar'))

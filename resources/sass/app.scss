@@ -29,6 +29,10 @@ html, body, table {
     font-size: 14px;
 }
 
+body {
+    background-color: #f4f6f9;
+}
+
 section {
     @extend .bg-white;
     @extend .p-4;
@@ -43,13 +47,13 @@ img { object-fit: cover; }
 .loading {
     animation: loading linear 2s infinite;
     font-size: 3rem;
+}
 
-    @keyframes loading {
-        from {
-            transform: rotate(0);
-        }
-        to {
-            transform: rotate(360deg);
-        }
+@keyframes loading {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }

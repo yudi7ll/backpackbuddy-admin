@@ -18,36 +18,9 @@ trait MediaTrait
     protected $REVIEW = 'Review';
 
     /**
-     * Verify the images
-     *
-     * @param $request
-     * @param $file
-     * @return true|false
-     */
-    public function verityImage($request, $file, $featured = false)
-    {
-        if ($featured) {
-            if (!$file->isValid()) {
-                return redirect()->back()->with('error', 'Invalid Picture')->withInput();
-            }
-
-            return $request->validate(['featured_picture' => 'image']);
-        } else {
-            foreach ($file as $f) {
-                if (!$f->isValid()) {
-                    return redirect()->back()->with('error', 'Invalid Picture')->withInput();
-                }
-            }
-
-            return $request->validate(['images' => 'array']);
-        }
-    }
-
-    /**
      * This will return required data to be passed to database
      *
      * @param file $file
-     * @param int $itineraryId
      * @param string $fieldname
      *
      * @return array

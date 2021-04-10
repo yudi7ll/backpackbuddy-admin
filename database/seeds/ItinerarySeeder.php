@@ -26,6 +26,7 @@ class ItinerarySeeder extends Seeder
             $itinerary->districts()->sync(
                 $districts->random(rand(1, 3))->pluck('id')->toArray()
             );
+
             // populate categories
             $itinerary->categories()->sync(
                 $categories->random(rand(1, 3))->pluck('id')->toArray()

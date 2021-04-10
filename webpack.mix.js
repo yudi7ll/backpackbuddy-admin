@@ -17,16 +17,15 @@ mix.options({
         host: "localhost",
         port: 443
     }
-});
-mix.webpackConfig({
-    devServer: {
-        https: {
-            key: fs.readFileSync("nginx/localhost-key.pem"),
-            cert: fs.readFileSync("nginx/localhost.pem")
+})
+    .webpackConfig({
+        devServer: {
+            https: {
+                key: fs.readFileSync("nginx/localhost-key.pem"),
+                cert: fs.readFileSync("nginx/localhost.pem")
+            }
         }
-    }
-});
-
-mix.js("resources/js/app.js", "public/js")
+    })
+    .js("resources/js/app.js", "public/js")
     .sass("resources/sass/app.scss", "public/css")
     .browserSync("https://localhost");

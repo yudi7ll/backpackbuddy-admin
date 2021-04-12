@@ -11,6 +11,11 @@ class MediaController extends Controller
 {
     use MediaTrait;
 
+    /**
+     * Create a new controller instance
+     *
+     * @return void
+     */
     public function __construct(Media $media)
     {
         $this->middleware('auth');

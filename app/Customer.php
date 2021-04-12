@@ -46,4 +46,14 @@ class Customer extends Model
     {
         return $this->hasMany('App\Review');
     }
+
+    /**
+     * Get the orders that this customer has
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
 }

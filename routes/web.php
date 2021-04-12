@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'dashboard');
 
-Auth::routes([ 'register' => false ]);
+Auth::routes(['register' => false]);
 
 Route::middleware('auth:web')->group(function () {
     Route::get('/dashboard', 'AdminController@index')->name('dashboard');
@@ -22,4 +22,5 @@ Route::middleware('auth:web')->group(function () {
         });
     });
     Route::resource('media', 'MediaController');
+    Route::resource('order', 'OrderController')->except(['create']);
 });

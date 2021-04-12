@@ -244,8 +244,8 @@ return [
             'label_color' => 'success',
         ],
         [
-            'text' => 'Status',
-            'url' => 'status',
+            'text' => 'Order',
+            'url' => 'order',
             'icon' => 'fa fa-fw fa-chart-line'
         ],
         ['header' => 'ITINERARY MANAGEMENT'],

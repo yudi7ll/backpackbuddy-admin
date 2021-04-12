@@ -114,12 +114,22 @@ class Itinerary extends Model
     }
 
     /**
-     * Get the mediafiles that this itinerary has
+     * Get the media that this itinerary has
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function media()
     {
         return $this->belongsToMany('App\Media')->withPivot(['is_featured']);
+    }
+
+    /**
+     * Get the order that this itinerary has
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
     }
 }

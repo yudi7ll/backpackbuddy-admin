@@ -13,7 +13,7 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'status'
+        'status', 'code'
     ];
 
     public function getStatusNameAttribute()

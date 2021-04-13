@@ -229,7 +229,7 @@
     <x-gallery />
 @endsection
 @push('js')
-    <script>
+    <script charset="utf-8">
         $('#change-btn').on('click', () => $('#input-featured_picture').click());
         $('.action-image-btn').hide();
 
@@ -257,7 +257,7 @@
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
-            })
+            });
 
             if (willDelete) {
                 try {

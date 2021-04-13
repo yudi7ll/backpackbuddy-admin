@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Media')
+@section('title', 'Orders')
 
 @section('content')
-    <h1 class="title"><i class="fa fa-fw fa-chart-line"></i> Order</h1>
+    <h1 class="title"><i class="fa fa-fw fa-chart-line"></i> Orders</h1>
     <hr>
     <section id="order">
         <div class="table-responsive">
@@ -13,10 +13,9 @@
                         <th>No</th>
                         <th class="text-nowrap">Thumb</th>
                         <th class="text-nowrap">Place name</th>
-                        <th>Price</th>
-                        <th>Category</th>
-                        <th>District</th>
-                        <th class="text-nowrap">Updated at</th>
+                        <th>Customer Name</th>
+                        <th>Status</th>
+                        <th class="text-nowrap">Order Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -24,6 +23,33 @@
                     @foreach ($orders as $key => $order)
                         <tr>
                             <td class="text-center align-middle">{{ $key + 1 }}</td>
+                            <td class="text-center align-middle">
+                                <a href="{{ route('itinerary.edit', $order->itinerary) }}">
+                                    <img class="img__featured" src="{{ $order->itinerary->featured_picture }}" alt="{{ $order->itinerary->place_name }}" />
+                                </a>
+                            </td>
+                            <td class="text-center align-middle">
+                                <a class="text-dark" href="{{ route('itinerary.edit', $order->itinerary) }}">
+                                    {{ $order->itinerary->place_name }}
+                                </a>
+                            </td>
+                            <td class="text-center align-middle">
+                                <a class="text-dark" href="{{ route('customer.edit', $order->customer) }}">
+                                    {{ $order->customer->name }}
+                                </a>
+                            </td>
+                            <td class="text-center align-middle">{{ $order->status }}</td>
+                            <td class="text-center align-middle">{{ $order->created_at->diffForHumans() }}</td>
+                            <td class="text-center align-middle">
+                                <a class="btn btn-primary btn-sm" href="{{ route('order.edit', $order) }}"
+                                    title="Edit">
+                                    <i class="fa fa-fw fa-pencil-alt"></i>
+                                </a>
+                                <button type="button" onclick="deleteHandle({{ $order->id }})"
+                                    class="btn btn-sm btn-danger">
+                                    <i class="fa fa-fw fa-trash"></i>
+                                </button>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

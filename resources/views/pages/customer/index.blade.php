@@ -3,7 +3,7 @@
 @section('title', 'Customer')
 
 @section('content')
-    <h1 class="title"><i class="fa fa-fw fa-user"></i> Customer</h1>
+    <h1 class="title"><i class="fa fa-fw fa-user"></i> Customers</h1>
     <hr />
     <section>
         <div class="table-responsive">

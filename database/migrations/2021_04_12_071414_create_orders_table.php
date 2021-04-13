@@ -20,7 +20,6 @@ class CreateOrdersTable extends Migration
             $table->smallInteger('status')->default(1);
             $table->string('code');
             $table->timestamp('completed_at')->nullable();
-            $table->timestamp('paid_at')->nullable();
             $table->timestamps();
         });
     }

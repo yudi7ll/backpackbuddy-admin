@@ -32,11 +32,7 @@
                             </tr>
                             <tr>
                                 <td>Order created</td>
-                                <td>: {{ $order->created_at->format('d M Y') }}</td>
-                            </tr>
-                            <tr>
-                                <td>Order are paid</td>
-                                <td>: {{ $order->paid_at }}</td>
+                                <td>: {{ $order->created_at->toDayDateTimeString() }}</td>
                             </tr>
                             <tr>
                                 <td>Order completed</td>
@@ -44,7 +40,7 @@
                             </tr>
                             <tr>
                                 <td>Last updated</td>
-                                <td>: {{ $order->updated_at->format('d M Y') }}</td>
+                                <td>: {{ $order->updated_at->toDayDateTimeString() }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -101,9 +97,9 @@
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select class="form-control" id="status" aria-label="Change order status" name="status">
-                                <option {{ $order->status == 1 ?? 'selected' }} value="1">Pending Payment</option>
-                                <option {{ $order->status == 2 ?? 'selected' }} value="2">Completed</option>
-                                <option {{ $order->status == 3 ?? 'selected' }} value="3">Failed</option>
+                                <option {{ $order->status == 1 ? 'selected' : '' }} value="1">Pending Payment</option>
+                                <option {{ $order->status == 2 ? 'selected' : '' }} value="2">Completed</option>
+                                <option {{ $order->status == 3 ? 'selected' : '' }} value="3">Failed</option>
                             </select>
                         </div>
                         <button class="btn btn-primary w-100">

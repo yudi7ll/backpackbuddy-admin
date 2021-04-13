@@ -12,6 +12,11 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        factory(Order::class, 15)->create();
+        factory(Order::class, 10)->create(['status' => 1]);
+        factory(Order::class, 12)->create([
+            'status' => 2,
+            'completed_at' => now(),
+        ]);
+        factory(Order::class, 3)->create(['status' => 3]);
     }
 }

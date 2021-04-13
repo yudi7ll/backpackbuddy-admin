@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Services\OrderService;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -16,9 +17,24 @@ class Order extends Model
         'status', 'code'
     ];
 
+    /**
+     * Get the status name based on status code
+     *
+     * @return string
+     */
     public function getStatusNameAttribute()
     {
         return OrderService::toStatusName($this->status);
+    }
+
+    /**
+     * Get the date order has been completed
+     *
+     * @return string
+     */
+    public function getCompletedAtAttribute($value)
+    {
+        return $value ? Carbon::create($value)->toDayDateTimeString() : '-';
     }
 
     /**

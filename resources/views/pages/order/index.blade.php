@@ -3,7 +3,7 @@
 @section('title', 'Orders')
 
 @section('content')
-    <h1 class="title"><i class="fa fa-fw fa-chart-line"></i> Orders</h1>
+    <h1 class="title"><i class="fa fa-fw fa-box"></i> Orders</h1>
     <hr>
     <section id="order">
         <div class="table-responsive">
@@ -25,7 +25,8 @@
                             <td class="text-center align-middle">{{ $key + 1 }}</td>
                             <td class="text-center align-middle">
                                 <a href="{{ route('itinerary.edit', $order->itinerary) }}">
-                                    <img class="img__featured" src="{{ $order->itinerary->featured_picture }}" alt="{{ $order->itinerary->place_name }}" />
+                                    <img class="img__featured" src="{{ $order->itinerary->featured_picture }}"
+                                        alt="{{ $order->itinerary->place_name }}" />
                                 </a>
                             </td>
                             <td class="text-center align-middle">
@@ -38,17 +39,24 @@
                                     {{ $order->customer->name }}
                                 </a>
                             </td>
-                            <td class="text-center align-middle">{{ $order->status }}</td>
+                            <td class="text-center align-middle">
+                                @switch($order->status)
+                                    @case(0)
+                                        {{ 'Failed' }}
+                                        @break
+                                    @case(1)
+                                        {{ 'Pending Payment' }}
+                                        @break
+                                    @case(2)
+                                        {{ 'Completed' }}
+                                        @break
+                                @endswitch
+                            </td>
                             <td class="text-center align-middle">{{ $order->created_at->diffForHumans() }}</td>
                             <td class="text-center align-middle">
-                                <a class="btn btn-primary btn-sm" href="{{ route('order.edit', $order) }}"
-                                    title="Edit">
-                                    <i class="fa fa-fw fa-pencil-alt"></i>
+                                <a class="btn btn-primary btn-sm" href="{{ route('order.edit', $order) }}" title="View">
+                                    <i class="fa fa-fw fa-eye"></i>
                                 </a>
-                                <button type="button" onclick="deleteHandle({{ $order->id }})"
-                                    class="btn btn-sm btn-danger">
-                                    <i class="fa fa-fw fa-trash"></i>
-                                </button>
                             </td>
                         </tr>
                     @endforeach
@@ -56,5 +64,4 @@
             </table>
         </div>
     </section>
-
 @endsection

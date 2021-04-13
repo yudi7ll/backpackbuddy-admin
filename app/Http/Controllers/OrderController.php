@@ -24,9 +24,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('pages.order.index', [
-            'orders' => $this->order->where('status', '!=', 'done')->get()
-        ]);
+        $orders = $this->order->all();
+        return view('pages.order.index', compact('orders'));
     }
 
     /**

@@ -45,6 +45,9 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
+        $order->paid_at = $order->paid_at ? $order->paid_at->format('d M Y') : '-';
+        $order->completed_at = $order->completed_at ? $order->completed_at->format('d M Y') : '-';
+
         return view('pages.order.edit', compact('order'));
     }
 }

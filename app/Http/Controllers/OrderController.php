@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Order;
 use App\Services\OrderService;
 
@@ -46,5 +47,25 @@ class OrderController extends Controller
     public function edit(Order $order)
     {
         return view('pages.order.edit', compact('order'));
+    }
+
+    /**
+     * Update the specified resource
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function update(OrderRequest $request, Order $order)
+    {
+        $this->data = $request->all();
+
+        // If the status is completed add timestamp
+        if ($this->data['status'] == 2) {
+            $order->completed_at = now();
+        }
+
+        $order->status = $this->data['status'];
+        $order->save();
+
+        return redirect()->back()->with('success', 'Data updated successfully');
     }
 }

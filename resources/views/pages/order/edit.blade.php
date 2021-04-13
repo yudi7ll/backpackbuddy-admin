@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <h1 class="title"><i class="fa fa-fw fa-pencil-alt"></i> Order {{ $order->code }} ({{ $order->status_name }})</h1>
+    <h1 class="title"><i class="fa fa-fw fa-eye"></i> Order {{ $order->code }} ({{ $order->status_name }})</h1>
     <hr>
     <div class="container">
         <div class="row">
@@ -93,7 +93,10 @@
             </div>
             <div class="col-lg-4">
                 <section>
-                    <form action="{{ route('order.update', $order) }}" method="get" accept-charset="utf-8">
+                    <form action="{{ route('order.update', $order) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="id" value="{{ $order->id }}">
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select class="form-control" id="status" aria-label="Change order status" name="status">
@@ -102,7 +105,7 @@
                                 <option {{ $order->status == 3 ? 'selected' : '' }} value="3">Failed</option>
                             </select>
                         </div>
-                        <button class="btn btn-primary w-100">
+                        <button class="btn btn-primary w-100" type="submit">
                             <i class="fa fa-fw fa-save"></i>
                             Update
                         </button>

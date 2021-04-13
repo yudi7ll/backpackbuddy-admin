@@ -14,7 +14,7 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'status', 'code'
+        'status'
     ];
 
     /**

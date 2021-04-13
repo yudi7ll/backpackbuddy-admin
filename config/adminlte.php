@@ -240,26 +240,27 @@ return [
             'text'        => 'Dashboard',
             'url'         => 'dashboard',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
-            'label'       => 1,
-            'label_color' => 'success',
         ],
         [
+            'key' => 'order',
             'text' => 'Orders',
             'url' => 'order',
-            'icon' => 'fa fa-fw fa-chart-line'
+            'active' => ['order/*'],
+            'label' => 5,
+            'label_color' => 'warning',
+            'icon' => 'fa fa-fw fa-box',
         ],
         ['header' => 'ITINERARY MANAGEMENT'],
         [
             'text' => 'Itineraries',
             'icon' => 'fas fa-fw fa-tasks',
-            'url' => 'itinerary',
             'active' => ['itinerary/*/edit'],
             'submenu' => [
                 [
                     'text' => 'Add New Itinerary',
                     'icon' => 'fas fa-fw fa-plus',
                     'shift' => 'ml-3',
-                    'url' => 'itinerary/create',
+                    'url' => 'itinerary.create',
                 ],
                 [
                     'text' => 'All Itineraries',

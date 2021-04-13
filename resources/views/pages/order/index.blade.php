@@ -10,19 +10,23 @@
             <table id="datatables" class="table table-striped table-bordered">
                 <thead>
                     <tr class="text-center">
-                        <th>No</th>
+                        <th>Code</th>
                         <th class="text-nowrap">Thumb</th>
                         <th class="text-nowrap">Place name</th>
-                        <th>Customer Name</th>
+                        <th class="text-nowrap">Customer Name</th>
                         <th>Status</th>
                         <th class="text-nowrap">Order Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($orders as $key => $order)
+                    @foreach ($orders as $order)
                         <tr>
-                            <td class="text-center align-middle">{{ $key + 1 }}</td>
+                            <td class="text-center align-middle">
+                                <a class="text-dark" href="{{ route('order.edit', $order) }}">
+                                    {{ $order->code }}
+                                </a>
+                            </td>
                             <td class="text-center align-middle">
                                 <a href="{{ route('itinerary.edit', $order->itinerary) }}">
                                     <img class="img__featured" src="{{ $order->itinerary->featured_picture }}"

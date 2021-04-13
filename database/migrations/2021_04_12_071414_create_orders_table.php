@@ -17,7 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('itinerary_id');
-            $table->smallInteger('status');
+            $table->smallInteger('status')->default(1);
+            $table->string('code');
             $table->timestamps();
         });
     }

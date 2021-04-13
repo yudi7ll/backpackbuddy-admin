@@ -244,7 +244,7 @@ return [
             'label_color' => 'success',
         ],
         [
-            'text' => 'Order',
+            'text' => 'Orders',
             'url' => 'order',
             'icon' => 'fa fa-fw fa-chart-line'
         ],
@@ -291,7 +291,7 @@ return [
         ],
         ['header' => 'CUSTOMER MANAGEMENT'],
         [
-            'text' => 'Customer',
+            'text' => 'Customers',
             'url'  => 'customer',
             'icon' => 'fas fa-fw fa-user',
             'active' => ['customer*']

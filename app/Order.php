@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Services\OrderService;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -14,6 +15,11 @@ class Order extends Model
     protected $fillable = [
         'status'
     ];
+
+    public function getStatusNameAttribute()
+    {
+        return OrderService::toStatusName($this->status);
+    }
 
     /**
      * Get the itinerary that belongs to this order

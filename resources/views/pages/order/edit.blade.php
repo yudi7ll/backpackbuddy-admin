@@ -18,9 +18,9 @@
                 <section>
                     <h5>Status</h5>
                     <select class="form-select" aria-label="Change order status" name="status" multiple size="1">
-                        <option {{ $order->status == 0 ?? 'selected' }} value="0">Failed</option>
                         <option {{ $order->status == 1 ?? 'selected' }} value="1">Pending Payment</option>
                         <option {{ $order->status == 2 ?? 'selected' }} value="2">Completed</option>
+                        <option {{ $order->status == 3 ?? 'selected' }} value="3">Failed</option>
                     </select>
                 </section>
             </div>

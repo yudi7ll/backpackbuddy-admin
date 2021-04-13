@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Orders')
+@section('title', 'Completed Orders')
 
 @section('content')
-    <h1 class="title"><i class="fa fa-fw fa-clock"></i> {{ $filter }}</h1>
+    <h1 class="title mt-5"><i class="fa fa-fw fa-check"></i> Completed Orders</h1>
     <hr>
-    <section id="order">
+    <section>
         <div class="table-responsive">
             <table id="datatables" class="table table-striped table-bordered">
                 <thead>
@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($orders as $key => $order)
+                    @foreach ($completedOrders as $key => $order)
                         <tr>
                             <td class="text-center align-middle">{{ $key + 1 }}</td>
                             <td class="text-center align-middle">
@@ -39,7 +39,19 @@
                                     {{ $order->customer->name }}
                                 </a>
                             </td>
-                            <td class="text-center align-middle">{{ $order->status_name }}</td>
+                            <td class="text-center align-middle">
+                                @switch($order->status)
+                                    @case(0)
+                                        {{ 'Failed' }}
+                                        @break
+                                    @case(1)
+                                        {{ 'Pending Payment' }}
+                                        @break
+                                    @case(2)
+                                        {{ 'Completed' }}
+                                        @break
+                                @endswitch
+                            </td>
                             <td class="text-center align-middle">{{ $order->created_at->diffForHumans() }}</td>
                             <td class="text-center align-middle">
                                 <a class="btn btn-primary btn-sm" href="{{ route('order.edit', $order) }}" title="View">

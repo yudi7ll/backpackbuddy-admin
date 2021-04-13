@@ -244,11 +244,36 @@ return [
         [
             'key' => 'order',
             'text' => 'Orders',
-            'url' => 'order',
             'active' => ['order/*'],
             'label' => 5,
             'label_color' => 'warning',
             'icon' => 'fa fa-fw fa-box',
+            'submenu' => [
+                [
+                    'text' => 'All Orders',
+                    'icon' => 'fa fa-fw fa-box',
+                    'shift' => 'ml-3',
+                    'url' => 'order',
+                ],
+                [
+                    'text' => 'Pending',
+                    'icon' => 'fa fa-fw fa-clock',
+                    'shift' => 'ml-3',
+                    'url' => 'order/pending',
+                ],
+                [
+                    'text' => 'Completed',
+                    'icon' => 'fa fa-fw fa-check',
+                    'shift' => 'ml-3',
+                    'url' => 'order/completed',
+                ],
+                [
+                    'text' => 'Failed',
+                    'icon' => 'fa fa-fw fa-exclamation',
+                    'shift' => 'ml-3',
+                    'url' => 'order/failed',
+                ],
+            ]
         ],
         ['header' => 'ITINERARY MANAGEMENT'],
         [

@@ -22,5 +22,6 @@ Route::middleware('auth:web')->group(function () {
         });
     });
     Route::resource('media', 'MediaController');
-    Route::resource('order', 'OrderController')->except(['create']);
+    Route::get('order/{filter?}', 'OrderController@index')->name('order');
+    Route::resource('order', 'OrderController')->except(['create', 'index']);
 });

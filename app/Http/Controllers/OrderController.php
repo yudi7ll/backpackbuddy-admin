@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Services\OrderService;
 
 class OrderController extends Controller
 {
@@ -22,10 +23,19 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index($filter = null)
     {
-        $orders = $this->order->all();
-        return view('pages.order.index', compact('orders'));
+        $status = (int) OrderService::toStatusCode($filter);
+        $orders = $this->order;
+
+        if ($status) {
+            $orders = $orders->where('status', $status);
+        }
+
+        $orders = $orders->get();
+        $filter = OrderService::toStatusName($status) ?: 'All Orders';
+
+        return view('pages.order.index', compact('orders', 'filter'));
     }
 
     /**

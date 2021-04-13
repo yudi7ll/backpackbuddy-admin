@@ -13,10 +13,10 @@ class CustomerInfoSeeder extends Seeder
      */
     public function run()
     {
-        $newCustomerInfo = factory(CustomerInfo::class, 50)->make();
+        $customers = Customer::all();
 
-        foreach ($newCustomerInfo as $key => $customerInfo) {
-            Customer::find($key+1)->customerInfo()->create($customerInfo->toArray());
+        foreach ($customers as $customer) {
+            $customer->customerInfo()->create(factory(CustomerInfo::class)->make()->toArray());
         }
     }
 }

@@ -15,10 +15,12 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('itinerary_id');
+            $table->unsignedBigInteger('customer_id')->index();
+            $table->unsignedBigInteger('itinerary_id')->index();
             $table->smallInteger('status')->default(1);
             $table->string('code');
+            $table->timestamp('completed_at')->nullable();
+            $table->timestamp('paid_at')->nullable();
             $table->timestamps();
         });
     }

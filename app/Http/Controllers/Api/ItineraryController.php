@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ItineraryResource;
 use App\Itinerary;
 
 class ItineraryController extends Controller
@@ -23,10 +24,9 @@ class ItineraryController extends Controller
      */
     public function index()
     {
-        return $this->itinerary
-                    ->isPublished()
-                    ->with(['categories', 'districts'])
-                    ->get();
+        $this->data = $this->itinerary->isPublished()->get();
+
+        return ItineraryResource::collection($this->data);
     }
 
     /**
@@ -36,16 +36,14 @@ class ItineraryController extends Controller
      */
     public function show($id)
     {
-        $this->data = $this->itinerary
-                           ->isPublished()
-                           ->with(['categories', 'districts'])
-                           ->find($id);
+        $this->data = $this->itinerary->isPublished()->find($id);
 
         if (!$this->data) {
             return false;
         }
 
         $this->data->increment('view', 1);
-        return $this->data;
+
+        return new ItineraryResource($this->data);
     }
 }

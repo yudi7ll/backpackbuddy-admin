@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Services\OrderService;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -38,7 +39,7 @@ class Order extends Model
      */
     public function getCompletedAtAttribute($value)
     {
-        return $value ? $value->toDayDateTimeString() : '-';
+        return $value ? Carbon::create($value)->toDayDateTimeString() : '-';
     }
 
     /**

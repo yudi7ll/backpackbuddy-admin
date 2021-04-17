@@ -2,12 +2,15 @@
 
 namespace App;
 
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Passport\HasApiTokens;
 
-class Customer extends Model
+class Customer extends Model implements AuthenticatableContract
 {
     use HasApiTokens;
+    use Authenticatable;
 
     /**
      * The attributes that are mass assignable.

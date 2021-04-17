@@ -14,3 +14,10 @@
 
 Route::get('/itinerary', 'Api\ItineraryController@index');
 Route::get('/itinerary/{itinerary}', 'Api\ItineraryController@show');
+Route::post('/login', 'Api\AuthController@login');
+
+Route::middleware('auth:api')->group(function () {
+    Route::get('/user', function () {
+        return response()->json(auth()->user());
+    });
+});

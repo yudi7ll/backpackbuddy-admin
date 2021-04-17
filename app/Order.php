@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Services\OrderService;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -13,9 +12,14 @@ class Order extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'status'
-    ];
+    protected $fillable = ['status'];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['completed_at'];
 
     /**
      * Get the status name based on status code
@@ -34,7 +38,7 @@ class Order extends Model
      */
     public function getCompletedAtAttribute($value)
     {
-        return $value ? Carbon::create($value)->toDayDateTimeString() : '-';
+        return $value ? $value->toDayDateTimeString() : '-';
     }
 
     /**

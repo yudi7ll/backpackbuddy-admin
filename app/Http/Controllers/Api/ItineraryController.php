@@ -24,7 +24,7 @@ class ItineraryController extends Controller
      */
     public function index()
     {
-        $this->data = $this->itinerary->isPublished()->get();
+        $this->data = $this->itinerary->isPublished()->latest()->get();
 
         return ItineraryResource::collection($this->data);
     }

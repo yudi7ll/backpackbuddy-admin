@@ -17,7 +17,7 @@ Route::get('itinerary/{itinerary}', 'Api\ItineraryController@show');
 Route::post('login', 'Api\AuthController@login');
 Route::post('register', 'Api\AuthController@register');
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:api-customers')->group(function () {
     Route::post('logout', 'Api\AuthController@logout');
     Route::get('current-user', 'Api\CustomerController@currentUser');
     Route::resource('user', 'Api\CustomerController')->except(['create', 'store']);

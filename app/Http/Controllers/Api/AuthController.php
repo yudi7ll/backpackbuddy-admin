@@ -6,8 +6,8 @@ use App\Customer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Services\Api\AuthService;
 use Auth;
-use Carbon\Carbon;
 use Hash;
 use Lang;
 
@@ -34,10 +34,12 @@ class AuthController extends Controller
     {
         $this->data = $request->all();
         $this->data['password'] = bcrypt($this->data['password']);
-
         $newCustomer = $this->customer->create($this->data);
 
-        return response()->json($newCustomer, 200);
+        $token = AuthService::createToken($newCustomer);
+
+
+        return response()->json($token);
     }
 
     /**
@@ -56,23 +58,9 @@ class AuthController extends Controller
             ], 401);
         }
 
-        // Login the customer for future request
-        Auth::login($customer);
+        $token = AuthService::createToken($customer, $this->data['remember_me']);
 
-        // get new token
-        $tokenResult = $customer->createToken($this->tokenName);
-        $token = $tokenResult->token;
-
-        if ($this->data['remember_me']) {
-            $token->expires_at = Carbon::now()->addMonth(1);
-        }
-
-        $token->save();
-
-        return response()->json([
-            'access_token' => $tokenResult->accessToken,
-            'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString()
-        ]);
+        return response()->json($token);
     }
 
     /**

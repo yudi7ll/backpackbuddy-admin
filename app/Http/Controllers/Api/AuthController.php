@@ -9,6 +9,7 @@ use App\Http\Requests\RegisterRequest;
 use Auth;
 use Carbon\Carbon;
 use Hash;
+use Lang;
 
 class AuthController extends Controller
 {
@@ -52,7 +53,7 @@ class AuthController extends Controller
 
         if (!$customer || !Hash::check($this->data['password'], $customer->password)) {
             return response()->json([
-                'message' => 'Invalid Credentials',
+                'message' => Lang::get('auth.failed'),
             ], 401);
         }
 

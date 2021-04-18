@@ -48,7 +48,6 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $this->data = $request->all();
-
         $customer = $this->customer->firstWhere('username', $this->data['username']);
 
         if (!$customer || !Hash::check($this->data['password'], $customer->password)) {
@@ -59,6 +58,7 @@ class AuthController extends Controller
 
         // Login the customer for future request
         Auth::login($customer);
+
         // get new token
         $tokenResult = $customer->createToken($this->tokenName);
         $token = $tokenResult->token;
@@ -73,5 +73,16 @@ class AuthController extends Controller
             'access_token' => $tokenResult->accessToken,
             'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString()
         ]);
+    }
+
+    /**
+     * Logout the customer
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+        Auth::user()->token()->revoke();
+        return response()->json(['success' => true], 200);
     }
 }

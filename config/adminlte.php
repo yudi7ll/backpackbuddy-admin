@@ -285,7 +285,7 @@ return [
                     'text' => 'Add New Itinerary',
                     'icon' => 'fas fa-fw fa-plus',
                     'shift' => 'ml-3',
-                    'url' => 'itinerary.create',
+                    'url' => 'itinerary/create',
                 ],
                 [
                     'text' => 'All Itineraries',

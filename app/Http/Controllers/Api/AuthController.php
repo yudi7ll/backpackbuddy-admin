@@ -8,13 +8,9 @@ use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Services\Api\AuthService;
 use Auth;
-use Hash;
-use Lang;
 
 class AuthController extends Controller
 {
-    protected $tokenName = 'customer-api';
-
     /**
      * Create a new controller instance
      *
@@ -35,9 +31,7 @@ class AuthController extends Controller
         $this->data = $request->all();
         $this->data['password'] = bcrypt($this->data['password']);
         $newCustomer = $this->customer->create($this->data);
-
-        $token = AuthService::createToken($newCustomer);
-
+        $token = resolve(AuthService::class)->createToken($newCustomer);
 
         return response()->json($token);
     }
@@ -50,15 +44,8 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $this->data = $request->all();
-        $customer = $this->customer->firstWhere('username', $this->data['username']);
-
-        if (!$customer || !Hash::check($this->data['password'], $customer->password)) {
-            return response()->json([
-                'message' => Lang::get('auth.failed'),
-            ], 401);
-        }
-
-        $token = AuthService::createToken($customer, $this->data['remember_me']);
+        $customer = AuthService::checkCreds($this->data);
+        $token = resolve(AuthService::class)->createToken($customer, $this->data['remember_me']);
 
         return response()->json($token);
     }

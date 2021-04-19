@@ -21,4 +21,5 @@ Route::middleware('auth:api-customers')->group(function () {
     Route::post('logout', 'Api\AuthController@logout');
     Route::get('current-user', 'Api\CustomerController@currentUser');
     Route::resource('user', 'Api\CustomerController')->except(['create', 'store']);
+    Route::resource('order', 'Api\OrderController');
 });

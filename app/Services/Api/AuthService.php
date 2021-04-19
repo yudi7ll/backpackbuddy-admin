@@ -2,11 +2,8 @@
 
 namespace App\Services\Api;
 
-use App\Customer;
 use Auth;
 use Carbon\Carbon;
-use Hash;
-use Lang;
 
 class AuthService
 {
@@ -35,24 +32,5 @@ class AuthService
             'access_token' => $tokenResult->accessToken,
             'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString()
         ];
-    }
-
-    /**
-     * Check the customer credentials
-     *
-     * @param array
-     * @return mixed|json|model
-     */
-    public static function checkCreds($creds)
-    {
-        $customer = Customer::firstWhere('username', $creds['username']);
-
-        if (!$customer || !Hash::check($creds['password'], $customer->password)) {
-            return response()->json([
-                'message' => Lang::get('auth.failed'),
-            ], 401);
-        }
-
-        return $customer;
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class MakeOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|string|max:100|exists:customers',
-            'password' => 'required|string|max:100',
-            'remember_me' => 'boolean'
+            'itinerary_id' => 'required|numeric|exists:itineraries,id'
         ];
     }
 }

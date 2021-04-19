@@ -8,6 +8,8 @@ use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Services\Api\AuthService;
 use Auth;
+use Hash;
+use Lang;
 
 class AuthController extends Controller
 {
@@ -16,9 +18,10 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct(Customer $customer)
+    public function __construct(Customer $customer, AuthService $authService)
     {
         $this->customer = $customer;
+        $this->authService = $authService;
     }
 
     /**
@@ -28,10 +31,11 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $this->data = $request->all();
-        $this->data['password'] = bcrypt($this->data['password']);
-        $newCustomer = $this->customer->create($this->data);
-        $token = resolve(AuthService::class)->createToken($newCustomer);
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
+        $newCustomer = $this->customer->create($data);
+
+        $token = $this->authService->createToken($newCustomer);
 
         return response()->json($token);
     }
@@ -43,9 +47,18 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        $this->data = $request->all();
-        $customer = AuthService::checkCreds($this->data);
-        $token = resolve(AuthService::class)->createToken($customer, $this->data['remember_me']);
+        $data = $request->all();
+        $customer = $this->customer->firstWhere($request->only('username'));
+        $password = $data['password'];
+        $hash = $customer->password;
+
+        if (!Hash::check($password, $hash)) {
+            return response()->json([
+                'message' => Lang::get('auth.failed'),
+            ], 401);
+        }
+
+        $token = $this->authService->createToken($customer, $data['remember_me']);
 
         return response()->json($token);
     }

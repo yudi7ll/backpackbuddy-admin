@@ -14,7 +14,7 @@ class AuthService
      *
      * @return array
      */
-    public function createToken($customer, $remember = false)
+    public function createToken($customer, $rememberMe = false)
     {
         // Login the customer for future request
         Auth::login($customer);
@@ -23,7 +23,7 @@ class AuthService
         $tokenResult = $customer->createToken($this->tokenName);
         $token = $tokenResult->token;
 
-        if ($remember) {
+        if ($rememberMe) {
             $token->expires_at = now()->addMonth(1);
             $token->save();
         }

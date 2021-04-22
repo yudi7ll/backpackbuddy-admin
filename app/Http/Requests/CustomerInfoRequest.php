@@ -28,8 +28,8 @@ class CustomerInfoRequest extends FormRequest
             'address_2' => 'nullable|string|max:255',
             'postcode' => 'required|numeric',
             'city' => 'required|string|max:50',
-            'identity' => 'required|numeric',
-            'telp' => 'required|numeric'
+            'postcode' => 'required|numeric|digits_between:1,20',
+            'telp' => 'required|numeric|digits_between:5,20',
         ];
     }
 }

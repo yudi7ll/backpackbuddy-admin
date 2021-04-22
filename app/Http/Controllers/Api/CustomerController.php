@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CurrentUserResource;
-use Illuminate\Http\Request;
+use App\Http\Requests\CustomerInfoRequest;
+use App\Http\Resources\CurrentCustomerInfoResource;
+use App\Http\Resources\CurrentCustomerResource;
+use Auth;
 
 class CustomerController extends Controller
 {
@@ -18,53 +20,36 @@ class CustomerController extends Controller
         //
     }
 
-    public function currentUser()
+    /**
+     * Get the current customer data
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show()
     {
-        return new CurrentUserResource(auth()->user());
+        return new CurrentCustomerResource(auth()->user());
     }
 
     /**
-     * Display the specified resource.
+     * Get the current customer private info
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function showInfo()
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $data = auth()->user()->customerInfo;
+        return new CurrentCustomerInfoResource($data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CustomerInfoRequest $request)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $data = $request->all();
+        return Auth::user()->customerInfo()->update($data);
     }
 }

@@ -34,6 +34,7 @@ class AuthController extends Controller
         $data = $request->all();
         $data['password'] = bcrypt($data['password']);
         $newCustomer = $this->customer->create($data);
+        $newCustomer->customerInfo()->create($data);
 
         $token = $this->authService->createToken($newCustomer);
 

@@ -19,7 +19,11 @@ Route::post('register', 'Api\AuthController@register');
 
 Route::middleware('auth:api-customers')->group(function () {
     Route::post('logout', 'Api\AuthController@logout');
-    Route::get('current-user', 'Api\CustomerController@currentUser');
-    Route::resource('user', 'Api\CustomerController')->except(['create', 'store']);
-    Route::resource('order', 'Api\OrderController');
+    Route::prefix('customer')->group(function () {
+        Route::put('/', 'Api\CustomerController@update');
+        Route::get('/', 'Api\CustomerController@index');
+        Route::get('/me', 'Api\CustomerController@show');
+        Route::get('/me/info', 'Api\CustomerController@showInfo');
+    });
+    Route::resource('order', 'Api\OrderController')->except(['edit', 'update']);
 });

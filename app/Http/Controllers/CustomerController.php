@@ -29,13 +29,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $this->data['customers'] = $this->customer->all();
-        return view('pages.customer.index', $this->data);
-    }
-
-    public function store()
-    {
-        // TODO
+        $data['customers'] = $this->customer->all();
+        return view('pages.customer.index', $data);
     }
 
     /**
@@ -58,8 +53,8 @@ class CustomerController extends Controller
      */
     public function update(CustomerRequest $request, Customer $customer)
     {
-        $this->data = $request->except('password');
-        $customer->update($this->data);
+        $data = $request->all();
+        $customer->update($data);
 
         return redirect()->back()->with('success', 'Data has been updated!');
     }
@@ -73,9 +68,9 @@ class CustomerController extends Controller
      */
     public function updatePassword(CustomerUpdatePasswordRequest $request, Customer $customer)
     {
-        $this->data = $request->all();
-        $this->data['password'] = Hash::make($this->data['password']);
-        $customer->update($this->data);
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
+        $customer->update($data);
 
         return redirect()->back()->with('success', 'Customer password has been changed!');
     }
@@ -89,8 +84,8 @@ class CustomerController extends Controller
      */
     public function updateInfo(CustomerInfoRequest $request, Customer $customer)
     {
-        $this->data = $request->all();
-        $customer->customerInfo()->update($this->data);
+        $data = $request->all();
+        $customer->customerInfo->update($data);
 
         return redirect()->back()->with('success', 'Data has been updated.');
     }

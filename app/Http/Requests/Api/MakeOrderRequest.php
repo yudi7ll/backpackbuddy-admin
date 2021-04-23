@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,7 @@ class MakeOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'itinerary_id' => 'required|numeric|exists:itineraries,id'
+            'itinerary_id' => 'required|numeric|exists:itineraries,id',
         ];
     }
 }

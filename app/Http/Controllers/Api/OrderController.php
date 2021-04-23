@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MakeOrderRequest;
+use App\Http\Requests\Api\MakeOrderRequest;
+use App\Itinerary;
 use App\Order;
 use Auth;
 
@@ -37,13 +38,13 @@ class OrderController extends Controller
     public function store(MakeOrderRequest $request)
     {
         $data = $request->all();
+        $data['code'] = uniqid();
+        $data['price'] = Itinerary::find($request->itinerary_id)->price;
 
-        return $this->order->insert([
-            'customer_id' => Auth::user()->id,
-            'itinerary_id' => $data['itinerary_id'],
-            'code' => uniqid(),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        if (Auth::user()->orders()->where('itinerary_id', $data['itinerary_id'])->exists()) {
+            return response()->json(['message' => 'This itinerary already in orders'], 402);
+        }
+
+        return Auth::user()->orders()->create($data);
     }
 }

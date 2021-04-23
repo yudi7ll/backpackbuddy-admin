@@ -34,10 +34,10 @@ class ItineraryController extends Controller
      */
     public function index()
     {
-        $this->data['itineraries'] = $this->itinerary
+        $data['itineraries'] = $this->itinerary
             ->with(['media', 'categories', 'districts'])->get();
 
-        return view('pages.itinerary.index', $this->data);
+        return view('pages.itinerary.index', $data);
     }
 
     /**
@@ -47,10 +47,10 @@ class ItineraryController extends Controller
      */
     public function create()
     {
-        $this->data['categories'] = $this->category->all();
-        $this->data['districts'] = $this->district->all();
+        $data['categories'] = $this->category->all();
+        $data['districts'] = $this->district->all();
 
-        return view('pages.itinerary.create', $this->data);
+        return view('pages.itinerary.create', $data);
     }
 
     /**
@@ -61,22 +61,22 @@ class ItineraryController extends Controller
     public function store(ItineraryRequest $request)
     {
         // store the data to database
-        $this->data = $this->itinerary->create($request->all());
+        $data = $this->itinerary->create($request->all());
 
         // Itinerary Galleries
         if ($request->has('galleries')) {
             // sync the media relationship
-            $this->data->media()->attach($request->galleries);
+            $data->media()->attach($request->galleries);
         }
 
         // Featured Picture
         if ($request->has('featured_picture')) {
             // prevent duplicate
-            $this->data->media()->detach($request->featured_picture);
-            $this->data->media()->attach($request->featured_picture, ['is_featured' => true]);
+            $data->media()->detach($request->featured_picture);
+            $data->media()->attach($request->featured_picture, ['is_featured' => true]);
         } else {
-            $this->data->media()->detach(1);
-            $this->data->media()->attach(1, ['is_featured' => true]);
+            $data->media()->detach(1);
+            $data->media()->attach(1, ['is_featured' => true]);
         }
 
         /*
@@ -98,7 +98,7 @@ class ItineraryController extends Controller
             return $category->id;
         });
 
-        $this->data->categories()->sync($categoryId);
+        $data->categories()->sync($categoryId);
 
         /*
          * Districts
@@ -119,7 +119,7 @@ class ItineraryController extends Controller
             return $district->id;
         });
 
-        $this->data->districts()->sync($districtId);
+        $data->districts()->sync($districtId);
 
         return redirect()->back()->with('success', 'Data added successfully!');
     }
@@ -131,11 +131,11 @@ class ItineraryController extends Controller
      */
     public function edit($id)
     {
-        $this->data['itinerary'] = $this->itinerary->find($id);
-        $this->data['categories'] = $this->category->get();
-        $this->data['districts'] = $this->district->all();
+        $data['itinerary'] = $this->itinerary->find($id);
+        $data['categories'] = $this->category->get();
+        $data['districts'] = $this->district->all();
 
-        return view('pages.itinerary.edit', $this->data);
+        return view('pages.itinerary.edit', $data);
     }
 
     /**
@@ -145,20 +145,22 @@ class ItineraryController extends Controller
      */
     public function update(ItineraryRequest $request, $id)
     {
-        $this->data = $this->itinerary->find($id);
+        $data = $this->itinerary->find($id);
 
         // update itinerary
-        $this->data->update($request->except('categories'));
+        $data->update($request->all());
 
-        $currentFeaturedPicture = $this->data->media()->wherePivot('is_featured', true)->exists() ? $this->data->media()->wherePivot('is_featured', true)->first()->id : 1;
-        $currentGalleries = $this->data->media()->wherePivot('is_featured', false)->get()->pluck('id');
+        $currentFeaturedPicture = $data->media()->wherePivot('is_featured', true)->exists()
+            ? $data->media()->wherePivot('is_featured', true)->first()->id
+            : 1;
+        $currentGalleries = $data->media()->wherePivot('is_featured', false)->get()->pluck('id');
 
         /* Galleries */
         if ($request->has('galleries')) {
             $currentGalleries = $request->galleries;
         }
         // Sync the gallery
-        $this->data->media()->sync($currentGalleries);
+        $data->media()->sync($currentGalleries);
 
         /* Featured Picture */
         if ($request->has('featured_picture')) {
@@ -166,7 +168,7 @@ class ItineraryController extends Controller
         }
 
         // Sync the featured picture
-        $this->data->media()->syncWithoutDetaching([$currentFeaturedPicture => ['is_featured' => true]]);
+        $data->media()->syncWithoutDetaching([$currentFeaturedPicture => ['is_featured' => true]]);
 
 
         /*
@@ -207,8 +209,8 @@ class ItineraryController extends Controller
             return $district->id;
         });
 
-        $this->data->categories()->sync($categoryId);
-        $this->data->districts()->sync($districtId);
+        $data->categories()->sync($categoryId);
+        $data->districts()->sync($districtId);
 
 
         return redirect()->back()->with('success', 'Data updated successfully!');

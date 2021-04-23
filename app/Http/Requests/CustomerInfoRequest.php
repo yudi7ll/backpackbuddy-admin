@@ -24,13 +24,12 @@ class CustomerInfoRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
             'address_1' => 'required|string|max:255',
             'address_2' => 'nullable|string|max:255',
-            'postcode' => 'required|numeric',
+            'postcode' => 'required|string',
             'city' => 'required|string|max:50',
-            'postcode' => 'required|numeric|digits_between:1,20',
-            'telp' => 'required|numeric|digits_between:5,20',
+            'identity' => 'required|numeric',
+            'telp' => 'required|string'
         ];
     }
 }

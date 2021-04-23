@@ -13,7 +13,7 @@ class Order extends Model
      *
      * @var array
      */
-    protected $fillable = ['status'];
+    protected $fillable = ['status', 'itinerary_id', 'code', 'price'];
 
     /**
      * The attributes that should be mutated to dates.

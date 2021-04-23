@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\CustomerRequest;
+use App\Http\Requests\Api\UpdatePasswordRequest;
 use App\Http\Requests\CustomerInfoRequest;
 use App\Http\Resources\CurrentCustomerInfoResource;
 use App\Http\Resources\CurrentCustomerResource;
 use Auth;
+use Hash;
+use Lang;
 
 class CustomerController extends Controller
 {
@@ -37,19 +41,60 @@ class CustomerController extends Controller
      */
     public function showInfo()
     {
-        $data = auth()->user()->customerInfo;
+        $data = Auth::user()->customerInfo;
+
         return new CurrentCustomerInfoResource($data);
+    }
+
+    /**
+     * Update current customer account
+     *
+     * @param \App\Http\Requests\Api\CustomerRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(CustomerRequest $request)
+    {
+        $data = $request->all();
+
+        return Auth::user()->update($data);
+    }
+
+    /**
+     * Update password of current customer
+     *
+     * @param \App\Http\Requests\Api\UpdatePasswordRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updatePassword(UpdatePasswordRequest $request)
+    {
+        $data = $request->all();
+
+        if (!Hash::check($data['old_password'], auth()->user()->password)) {
+            return response()->json([
+                'errors' => [
+                    'password' => [Lang::get('validation.password')]
+                ],
+                'message' => Lang::get('validation.password')
+            ], 401);
+        }
+
+        $data['password'] = bcrypt($data['password']);
+
+        return Auth::user()->update($data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\Api\CustomerInfoRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function update(CustomerInfoRequest $request)
+    public function updateInfo(CustomerInfoRequest $request)
     {
-        $data = $request->all();
-        return Auth::user()->customerInfo()->update($data);
+        $customer = Auth::user();
+        $customer->name = $request->name;
+        $customer->save();
+
+        return Auth::user()->customerInfo()->update($request->except('name'));
     }
 }

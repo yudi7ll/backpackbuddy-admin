@@ -21,6 +21,8 @@ Route::middleware('auth:api-customers')->group(function () {
     Route::post('logout', 'Api\AuthController@logout');
     Route::prefix('customer')->group(function () {
         Route::put('/', 'Api\CustomerController@update');
+        Route::put('/info', 'Api\CustomerController@updateInfo');
+        Route::put('/password', 'Api\CustomerController@updatePassword');
         Route::get('/', 'Api\CustomerController@index');
         Route::get('/me', 'Api\CustomerController@show');
         Route::get('/me/info', 'Api\CustomerController@showInfo');

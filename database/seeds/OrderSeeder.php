@@ -17,6 +17,9 @@ class OrderSeeder extends Seeder
             'status' => 2,
             'completed_at' => now(),
         ]);
-        factory(Order::class, 3)->create(['status' => 3]);
+        factory(Order::class, 3)->create([
+            'status' => 3,
+            'completed_at' => now()
+        ]);
     }
 }

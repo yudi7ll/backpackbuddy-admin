@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Passport\HasApiTokens;
@@ -11,6 +12,7 @@ class Customer extends Model implements AuthenticatableContract
 {
     use HasApiTokens;
     use Authenticatable;
+    use CanResetPassword;
 
     /**
      * The attributes that are mass assignable.

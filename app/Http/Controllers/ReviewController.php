@@ -30,11 +30,6 @@ class ReviewController extends Controller
         return view('pages.review.index', $this->data);
     }
 
-    public function store()
-    {
-        // TODO
-    }
-
     public function edit(Review $review)
     {
         return view('pages.review.edit', compact('review'));

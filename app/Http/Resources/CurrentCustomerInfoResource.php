@@ -15,6 +15,7 @@ class CurrentCustomerInfoResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'name' => $this->customer->name,
             'address_1' => $this->address_1,
             'address_2' => $this->address_2,
             'postcode' => $this->postcode,

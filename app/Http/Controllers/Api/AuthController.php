@@ -10,6 +10,7 @@ use App\Services\Api\AuthService;
 use Auth;
 use Hash;
 use Lang;
+use Validator;
 
 class AuthController extends Controller
 {
@@ -55,7 +56,10 @@ class AuthController extends Controller
 
         if (!Hash::check($password, $hash)) {
             return response()->json([
-                'message' => Lang::get('auth.failed'),
+                'errors' => [
+                    'password' => [Lang::get('validation.password')]
+                ],
+                'message' => Lang::get('validation.password'),
             ], 401);
         }
 

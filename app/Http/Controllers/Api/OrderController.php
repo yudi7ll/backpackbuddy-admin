@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\MakeOrderRequest;
+use App\Http\Resources\OrderResource;
 use App\Itinerary;
 use App\Order;
 use Auth;
@@ -27,7 +28,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return response()->json(auth()->user()->order);
+        return OrderResource::collection(auth()->user()->orders);
     }
 
     /**

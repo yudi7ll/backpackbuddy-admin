@@ -27,5 +27,9 @@ Route::middleware('auth:api-customers')->group(function () {
         Route::get('/me', 'Api\CustomerController@show');
         Route::get('/me/info', 'Api\CustomerController@showInfo');
     });
-    Route::resource('order', 'Api\OrderController')->except(['edit', 'update']);
+    Route::prefix('order')->group(function () {
+        Route::get('/exist/{itineraryId}', 'Api\OrderController@isExist');
+        Route::get('/{filter}', 'Api\OrderController@index');
+        Route::post('/', 'Api\OrderController@store');
+    });
 });

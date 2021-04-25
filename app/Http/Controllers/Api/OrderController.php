@@ -7,6 +7,7 @@ use App\Http\Requests\Api\MakeOrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Itinerary;
 use App\Order;
+use App\Services\OrderService;
 use Auth;
 
 class OrderController extends Controller
@@ -26,9 +27,11 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index($filter)
     {
-        return OrderResource::collection(auth()->user()->orders);
+        $status = OrderService::toStatusCode($filter);
+        $data = Auth::user()->orders()->where('status', $status)->get();
+        return OrderResource::collection($data);
     }
 
     /**
@@ -47,5 +50,12 @@ class OrderController extends Controller
         }
 
         return Auth::user()->orders()->create($data);
+    }
+
+    public function isExist($itineraryId)
+    {
+        return response()->json([
+            'exist' => Auth::user()->orders()->where('itinerary_id', $itineraryId)->exists()
+        ]);
     }
 }

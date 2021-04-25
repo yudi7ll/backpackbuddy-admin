@@ -32,4 +32,6 @@ Route::middleware('auth:api-customers')->group(function () {
         Route::get('/{filter}', 'Api\OrderController@index');
         Route::post('/', 'Api\OrderController@store');
     });
+    Route::get('review/{itineraryId}', 'Api\ReviewController@index');
+    Route::post('review/{itineraryId}', 'Api\ReviewController@store');
 });

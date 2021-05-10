@@ -133,7 +133,7 @@
                                                 title="Edit">
                                                 <i class="fa fa-fw fa-pencil-alt"></i>
                                             </a>
-                                            <button type="button" onclick="handleDelete('{{ $review->id }}')"
+                                            <button type="button" onclick="reviewDelete('{{ $review->id }}')"
                                                 class="btn btn-sm btn-danger">
                                                 <i class="fa fa-fw fa-trash"></i>
                                             </button>
@@ -263,6 +263,27 @@
                 try {
                     await axios.delete(`/itinerary/${id}`)
                     document.location.href = '/itinerary';
+                } catch (e) {
+                    await swal("Error! Something have been wrong!", {
+                        icon: "error"
+                    });
+                }
+            }
+        };
+
+        async function reviewDelete(id) {
+            const willDelete = await swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            });
+
+            if (willDelete) {
+                try {
+                    await axios.delete(`/review/${id}`)
+                    document.location.href = '{{ url()->current() }}';
                 } catch (e) {
                     await swal("Error! Something have been wrong!", {
                         icon: "error"

@@ -1,5 +1,4 @@
 const mix = require("laravel-mix");
-const fs = require("fs");
 
 /*
  |--------------------------------------------------------------------------
@@ -12,22 +11,6 @@ const fs = require("fs");
  |
  */
 
-mix.options({
-    hmrOptions: {
-        host: "localhost",
-        port: 443
-    }
-});
-
-mix.webpackConfig({
-    devServer: {
-        https: {
-            key: fs.readFileSync("nginx/localhost-key.pem"),
-            cert: fs.readFileSync("nginx/localhost.pem")
-        }
-    }
-});
-
 mix.js("resources/js/app.js", "public/js")
     .sass("resources/sass/app.scss", "public/css")
-    .browserSync("https://0.0.0.0");
+    .browserSync("0.0.0.0");

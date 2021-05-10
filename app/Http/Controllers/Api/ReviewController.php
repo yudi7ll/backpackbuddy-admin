@@ -37,7 +37,7 @@ class ReviewController extends Controller
         $data['customer_id'] = Auth::user()->id;
         $reviews = Itinerary::find($itineraryId)->reviews();
 
-        if ($reviews->where('customer_id', $data['customer_id'])) {
+        if ($reviews->where('customer_id', $data['customer_id'])->exists()) {
             return response()->json([
                 'message' => 'You already sent review'
             ], 402);

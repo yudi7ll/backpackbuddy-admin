@@ -61,7 +61,7 @@
 @endsection
 @push('js')
     <script type="text/javascript">
-        async function deleteCustomerHandle(id) {
+        async function handleDelete(id) {
             const willDelete = await swal({
                 title: "Are you sure?",
                 text: "Once deleted, you will not be able to recover this!",
@@ -72,8 +72,8 @@
 
             if (willDelete) {
                 try {
-                    await axios.delete(`/customer/${id}`);
-                    document.location.href = '/customer';
+                    await axios.delete(`/review/${id}`);
+                    document.location.href = '/review';
                 } catch (e) {
                     await swal("Error! Something have been wrong!", {
                         icon: "error"

@@ -29,8 +29,6 @@ trait MediaTrait
     {
         $media['name'] = Str::random() . "-{$fieldname}.{$file->getClientOriginalExtension()}";
         $media['type'] = $fieldname;
-        $media['url'] = Storage::disk('public')->url("{$media['type']}/{$media['name']}");
-        $media['thumbnail_url'] = Storage::disk('public')->url("{$media['type']}/thumb/{$media['name']}");
         $media['file_size'] = $file->getSize();
         $media['alt'] = $fieldname;
 

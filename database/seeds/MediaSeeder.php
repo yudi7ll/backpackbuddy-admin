@@ -15,9 +15,7 @@ class MediaSeeder extends Seeder
         $data = [];
 
         foreach ($files as $key => $file) {
-            $data[$key]['url'] = Storage::disk('public')->url($file);
-            $data[$key]['thumbnail_url'] = Storage::disk('public')->url($file);
-            $data[$key]['name'] = $key + 1;
+            $data[$key]['name'] = last(explode('/', $file));
             $data[$key]['file_size'] = 0;
             $data[$key]['alt'] = 'Itinerary ' . $data[$key]['name'];
             $data[$key]['type'] = 'Itinerary';

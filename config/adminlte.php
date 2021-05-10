@@ -245,7 +245,6 @@ return [
             'key' => 'order',
             'text' => 'Orders',
             'active' => ['order/*'],
-            'label' => 5,
             'label_color' => 'warning',
             'icon' => 'fa fa-fw fa-box',
             'submenu' => [

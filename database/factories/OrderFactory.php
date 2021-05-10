@@ -8,9 +8,12 @@ use App\Order;
 use Faker\Generator as Faker;
 
 $factory->define(Order::class, function (Faker $faker) {
+    $itinerary = Itinerary::find($faker->numberBetween(1, Itinerary::count()));
+
     return [
-        'customer_id' => Customer::find($faker->numberBetween(0, Customer::count())),
-        'itinerary_id' => Itinerary::find($faker->numberBetween(0, Itinerary::count())),
+        'customer_id' => Customer::find($faker->numberBetween(1, Customer::count())),
+        'itinerary_id' => $itinerary,
+        'price' => $itinerary->sale ?: $itinerary->price,
         'status' => $faker->numberBetween(1, 3),
         'code' => uniqid()
     ];

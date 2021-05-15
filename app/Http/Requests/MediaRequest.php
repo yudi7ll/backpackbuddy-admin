@@ -24,7 +24,7 @@ class MediaRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required|image|max:10000'
+            'image' => 'required|image|max:9000'
         ];
     }
 }

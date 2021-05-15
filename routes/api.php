@@ -12,7 +12,7 @@
 |
 */
 
-Route::get('itinerary', 'Api\ItineraryController@index');
+Route::get('itineraries/{offset?}/{limit?}', 'Api\ItineraryController@index');
 Route::get('itinerary/{itinerary}', 'Api\ItineraryController@show');
 Route::post('login', 'Api\AuthController@login');
 Route::post('register', 'Api\AuthController@register');

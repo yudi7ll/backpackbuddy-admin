@@ -39,6 +39,7 @@ services:
         user: "1000"
         volumes:
             - .:/var/www/html
+            - ./custom-php.ini:/usr/local/etc/php/conf.d/custom.php.ini:ro
         networks:
             - laravel
 

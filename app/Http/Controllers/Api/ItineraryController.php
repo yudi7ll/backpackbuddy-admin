@@ -22,11 +22,16 @@ class ItineraryController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index($offset = 0, $limit = 12)
     {
-        $this->data = $this->itinerary->isPublished()->latest()->get();
+        $data = $this->itinerary
+            ->isPublished()
+            ->latest()
+            ->offset($offset)
+            ->limit($limit)
+            ->get();
 
-        return ItineraryResource::collection($this->data);
+        return ItineraryResource::collection($data);
     }
 
     /**
@@ -36,14 +41,14 @@ class ItineraryController extends Controller
      */
     public function show($id)
     {
-        $this->data = $this->itinerary->isPublished()->find($id);
+        $data = $this->itinerary->isPublished()->find($id);
 
-        if (!$this->data) {
+        if (!$data) {
             return false;
         }
 
-        $this->data->increment('view', 1);
+        $data->increment('view', 1);
 
-        return new ItineraryResource($this->data);
+        return new ItineraryResource($data);
     }
 }

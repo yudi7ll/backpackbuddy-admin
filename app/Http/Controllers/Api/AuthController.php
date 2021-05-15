@@ -49,7 +49,7 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $customer = $this->customer->firstWhere($request->only('username'));
         $password = $data['password'];
         $hash = $customer->password;

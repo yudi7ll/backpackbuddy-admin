@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MediaRequest;
 use App\Http\Traits\MediaTrait;
 use App\Media;
+use Response;
+use Storage;
 use Validator;
 
 class MediaController extends Controller
@@ -70,6 +72,27 @@ class MediaController extends Controller
     {
         $this->data = Validator::make(request()->all(), ['alt' => 'string']);
         return $this->media->find($id)->update(request()->all());
+    }
+
+    /**
+     * Get the image
+     *
+     * @param string $filename
+     * @return Response
+     */
+    public function getMedia($filename, $thumb = null)
+    {
+        $storage = Storage::disk('public');
+        $path = "Itinerary/$thumb/$filename";
+
+        if (!$storage->exists($path)) {
+            abort(404);
+        }
+
+        $file = $storage->get($path);
+        $type = $storage->mimeType($path);
+
+        return Response::make($file)->header('Content-Type', $type);
     }
 
     /**

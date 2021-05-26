@@ -35,6 +35,17 @@ class ItineraryController extends Controller
     }
 
     /**
+     * Find a specified resource
+     *
+     * @param string $search
+     * @return JsonResponse
+     */
+    public function search($search)
+    {
+        //
+    }
+
+    /**
      * Send a specified itinerary data
      *
      * @return \Illuminate\Http\JsonResponse

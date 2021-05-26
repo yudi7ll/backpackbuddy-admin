@@ -46,7 +46,7 @@ trait MediaTrait
     {
         // retrieve all required information
         $media = $this->getMediaFileInfo($file, $fieldname);
-        $thumbPath = public_path("storage/{$media['type']}/thumb");
+        $thumbPath = storage_path("app/public/{$media['type']}/thumb");
 
         // move the file to the path
         $file->storeAs("public/{$media['type']}", $media['name']);

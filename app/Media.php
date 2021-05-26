@@ -15,6 +15,11 @@ class Media extends Model
         'name', 'alt', 'file_size', 'type',
     ];
 
+    public function getUrlApiAttribute()
+    {
+        return url("api/get-media/{$this->name}");
+    }
+
     public function getUrlAttribute()
     {
         return url("get-media/{$this->name}");
@@ -23,6 +28,11 @@ class Media extends Model
     public function getThumbnailUrlAttribute()
     {
         return url("get-media/{$this->name}/thumb");
+    }
+
+    public function getThumbnailUrlApiAttribute()
+    {
+        return url("api/get-media/{$this->name}/thumb");
     }
 
     /**

@@ -17,10 +17,10 @@ Route::get('itineraries/{offset?}/{limit?}', 'Api\ItineraryController@index');
 Route::get('itinerary/{itinerary}', 'Api\ItineraryController@show');
 Route::post('login', 'Api\AuthController@login');
 Route::post('register', 'Api\AuthController@register');
+Route::get('get-media/{filename}/{thumb?}', 'Api\MediaController@getMedia');
 
 Route::middleware('auth:api-customers')->group(function () {
     Route::post('logout', 'Api\AuthController@logout');
-    Route::get('get-media/{fullpath}/{thumb?}', 'Api\MediaController@getMedia');
     Route::prefix('customer')->group(function () {
         Route::put('/', 'Api\CustomerController@update');
         Route::put('/info', 'Api\CustomerController@updateInfo');

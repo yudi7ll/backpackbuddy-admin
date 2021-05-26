@@ -22,7 +22,7 @@ Route::middleware('auth:web')->group(function () {
         });
     });
     Route::resource('media', 'MediaController');
-    Route::get('get-media/{fullpath}/{thumb?}', 'MediaController@getMedia');
+    Route::get('get-media/{filename}/{thumb?}', 'MediaController@getMedia');
     Route::get('order/{filter?}', 'OrderController@index')->name('order');
     Route::resource('order', 'OrderController')->except(['create', 'index']);
 });

@@ -86,7 +86,7 @@
         async function deleteHandle(id) {
             const willDelete = await swal({
                 title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
+                text: "This Itinerary will be deleted permanently",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,

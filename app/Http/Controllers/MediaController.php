@@ -46,7 +46,12 @@ class MediaController extends Controller
         $uploadedImage = $this->storeImage($request->file('image'), $this->ITINERARY);
 
         if ($request->ajax()) {
-            return $uploadedImage;
+            return response()->json([
+                'id' => $uploadedImage->id,
+                'alt' => $uploadedImage->alt,
+                'thumbnail_url' => $uploadedImage->thumbnail_url,
+                'url' => $uploadedImage->url
+            ]);
         }
 
         return redirect()->back()->with('success', 'Data has been uploaded!');

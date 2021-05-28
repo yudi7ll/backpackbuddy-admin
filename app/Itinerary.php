@@ -41,10 +41,10 @@ class Itinerary extends Model
         $featuredPicture = $this->media()->wherePivot('is_featured', true);
 
         if ($featuredPicture->exists()) {
-            return $featuredPicture->first()->url;
+            return $featuredPicture->first()->url_api;
         }
 
-        return Storage::disk('public')->url('samples/0.webp');
+        return url('api/get-media/0.jpg');
     }
 
     /**
@@ -57,10 +57,10 @@ class Itinerary extends Model
         $featuredPicture = $this->media()->wherePivot('is_featured', true);
 
         if ($featuredPicture->exists()) {
-            return $featuredPicture->first()->thumbnail_url;
+            return $featuredPicture->first()->thumbnail_url_api;
         }
 
-        return Storage::disk('public')->url('samples/0.webp');
+        return url('api/get-media/0.jpg/thumb');
     }
 
 

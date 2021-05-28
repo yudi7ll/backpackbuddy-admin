@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'title' => 'BB Admin',
-    'title_prefix' => '',
+    'title' => 'Backpackbuddy',
+    'title_prefix' => 'Admin',
     'title_postfix' => '',
 
     /*
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>BB</b>&nbsp;Admin',
+    'logo' => 'Backpackbuddy',
     'logo_img' => 'logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'usermenu_enabled' => true,
+    'usermenu_enabled' => false,
     'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
@@ -85,7 +85,7 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
+    'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
 

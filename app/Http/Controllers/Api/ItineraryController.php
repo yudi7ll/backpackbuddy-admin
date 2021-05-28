@@ -26,7 +26,7 @@ class ItineraryController extends Controller
     {
         $data = $this->itinerary
             ->isPublished()
-            ->latest()
+            ->orderBy('id', 'DESC')
             ->offset($offset)
             ->limit($limit)
             ->get();

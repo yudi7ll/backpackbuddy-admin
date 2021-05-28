@@ -21,7 +21,7 @@
             <h3 class="mt-2">{{ App\Order::whereDay('created_at', now()->day)->count() }}</h3>
         </x-chart>
         <x-chart icon="fa-hand-holding-usd" bg="bg-success" class="mt-4 mt-md-0">
-            Daily Incomes
+            Total Incomes
             <h3 class="mt-2 mr-0 text-nowrap">Rp. {{ number_format(App\Order::sum('price', 0, ',', '.')) }}</h3>
         </x-chart>
         </div>

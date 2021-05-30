@@ -85,7 +85,7 @@
                                         title="Edit">
                                         <i class="fa fa-fw fa-pencil-alt"></i>
                                     </a>
-                                    <button type="button" onclick="deleteHandle('itinerary', {{ $itinerary->id }})"
+                                    <button type="button" onclick="deleteItineraryHandle({{ $itinerary->id }})"
                                         class="btn btn-sm btn-danger">
                                         <i class="fa fa-fw fa-trash"></i>
                                     </button>
@@ -118,7 +118,7 @@
         async function deleteItineraryHandle(id) {
             const willDelete = await swal({
                 title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
+                text: "This Itineary will be deleted permanently!",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -139,7 +139,7 @@
         async function deleteDistrictHandle(id) {
             const willDelete = await swal({
                 title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
+                text: "This district will be deleted permanently!",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,

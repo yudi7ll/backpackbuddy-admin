@@ -14,7 +14,7 @@
                     <th class="text-center text-nowrap">Itinerary Name</th>
                     <th class="text-center">Content</th>
                     <th class="text-center">Rating</th>
-                    <th class="text-center">Added at</th>
+                    <th class="text-center text-nowrap">Added at</th>
                     <th class="text-center">Action</th>
                 </thead>
                 <tbody>

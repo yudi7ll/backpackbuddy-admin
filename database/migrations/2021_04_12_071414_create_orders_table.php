@@ -22,6 +22,9 @@ class CreateOrdersTable extends Migration
             $table->string('price');
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();
+
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('itinerary_id')->references('id')->on('itineraries')->onDelete('cascade');
         });
     }
 

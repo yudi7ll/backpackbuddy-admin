@@ -11,7 +11,7 @@ class District extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'name', 'slug' ];
+    protected $fillable = ['name', 'slug'];
 
     /**
      * Get the Itinerary that belongs to the category.

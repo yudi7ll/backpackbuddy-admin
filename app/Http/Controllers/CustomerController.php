@@ -6,6 +6,7 @@ use App\Customer;
 use App\Http\Requests\CustomerInfoRequest;
 use App\Http\Requests\CustomerRequest;
 use App\Http\Requests\CustomerUpdatePasswordRequest;
+use DB;
 use Hash;
 use Session;
 

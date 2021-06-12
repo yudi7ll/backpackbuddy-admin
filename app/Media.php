@@ -35,6 +35,16 @@ class Media extends Model
         return url("api/get-media/{$this->name}/thumb");
     }
 
+    public function getFilesizeAttribute($filesize)
+    {
+        $bytes = 1024;
+        if ($filesize / $bytes / $bytes < 1) {
+            return number_format($filesize / $bytes, 1) . ' KB';
+        }
+
+        return number_format($filesize / $bytes / $bytes, 1) . ' MB';
+    }
+
     /**
      * Get the itineraries that belongs to this media file
      *

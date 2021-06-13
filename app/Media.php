@@ -37,12 +37,12 @@ class Media extends Model
 
     public function getFilesizeAttribute($filesize)
     {
-        $bytes = 1024;
-        if ($filesize / $bytes / $bytes < 1) {
-            return number_format($filesize / $bytes, 1) . ' KB';
+        $byte = 1024;
+        if ($filesize / $byte / $byte < 1) {
+            return number_format($filesize / $byte, 1) . ' KB';
         }
 
-        return number_format($filesize / $bytes / $bytes, 1) . ' MB';
+        return number_format($filesize / $byte / $byte, 1) . ' MB';
     }
 
     /**

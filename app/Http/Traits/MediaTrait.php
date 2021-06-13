@@ -4,7 +4,6 @@ namespace App\Http\Traits;
 
 use App\Media;
 use Intervention\Image\Facades\Image;
-use Storage;
 use Str;
 
 trait MediaTrait

@@ -107,35 +107,42 @@
                         Publish
                     </button>
                 </section>
-                <section>
-                    <h4>Featured Picture</h4>
-                    <hr>
-                    <div id="featured-picture-preview" class="row mb-2"></div>
-                    <button id="featured-picture-btn"
-                        class="btn btn-outline-success @error('featured_picture') is-invalid @enderror" type="button"
-                        data-toggle="modal" data-target="#gallery-modal" data-type="featured-picture">
-                        Select Pictures
-                    </button>
-                    <div id="input-featured-picture"></div>
+                <div class="row mt-4">
+                    <div class="col-12 col-md-6 col-lg-12">
+                        <section>
+                            <h4>Featured Picture</h4>
+                            <hr>
+                            <div id="featured-picture-preview" class="row mb-2"></div>
+                            <button id="featured-picture-btn"
+                                class="btn btn-outline-success @error('featured_picture') is-invalid @enderror"
+                                type="button" data-toggle="modal" data-target="#gallery-modal"
+                                                                  data-type="featured-picture">
+                                                                  Select Pictures
+                            </button>
+                            <div id="input-featured-picture"></div>
 
-                    @error('featured_picture')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </section>
-                <section class="mt-3">
-                    <h4>Gallery</h4>
-                    <hr>
-                    <div class="row mb-2" id="gallery-preview"></div>
-                    <button id="gallery-btn"
-                        class="btn btn-outline-success @error('galleries') is-invalid @enderror" type="button"
-                        data-toggle="modal" data-target="#gallery-modal" data-type="gallery">
-                        Select Pictures
-                    </button>
-                    <div id="input-gallery"></div>
-                    @error('galleries')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </section>
+                            @error('featured_picture')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </section>
+                    </div>
+                    <div class="mt-4 mt-md-0 mt-lg-4 col-12 col-md-6 col-lg-12">
+                        <section>
+                            <h4>Gallery</h4>
+                            <hr>
+                            <div class="row mb-2" id="gallery-preview"></div>
+                            <button id="gallery-btn"
+                                    class="btn btn-outline-success @error('galleries') is-invalid @enderror" type="button"
+                                                                                                             data-toggle="modal" data-target="#gallery-modal" data-type="gallery">
+                                Select Pictures
+                            </button>
+                            <div id="input-gallery"></div>
+                            @error('galleries')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </section>
+                    </div>
+                </div>
             </div>
         </div>
     </form>

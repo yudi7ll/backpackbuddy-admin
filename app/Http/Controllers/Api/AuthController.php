@@ -10,7 +10,6 @@ use App\Services\Api\AuthService;
 use Auth;
 use Hash;
 use Lang;
-use Validator;
 
 class AuthController extends Controller
 {
@@ -63,9 +62,10 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $token = $this->authService->createToken($customer, $data['remember_me']);
+        $response = $this->authService->createToken($customer, $data['remember_me']);
+        $response['username'] = $customer->username;
 
-        return response()->json($token);
+        return response()->json($response);
     }
 
     /**

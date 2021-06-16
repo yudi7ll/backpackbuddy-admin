@@ -9,7 +9,7 @@
 @section('content')
     <div class="alert alert-primary alert-block">
         <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>Selamat datang {{ Auth::user()->name }}</strong>
+        <strong>Welcome, {{ Auth::user()->name }}</strong>
     </div>
     <div class="row">
         <x-chart icon="fa-shopping-cart">

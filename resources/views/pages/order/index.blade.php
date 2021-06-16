@@ -12,7 +12,7 @@
                     <tr class="text-center">
                         <th>Code</th>
                         <th class="text-nowrap">Thumb</th>
-                        <th class="text-nowrap">Place name</th>
+                        <th class="text-nowrap">Place Name</th>
                         <th class="text-nowrap">Customer Name</th>
                         <th>Status</th>
                         <th class="text-nowrap">Order Date</th>
@@ -33,12 +33,12 @@
                                         alt="{{ $order->itinerary->place_name }}" />
                                 </a>
                             </td>
-                            <td class="text-center align-middle">
+                            <td class="text-center">
                                 <a class="text-dark" href="{{ route('itinerary.edit', $order->itinerary) }}">
                                     {{ $order->itinerary->place_name }}
                                 </a>
                             </td>
-                            <td class="text-center align-middle">
+                            <td class="text-center">
                                 <a class="text-dark" href="{{ route('customer.edit', $order->customer) }}">
                                     {{ $order->customer->name }}
                                 </a>

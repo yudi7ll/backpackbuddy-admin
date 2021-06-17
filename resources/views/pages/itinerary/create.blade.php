@@ -115,9 +115,8 @@
                             <div id="featured-picture-preview" class="row mb-2"></div>
                             <button id="featured-picture-btn"
                                 class="btn btn-outline-success @error('featured_picture') is-invalid @enderror"
-                                type="button" data-toggle="modal" data-target="#gallery-modal"
-                                                                  data-type="featured-picture">
-                                                                  Select Pictures
+                                type="button" data-toggle="modal" data-target="#gallery-modal" data-type="featured-picture">
+                                Select Pictures
                             </button>
                             <div id="input-featured-picture"></div>
 
@@ -132,8 +131,8 @@
                             <hr>
                             <div class="row mb-2" id="gallery-preview"></div>
                             <button id="gallery-btn"
-                                    class="btn btn-outline-success @error('galleries') is-invalid @enderror" type="button"
-                                                                                                             data-toggle="modal" data-target="#gallery-modal" data-type="gallery">
+                                class="btn btn-outline-success @error('galleries') is-invalid @enderror" type="button"
+                                data-toggle="modal" data-target="#gallery-modal" data-type="gallery">
                                 Select Pictures
                             </button>
                             <div id="input-gallery"></div>

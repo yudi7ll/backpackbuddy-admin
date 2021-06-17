@@ -26,12 +26,12 @@
                     @foreach ($categories as $key => $category)
                         <tr>
                             <td class="text-center">{{ $key + 1 }}</td>
-                            <td class="text-center">
+                            <td>
                                 <a class="text-dark" href="{{ route('category.edit', $category) }}">
                                     {{ $category->name }}
                                 </a>
                             </td>
-                            <td class="text-center">{{ $category->slug }}</td>
+                            <td>{{ $category->slug }}</td>
                             <td class="text-center">{{ $category->itineraries()->count() }}</td>
                             <td class="text-center">{{ $category->updated_at->diffForHumans() }}</td>
                             <td class="text-nowrap text-center">

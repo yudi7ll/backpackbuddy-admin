@@ -28,18 +28,18 @@
                                 </a>
                             </td>
                             <td class="text-center align-middle">
-                                <a href="{{ route('itinerary.edit', $order->itinerary) }}">
+                                <a href="{{ route('order.edit', $order) }}">
                                     <img class="img__featured" src="{{ $order->itinerary->featured_picture }}"
                                         alt="{{ $order->itinerary->place_name }}" />
                                 </a>
                             </td>
-                            <td class="text-center">
-                                <a class="text-dark" href="{{ route('itinerary.edit', $order->itinerary) }}">
+                            <td>
+                                <a class="text-dark" href="{{ route('order.edit', $order) }}">
                                     {{ $order->itinerary->place_name }}
                                 </a>
                             </td>
-                            <td class="text-center">
-                                <a class="text-dark" href="{{ route('customer.edit', $order->customer) }}">
+                            <td>
+                                <a class="text-dark" href="{{ route('order.edit', $order) }}">
                                     {{ $order->customer->name }}
                                 </a>
                             </td>

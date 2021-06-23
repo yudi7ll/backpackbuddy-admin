@@ -6,7 +6,7 @@
     <h1 class="title"><i class="fa fa-fw fa-tasks"></i> All Itineraries</h1>
     <hr>
     <section>
-        <a href="{{ route('itinerary.create') }}" class="btn btn-primary btn-sm mb-4">
+        <a href="{{ route('itinerary.create') }}" class="btn btn-primary mb-4">
             <i class="fa fa-fw fa-plus"></i>
             Add New Itinerary
         </a>

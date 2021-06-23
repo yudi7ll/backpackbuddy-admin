@@ -25,6 +25,7 @@ class ItineraryResource extends JsonResource
             'excerpt' => $this->excerpt,
             'average_rating' => $this->reviews()->pluck('rating')->avg(),
             'description' => $this->description,
+            'orders_count' => $this->orders_count,
             'reviews' => ReviewResource::collection($this->reviews),
             'media' => MediaResource::collection($this->media),
             'categories' => CategoryResource::collection($this->categories),

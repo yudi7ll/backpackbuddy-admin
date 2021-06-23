@@ -111,14 +111,14 @@
                                 @foreach ($itinerary->reviews as $key => $review)
                                     <tr>
                                         <td class="text-center">{{ $key + 1 }}</td>
-                                        <td class="text-center">
+                                        <td>
                                             <a class="text-dark field-hover"
                                                 href="{{ route('customer.edit', $review->customer) }}"
                                                 title="Edit customer {{ $review->customer->name }}">
                                                 {{ $review->customer->name }}
                                             </a>
                                         </td>
-                                        <td class="text-center">
+                                        <td>
                                             <a class="text-dark text-truncate d-inline-block"
                                                 href="{{ route('review.edit', $review) }}" title="Edit this review"
                                                 style="max-width: 250px;">

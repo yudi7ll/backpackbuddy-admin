@@ -16,8 +16,8 @@ class CreateItinerariesTable extends Migration
         Schema::create('itineraries', function (Blueprint $table) {
             $table->id();
             $table->string('place_name');
-            $table->string('price');
-            $table->string('sale')->nullable();
+            $table->bigInteger('price');
+            $table->bigInteger('sale')->nullable();
             $table->integer('view')->default(0);
             $table->text('excerpt')->nullable();
             $table->text('description')->nullable();

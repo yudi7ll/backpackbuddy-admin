@@ -21,26 +21,33 @@
                     @foreach ($reviews as $key => $review)
                         <tr>
                             <td class="text-center">{{ $key + 1 }}</td>
-                            <td class="text-center">
+                            <td>
                                 <a class="text-dark field-hover" href="{{ route('customer.edit', $review->customer) }}"
                                     title="Edit customer {{ $review->customer->name }}">
                                     {{ $review->customer->name }}
                                 </a>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <a class="text-dark field-hover" href="{{ route('itinerary.edit', $review->itinerary) }}"
                                     title="Edit itinerary {{ $review->itinerary->place_name }}">
                                     {{ $review->itinerary->place_name }}
                                 </a>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <a class="text-dark text-truncate d-inline-block"
                                     href="{{ route('review.edit', $review) }}" title="Edit this review"
                                     style="max-width: 250px;">
                                     {{ $review->content }}
                                 </a>
                             </td>
-                            <td class="text-center">{{ $review->rating }}</td>
+                            <td class="text-center">
+                                @for ($i=0; $i < $review->rating; $i++)
+                                    <i class="fas fa-fw fa-star text-warning"></i>
+                                @endfor
+                                @for ($i=0; $i < 5 - $review->rating; $i++)
+                                    <i class="far fa-fw fa-star"></i>
+                                @endfor
+                            </td>
                             <td class="text-center">{{ $review->created_at->diffForHumans() }}</td>
                             <td class="text-center text-nowrap align-middle">
                                 <a class="btn btn-primary btn-sm" href="{{ route('review.edit', $review) }}"

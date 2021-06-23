@@ -13,7 +13,6 @@
                     <th class="text-center">Name</th>
                     <th class="text-center">Username</th>
                     <th class="text-center">Email</th>
-                    <th class="text-center text-nowrap">Purchasing Count</th>
                     <th class="text-center text-nowrap">Joined at</th>
                     <th class="text-center">Action</th>
                 </thead>
@@ -21,18 +20,17 @@
                     @foreach ($customers as $key => $customer)
                         <tr>
                             <td class="text-center">{{ $key + 1 }}</td>
-                            <td class="text-center">
+                            <td>
                                 <a class="text-dark"
                                     href="{{ route('customer.edit', $customer) }}">{{ $customer['name'] }}</a>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <a class="text-dark"
                                     href="{{ route('customer.edit', $customer) }}">{{ $customer['username'] }}</a>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <a href="mailto:{{ $customer['email'] }}">{{ $customer['email'] }}</a>
                             </td>
-                            <td class="text-center">Coming Soon</td>
                             <td class="text-center">{{ $customer['created_at']->diffForHumans() }}</td>
                             <td class="text-center text-nowrap align-middle">
                                 <a class="btn btn-primary btn-sm" href="{{ route('customer.edit', $customer) }}"

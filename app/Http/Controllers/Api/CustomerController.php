@@ -72,7 +72,7 @@ class CustomerController extends Controller
         if (!Hash::check($data['old_password'], auth()->user()->password)) {
             return response()->json([
                 'errors' => [
-                    'password' => [Lang::get('validation.password')]
+                    'old_password' => [Lang::get('validation.password')]
                 ],
                 'message' => Lang::get('validation.password')
             ], 401);
@@ -91,10 +91,10 @@ class CustomerController extends Controller
      */
     public function updateInfo(CustomerInfoRequest $request)
     {
-        $customer = Auth::user();
-        $customer->name = $request->name;
-        $customer->save();
+        $data = $request->validated();
 
-        return Auth::user()->customerInfo()->update($request->except('name'));
+        return Auth::user()
+            ->customerInfo()
+            ->update($data);
     }
 }

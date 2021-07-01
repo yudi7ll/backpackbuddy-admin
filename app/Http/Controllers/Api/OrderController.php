@@ -27,10 +27,9 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index($filter)
+    public function index()
     {
-        $status = OrderService::toStatusCode($filter);
-        $data = Auth::user()->orders()->where('status', $status)->get();
+        $data = Auth::user()->orders()->latest()->get();
         return OrderResource::collection($data);
     }
 

@@ -29,8 +29,8 @@ Route::middleware('auth:api-customers')->group(function () {
         Route::get('/me/info', 'Api\CustomerController@showInfo');
     });
     Route::prefix('order')->group(function () {
+        Route::get('/', 'Api\OrderController@index');
         Route::get('/exist/{itineraryId}', 'Api\OrderController@isExist');
-        Route::get('/{filter}', 'Api\OrderController@index');
         Route::post('/', 'Api\OrderController@store');
     });
     Route::get('review/{itineraryId}', 'Api\ReviewController@index');

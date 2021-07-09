@@ -1,0 +1,17 @@
+name: backpackbuddy
+recipe: laravel
+config:
+  webroot: public
+  php: '7.4'
+  via: apache
+  database: mysql
+
+services:
+  phpmyadmin:
+    type: phpmyadmin
+    hosts:
+      - database
+
+proxy:
+  phpmyadmin:
+    - phpmyadmin.backpackbuddy.lndo.site

@@ -16,7 +16,6 @@ class OrderResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
             'itinerary_id' => $this->itinerary->id,
             'code' => $this->code,
             'status' => OrderService::toStatusName($this->status),
@@ -25,6 +24,7 @@ class OrderResource extends JsonResource
             'featured_picture' => $this->itinerary->featured_picture,
             'place_name' => $this->itinerary->place_name,
             'ordered_at' => $this->created_at->diffForHumans(),
+            'updated_at' => $this->updated_at->diffForHumans(),
         ];
     }
 }

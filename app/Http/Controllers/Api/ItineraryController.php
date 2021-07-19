@@ -33,6 +33,7 @@ class ItineraryController extends Controller
 
         $data = $this->itinerary
             ->isPublished()
+            ->with(['categories', 'districts'])
             ->withCount('orders')
             ->where('place_name', 'like', "%{$search}%")
             ->orderBy($orderBy, $order)

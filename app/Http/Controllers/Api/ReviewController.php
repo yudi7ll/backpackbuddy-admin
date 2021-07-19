@@ -39,7 +39,7 @@ class ReviewController extends Controller
 
         if ($reviews->where('customer_id', $data['customer_id'])->exists()) {
             return response()->json([
-                'message' => 'Tidak dapat mengirim ulasan lebih dari sekali'
+                'message' => 'Tidak dapat mengirim ulasan lebih dari sekali',
             ], 402);
         }
 

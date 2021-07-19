@@ -28,8 +28,8 @@ class ItineraryResource extends JsonResource
             'orders_count' => $this->orders_count,
             'reviews' => ReviewResource::collection($this->reviews),
             'media' => MediaResource::collection($this->media),
-            'categories' => CategoryResource::collection($this->categories),
-            'districts' => DistrictResource::collection($this->districts),
+            'categories' => $this->categories->pluck('name')->join(', '),
+            'districts' => $this->districts->pluck('name')->join(', '),
         ];
     }
 }

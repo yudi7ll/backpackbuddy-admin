@@ -272,7 +272,7 @@ return [
                     'shift' => 'ml-3',
                     'url' => 'order/failed',
                 ],
-            ]
+            ],
         ],
         ['header' => 'ITINERARY MANAGEMENT'],
         [

@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('password'),
-            'email_verified_at' => \Carbon\Carbon::now(),
+            'email_verified_at' => now(),
         ]);
     }
 }

@@ -22,13 +22,13 @@
                         <tr>
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td>
-                                <a class="text-dark field-hover" href="{{ route('customer.edit', $review->customer) }}"
+                                <a class="text-dark field-hover" href="{{ route('review.edit', $review) }}"
                                     title="Edit customer {{ $review->customer->name }}">
                                     {{ $review->customer->name }}
                                 </a>
                             </td>
                             <td>
-                                <a class="text-dark field-hover" href="{{ route('itinerary.edit', $review->itinerary) }}"
+                                <a class="text-dark field-hover" href="{{ route('review.edit', $review) }}"
                                     title="Edit itinerary {{ $review->itinerary->place_name }}">
                                     {{ $review->itinerary->place_name }}
                                 </a>

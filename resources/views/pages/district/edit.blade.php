@@ -70,7 +70,7 @@
                             <tr>
                                 <td class="text-center">{{ $key + 1 }}</td>
                                 <td class="text-center">
-                                    <img class="img-fluid"
+                                    <img class="img__featured"
                                         src="{{ $itinerary->media()->wherePivot('is_featured', true)->first()->thumbnail_url }}"
                                         alt="{{ $itinerary->media()->wherePivot('is_featured', true)->first()->alt }}" />
                                 </td>

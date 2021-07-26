@@ -7,11 +7,11 @@ Route::redirect('/', 'dashboard');
 Auth::routes(['register' => false]);
 
 Route::middleware('auth:web')->group(function () {
-    Route::get('/dashboard', 'AdminController@index')->name('dashboard');
+    Route::get('dashboard', 'AdminController@index')->name('dashboard');
     Route::resource('itinerary', 'ItineraryController');
     Route::resource('category', 'CategoryController')->except('create');
     Route::resource('district', 'DistrictController')->except('create');
-    Route::resource('review', 'ReviewController')->except('create');
+    Route::resource('review', 'ReviewController')->except('create', 'edit', 'update');
     Route::resource('customer', 'CustomerController');
     Route::prefix('customer')->group(function () {
         Route::put('{customer}/update-password', 'CustomerController@updatePassword')->name('customer.update-password');

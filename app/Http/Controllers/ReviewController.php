@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ReviewRequest;
 use App\Review;
 use Session;
 
@@ -28,27 +27,6 @@ class ReviewController extends Controller
     {
         $this->data['reviews'] = $this->review->all();
         return view('pages.review.index', $this->data);
-    }
-
-    public function edit(Review $review)
-    {
-        return view('pages.review.edit', compact('review'));
-    }
-
-    /**
-     * Update specified data
-     *
-     * @param ReviewRequest $request
-     * @param Review $review
-     *
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
-     */
-    public function update(ReviewRequest $request, Review $review)
-    {
-        $this->data = $request->all();
-        $review->update($this->data);
-
-        return redirect()->back()->with('success', 'Data has been updated!');
     }
 
     /**

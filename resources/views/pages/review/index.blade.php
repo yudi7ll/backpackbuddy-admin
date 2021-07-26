@@ -50,10 +50,6 @@
                             </td>
                             <td class="text-center">{{ $review->created_at->diffForHumans() }}</td>
                             <td class="text-center text-nowrap align-middle">
-                                <a class="btn btn-primary btn-sm" href="{{ route('review.edit', $review) }}"
-                                    title="Edit">
-                                    <i class="fa fa-fw fa-pencil-alt"></i>
-                                </a>
                                 <button type="button" onclick="handleDelete({{ $review->id }})"
                                     class="btn btn-sm btn-danger">
                                     <i class="fa fa-fw fa-trash"></i>

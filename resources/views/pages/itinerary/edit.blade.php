@@ -119,20 +119,12 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <a class="text-dark text-truncate d-inline-block"
-                                                href="{{ route('review.edit', $review) }}" title="Edit this review"
-                                                style="max-width: 250px;">
-                                                {{ $review->content }}
-                                            </a>
+                                            {{ $review->content }}
                                         </td>
                                         <td class="text-center">{{ $review->rating }}</td>
                                         <td class="text-center text-nowrap">{{ $review->created_at->diffForHumans() }}
                                         </td>
                                         <td class="text-center text-nowrap align-middle">
-                                            <a class="btn btn-primary btn-sm" href="{{ route('review.edit', $review) }}"
-                                                title="Edit">
-                                                <i class="fa fa-fw fa-pencil-alt"></i>
-                                            </a>
                                             <button type="button" onclick="reviewDelete('{{ $review->id }}')"
                                                 class="btn btn-sm btn-danger">
                                                 <i class="fa fa-fw fa-trash"></i>
@@ -202,7 +194,8 @@
                     <div class="row px-2" id="gallery-preview">
                         @foreach ($itinerary->media as $media)
                             <a class="d-block col-6 px-2 mb-3" href="{{ $media->url }}" target="_blank">
-                                <img class="img-fluid img--sm w-100" src="{{ $media->thumbnail_url }}" alt="{{ $media->name }}" />
+                                <img class="img-fluid img--sm w-100" src="{{ $media->thumbnail_url }}"
+                                    alt="{{ $media->name }}" />
                             </a>
                         @endforeach
                     </div>
@@ -291,6 +284,5 @@
                 }
             }
         };
-
     </script>
 @endpush

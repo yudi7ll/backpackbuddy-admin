@@ -18,7 +18,6 @@ class CreateMediaTable extends Migration
             $table->string('name');
             $table->string('alt');
             $table->integer('file_size');
-            $table->string('type')->default('Itinerary');
             $table->timestamps();
         });
     }

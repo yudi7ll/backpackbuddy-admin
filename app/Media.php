@@ -12,7 +12,7 @@ class Media extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'alt', 'file_size', 'type',
+        'name', 'alt', 'file_size'
     ];
 
     public function getUrlApiAttribute()

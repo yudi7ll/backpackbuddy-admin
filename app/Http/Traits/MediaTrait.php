@@ -9,14 +9,6 @@ use Str;
 trait MediaTrait
 {
     /**
-     * Media file types
-     *
-     * @var String
-     */
-    protected $ITINERARY = 'Itinerary';
-    protected $REVIEW = 'Review';
-
-    /**
      * This will return required data to be passed to database
      *
      * @param file $file
@@ -27,7 +19,6 @@ trait MediaTrait
     public function getMediaFileInfo($file, $fieldname)
     {
         $media['name'] = Str::random() . "-{$fieldname}.{$file->getClientOriginalExtension()}";
-        $media['type'] = $fieldname;
         $media['file_size'] = $file->getSize();
         $media['alt'] = $fieldname;
 
@@ -45,10 +36,10 @@ trait MediaTrait
     {
         // retrieve all required information
         $media = $this->getMediaFileInfo($file, $fieldname);
-        $thumbPath = storage_path("app/public/{$media['type']}/thumb");
+        $thumbPath = storage_path("app/public/itinerary/thumb");
 
         // move the file to the path
-        $file->storeAs("public/{$media['type']}", $media['name']);
+        $file->storeAs("public/itinerary", $media['name']);
 
         // check if the thumb path is exists
         if (!is_dir($thumbPath)) {

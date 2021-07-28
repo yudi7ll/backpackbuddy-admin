@@ -27,6 +27,10 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>Price</td>
+                                <td>: Rp. {{ number_format($order->price, 0, ',', '.') }}</td>
+                            </tr>
+                            <tr>
                                 <td>Status</td>
                                 <td>: {{ $order->status_name }}</td>
                             </tr>

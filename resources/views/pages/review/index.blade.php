@@ -22,23 +22,13 @@
                         <tr>
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td>
-                                <a class="text-dark field-hover" href="{{ route('review.edit', $review) }}"
-                                    title="Edit customer {{ $review->customer->name }}">
-                                    {{ $review->customer->name }}
-                                </a>
+                                {{ $review->customer->name }}
                             </td>
                             <td>
-                                <a class="text-dark field-hover" href="{{ route('review.edit', $review) }}"
-                                    title="Edit itinerary {{ $review->itinerary->place_name }}">
-                                    {{ $review->itinerary->place_name }}
-                                </a>
+                                {{ $review->itinerary->place_name }}
                             </td>
                             <td>
-                                <a class="text-dark text-truncate d-inline-block"
-                                    href="{{ route('review.edit', $review) }}" title="Edit this review"
-                                    style="max-width: 250px;">
-                                    {{ $review->content }}
-                                </a>
+                                {{ $review->content }}
                             </td>
                             <td class="text-center">
                                 @for ($i=0; $i < $review->rating; $i++)

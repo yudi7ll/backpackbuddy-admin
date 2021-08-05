@@ -8,6 +8,9 @@ use Str;
 
 trait MediaTrait
 {
+
+    public $ITINERARY = "Itinerary";
+
     /**
      * This will return required data to be passed to database
      *
@@ -36,10 +39,10 @@ trait MediaTrait
     {
         // retrieve all required information
         $media = $this->getMediaFileInfo($file, $fieldname);
-        $thumbPath = storage_path("app/public/itinerary/thumb");
+        $thumbPath = storage_path("app/public/" . $this->ITINERARY . "/thumb");
 
         // move the file to the path
-        $file->storeAs("public/itinerary", $media['name']);
+        $file->storeAs("public/" . $this->ITINERARY, $media['name']);
 
         // check if the thumb path is exists
         if (!is_dir($thumbPath)) {

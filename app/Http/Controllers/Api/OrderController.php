@@ -41,8 +41,9 @@ class OrderController extends Controller
     public function store(MakeOrderRequest $request)
     {
         $data = $request->all();
+        $itinerary = Itinerary::find($request->itinerary_id);
         $data['code'] = uniqid();
-        $data['price'] = Itinerary::find($request->itinerary_id)->price;
+        $data['price'] = $itinerary->sale ?: $itinerary->price;
 
         if (Auth::user()->orders()->where('itinerary_id', $data['itinerary_id'])->exists()) {
             return response()->json(['message' => 'This itinerary already in orders'], 402);

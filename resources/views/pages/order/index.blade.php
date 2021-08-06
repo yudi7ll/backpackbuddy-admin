@@ -10,6 +10,7 @@
             <table id="datatables" class="table table-striped table-bordered">
                 <thead>
                     <tr class="text-center">
+                        <th>No</th>
                         <th>Code</th>
                         <th class="text-nowrap">Thumb</th>
                         <th class="text-nowrap">Place Name</th>
@@ -20,8 +21,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($orders as $order)
+                    @foreach ($orders as $key => $order)
                         <tr>
+                            <td class="text-center align-middle">
+                                {{ $key + 1 }}
+                            </td>
                             <td class="text-center align-middle">
                                 <a class="text-dark" href="{{ route('order.edit', $order) }}">
                                     {{ $order->code }}

@@ -97,7 +97,7 @@ class OrderController extends Controller
             $order->status = 4;
             $order->save();
 
-            return response()->json(['status' => true]);
+            return new OrderResource($order);
         } catch (Exception $e) {
             return response()->json([
                 'status' => false,

@@ -7,8 +7,10 @@ use App\Http\Requests\Api\MakeOrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Itinerary;
 use App\Order;
-use App\Services\OrderService;
 use Auth;
+use Exception;
+use Illuminate\Http\Request;
+use Storage;
 
 class OrderController extends Controller
 {
@@ -34,6 +36,27 @@ class OrderController extends Controller
     }
 
     /**
+     * Get the receipt image
+     *
+     * @param string $filename
+     * @return Binary
+     */
+    public function getReceiptImage($filename)
+    {
+        $storage = Storage::disk('public');
+        $path = "receipt/$filename";
+
+        if (!$storage->exists($path)) {
+            abort(404);
+        }
+
+        $file = $storage->get($path);
+        $type = $storage->mimeType($path);
+
+        return response()->make($file)->header('Content-Type', $type);
+    }
+
+    /**
      * Make a new order by given data
      *
      * @return \Illuminate\Http\JsonResponse
@@ -50,6 +73,37 @@ class OrderController extends Controller
         }
 
         return Auth::user()->orders()->create($data);
+    }
+
+    /**
+     * Upload the payment proof screenshot
+     *
+     * @param App\Order $order
+     */
+    public function uploadReceipt(Request $request, Order $order)
+    {
+        $request->validate([
+            'receipt' => 'required|image|mimes:jpeg,png,gif,webp|max:9000'
+        ]);
+
+        try {
+            $file = $request->file('receipt');
+            $filename = "order-{$order->id}.{$file->extension()}";
+
+            $file->storeAs("public/receipt", $filename);
+
+            $order->receipt = $filename;
+            $order->receipt_uploaded_at = now();
+            $order->status = 4;
+            $order->save();
+
+            return response()->json(['status' => true]);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ])->status(500);
+        }
     }
 
     public function isExist($itineraryId)

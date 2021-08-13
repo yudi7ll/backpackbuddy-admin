@@ -23,7 +23,7 @@
                                 <td>Product</td>
                                 <td>
                                     : <a href="{{ route('itinerary.edit', $order->itinerary) }}"
-                                         target="_blank">{{ $order->itinerary->place_name }}</a>
+                                        target="_blank">{{ $order->itinerary->place_name }}</a>
                                 </td>
                             </tr>
                             <tr>
@@ -105,6 +105,7 @@
                             <label for="status">Status</label>
                             <select class="form-control" id="status" aria-label="Change order status" name="status">
                                 <option {{ $order->status == 1 ? 'selected' : '' }} value="1">Pending Payment</option>
+                                <option {{ $order->status == 4 ? 'selected' : '' }} value="4">Pending Confirm</option>
                                 <option {{ $order->status == 2 ? 'selected' : '' }} value="2">Completed</option>
                                 <option {{ $order->status == 3 ? 'selected' : '' }} value="3">Failed</option>
                             </select>
@@ -114,6 +115,22 @@
                             Update
                         </button>
                     </form>
+                </section>
+                <section class="mt-4">
+                    <h4>Payment Receipt</h4>
+                    <hr>
+                    @if ($order->receipt_uploaded_at)
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>Uploaded At</div>
+                            <div>: {{ $order->receipt_uploaded_at->diffForHumans() }}</div>
+                        </div>
+                        <div class="mt-3">
+                            <img class="img-fluid" src="{{ $order->receipt }}"
+                                alt="Receipt Of Payment Order {$order->id}" />
+                        </div>
+                    @else
+                        <div class="text-danger">No Receipt Uploaded</div>
+                    @endif
                 </section>
             </div>
         </div>

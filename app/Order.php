@@ -20,7 +20,7 @@ class Order extends Model
      *
      * @var array
      */
-    protected $dates = ['completed_at'];
+    protected $dates = ['completed_at', 'receipt_uploaded_at'];
 
     /**
      * Get the status name based on status code
@@ -40,6 +40,16 @@ class Order extends Model
     public function getCompletedAtAttribute($value)
     {
         return $value ? Carbon::create($value)->toDayDateTimeString() : '-';
+    }
+
+    /**
+     * Get the receipt of payment image
+     *
+     * @return binary
+     */
+    public function getReceiptAttribute($filename)
+    {
+        return url("api/get-receipt/$filename");
     }
 
     /**

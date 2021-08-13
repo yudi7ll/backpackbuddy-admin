@@ -18,13 +18,14 @@ class OrderService
         $statusName = Str::slug($statusName);
 
         switch ($statusName) {
-            case 'pending':
             case 'pending-payment':
                 return 1;
             case 'completed':
                 return 2;
             case 'failed':
                 return 3;
+            case 'pending-confirm':
+                return 4;
             default:
                 return null;
         }
@@ -45,6 +46,8 @@ class OrderService
                 return 'Completed';
             case 3:
                 return 'Failed';
+            case 4:
+                return 'Pending Confirm';
             default:
                 return null;
         }

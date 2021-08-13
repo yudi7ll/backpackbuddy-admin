@@ -22,8 +22,7 @@
                             <tr>
                                 <td>Product</td>
                                 <td>
-                                    : <a href="{{ route('itinerary.edit', $order->itinerary) }}"
-                                        target="_blank">{{ $order->itinerary->place_name }}</a>
+                                    : <a href="{{ route('itinerary.edit', $order->itinerary) }}" target="_blank">{{ $order->itinerary->place_name }}</a>
                                 </td>
                             </tr>
                             <tr>
@@ -57,18 +56,15 @@
                         <tbody>
                             <tr>
                                 <td>Name</td>
-                                <td>: <a href="{{ route('customer.edit', $order->customer) }}"
-                                        target="_blank">{{ $order->customer->name }}</a></td>
+                                <td>: <a href="{{ route('customer.edit', $order->customer) }}" target="_blank">{{ $order->customer->name }}</a></td>
                             </tr>
                             <tr>
                                 <td>Username</td>
-                                <td>: <a href="{{ route('customer.edit', $order->customer) }}"
-                                        target="_blank">{{ $order->customer->username }}</a></td>
+                                <td>: <a href="{{ route('customer.edit', $order->customer) }}" target="_blank">{{ $order->customer->username }}</a></td>
                             </tr>
                             <tr>
                                 <td>Email</td>
-                                <td>: <a
-                                        href="mailto://{{ $order->customer->email }}">{{ $order->customer->email }}</a>
+                                <td>: <a href="mailto://{{ $order->customer->email }}">{{ $order->customer->email }}</a>
                                 </td>
                             </tr>
                             <tr>
@@ -99,15 +95,15 @@
                 <section>
                     <form action="{{ route('order.update', $order) }}" method="POST">
                         @csrf
-                        @method('PUT')
+                        @method('PATCH')
                         <input type="hidden" name="id" value="{{ $order->id }}">
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select class="form-control" id="status" aria-label="Change order status" name="status">
-                                <option {{ $order->status == 1 ? 'selected' : '' }} value="1">Pending Payment</option>
-                                <option {{ $order->status == 4 ? 'selected' : '' }} value="4">Pending Confirm</option>
-                                <option {{ $order->status == 2 ? 'selected' : '' }} value="2">Completed</option>
-                                <option {{ $order->status == 3 ? 'selected' : '' }} value="3">Failed</option>
+                                <option {{ $order->status === 1 ? 'selected' : '' }} value="1">Pending Payment</option>
+                                <option {{ $order->status === 4 ? 'selected' : '' }} value="4">Pending Confirm</option>
+                                <option {{ $order->status === 2 ? 'selected' : '' }} value="2">Completed</option>
+                                <option {{ $order->status === 3 ? 'selected' : '' }} value="3">Failed</option>
                             </select>
                         </div>
                         <button class="btn btn-primary w-100" type="submit">
@@ -125,8 +121,7 @@
                             <div>: {{ $order->receipt_uploaded_at->diffForHumans() }}</div>
                         </div>
                         <div class="mt-3">
-                            <img class="img-fluid" src="{{ $order->receipt }}"
-                                alt="Receipt Of Payment Order {$order->id}" />
+                            <img class="img-fluid" src="{{ $order->receipt }}" alt="Receipt Of Payment Order {$order->id}" />
                         </div>
                     @else
                         <div class="text-danger">No Receipt Uploaded</div>

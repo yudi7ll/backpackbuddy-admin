@@ -56,14 +56,14 @@ class OrderController extends Controller
      */
     public function update(OrderRequest $request, Order $order)
     {
-        $this->data = $request->all();
+        $data = $request->all();
 
         // If the status is completed add timestamp
-        if ($this->data['status'] == 2) {
+        if ($data['status'] == 2) {
             $order->completed_at = now();
         }
 
-        $order->status = $this->data['status'];
+        $order->status = $data['status'];
         $order->save();
 
         return redirect()->back()->with('success', 'Data updated successfully');

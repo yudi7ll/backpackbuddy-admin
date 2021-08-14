@@ -8,5 +8,5 @@ lando start
 lando composer install
 npm install
 npm run dev
-./fresh
+./fresh.sh
 ```

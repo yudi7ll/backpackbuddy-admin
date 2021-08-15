@@ -255,10 +255,16 @@ return [
                     'url' => 'order',
                 ],
                 [
-                    'text' => 'Pending',
+                    'text' => 'Pending Payment',
                     'icon' => 'fa fa-fw fa-clock',
                     'shift' => 'ml-3',
-                    'url' => 'order/pending',
+                    'url' => 'order/pending-payment',
+                ],
+                [
+                    'text' => 'Pending Confirm',
+                    'icon' => 'fa fa-fw fa-clock',
+                    'shift' => 'ml-3',
+                    'url' => 'order/pending-confirm',
                 ],
                 [
                     'text' => 'Completed',

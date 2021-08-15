@@ -33,12 +33,6 @@ class OrderController extends Controller
             $orders = $orders->where('status', $status);
         }
 
-        if (strtolower($filter) === 'pending') {
-            $orders = $orders
-                ->where('status', OrderService::toStatusCode("$filter-payment"))
-                ->orWhere('status', OrderService::toStatusCode("$filter-confirm"));
-        }
-
         $orders = $orders->get();
         $filter = OrderService::toStatusName($status) ?: 'All Orders';
 

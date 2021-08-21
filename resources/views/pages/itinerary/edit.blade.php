@@ -11,8 +11,7 @@
         {{ $itinerary->place_name }}
     </h1>
     <hr>
-    <form id="itinerary-form" action="{{ route('itinerary.update', $itinerary) }}" method="POST"
-        enctype="multipart/form-data">
+    <form id="itinerary-form" action="{{ route('itinerary.update', $itinerary) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row">
@@ -21,9 +20,7 @@
                     <input type="hidden" name="id" value="{{ $itinerary->id }}" />
                     <div class="form-group">
                         <label for="input-place_name" class="col-form-label">Place Name:</label>
-                        <input type="text" class="form-control @error('place_name') is-invalid @enderror"
-                            id="input-place_name" name="place_name"
-                            value="{{ old('place_name', $itinerary->place_name) }}" />
+                        <input type="text" class="form-control @error('place_name') is-invalid @enderror" id="input-place_name" name="place_name" value="{{ old('place_name', $itinerary->place_name) }}" />
 
                         @error('place_name')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -32,11 +29,9 @@
                     <div class="form-group">
                         <label for="input-category">Category:</label>
                         <div>
-                            <select class="@error('categories') is-invalid @enderror" name="categories[]"
-                                id="input-category" multiple style="width: 100%;">
+                            <select class="@error('categories') is-invalid @enderror" name="categories[]" id="input-category" multiple style="width: 100%;">
                                 @foreach ($categories as $category)
-                                    <option {{ (bool) $category->itineraries->find($itinerary) ? 'selected' : '' }}
-                                        value="{{ $category->slug }}">
+                                    <option {{ (bool) $category->itineraries->find($itinerary) ? 'selected' : '' }} value="{{ $category->slug }}">
                                         {{ $category->name }}
                                     </option>
                                 @endforeach
@@ -49,12 +44,9 @@
                     <div class="form-group">
                         <label for="input-district">District:</label>
                         <div>
-                            <select class="@error('districts') is-invalid @enderror" name="districts[]" id="input-district"
-                                multiple style="width: 100%;">
+                            <select class="@error('districts') is-invalid @enderror" name="districts[]" id="input-district" multiple style="width: 100%;">
                                 @foreach ($districts as $district)
-                                    <option
-                                        {{ (bool) $district->itineraries->find($itinerary) ? 'selected="selected"' : '' }}
-                                        value="{{ $district->slug }}">
+                                    <option {{ (bool) $district->itineraries->find($itinerary) ? 'selected="selected"' : '' }} value="{{ $district->slug }}">
                                         {{ $district->name }}
                                     </option>
                                 @endforeach
@@ -67,8 +59,7 @@
                     </div>
                     <div class="form-group">
                         <label for="input-price" class="col-form-label">Price:</label>
-                        <input type="text" class="form-control @error('price') is-invalid @enderror" id="input-price"
-                            name="price" value="{{ old('price', $itinerary->price) }}" />
+                        <input type="text" class="form-control @error('price') is-invalid @enderror" id="input-price" name="price" value="{{ old('price', $itinerary->price) }}" />
 
                         @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -76,8 +67,7 @@
                     </div>
                     <div class="form-group">
                         <label for="input-sale" class="col-form-label">Sale:</label>
-                        <input type="text" class="form-control @error('sale') is-invalid @enderror" id="input-sale"
-                            name="sale" value="{{ old('sale', $itinerary->sale) }}" />
+                        <input type="text" class="form-control @error('sale') is-invalid @enderror" id="input-sale" name="sale" value="{{ old('sale', $itinerary->sale) }}" />
 
                         @error('sale')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -85,13 +75,11 @@
                     </div>
                     <div class="form-group">
                         <label for="input-excerpt" class="col-form-label">Excerpt:</label>
-                        <textarea class="form-control" id="input-excerpt" rows="3"
-                            name="excerpt">{{ old('excerpt', $itinerary->excerpt) }}</textarea>
+                        <textarea class="form-control" id="input-excerpt" rows="3" name="excerpt">{{ old('excerpt', $itinerary->excerpt) }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="input-description" class="col-form-label">Description:</label>
-                        <textarea class="form-control" id="input-description" rows="5"
-                            name="description">{{ old('description', $itinerary->description) }}</textarea>
+                        <textarea class="form-control" id="input-description" rows="5" name="description">{{ old('description', $itinerary->description) }}</textarea>
                     </div>
                 </section>
                 <section class="mt-4">
@@ -105,30 +93,28 @@
                                 <th class="text-center">Content</th>
                                 <th class="text-center">Rating</th>
                                 <th class="text-center text-nowrap">Added at</th>
-                                <th class="text-center">Action</th>
                             </thead>
                             <tbody>
                                 @foreach ($itinerary->reviews as $key => $review)
                                     <tr>
                                         <td class="text-center">{{ $key + 1 }}</td>
                                         <td>
-                                            <a class="text-dark field-hover"
-                                                href="{{ route('customer.edit', $review->customer) }}"
-                                                title="Edit customer {{ $review->customer->name }}">
+                                            <a class="text-dark field-hover" href="{{ route('customer.show', $review->customer) }}" title="Edit customer {{ $review->customer->name }}">
                                                 {{ $review->customer->name }}
                                             </a>
                                         </td>
                                         <td>
                                             {{ $review->content }}
                                         </td>
-                                        <td class="text-center">{{ $review->rating }}</td>
-                                        <td class="text-center text-nowrap">{{ $review->created_at->diffForHumans() }}
+                                        <td class="text-center">
+                                            @for ($i = 0; $i < $review->rating; $i++)
+                                                <i class="fas fa-fw fa-star text-warning"></i>
+                                            @endfor
+                                            @for ($i = 0; $i < 5 - $review->rating; $i++)
+                                                <i class="far fa-fw fa-star"></i>
+                                            @endfor
                                         </td>
-                                        <td class="text-center text-nowrap align-middle">
-                                            <button type="button" onclick="reviewDelete('{{ $review->id }}')"
-                                                class="btn btn-sm btn-danger">
-                                                <i class="fa fa-fw fa-trash"></i>
-                                            </button>
+                                        <td class="text-center text-nowrap">{{ $review->created_at->diffForHumans() }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -176,14 +162,11 @@
 
                     <div id="featured-picture-preview">
                         <a href="{{ $itinerary->featured_picture }}" target="_blank">
-                            <img class="img-fluid w-100" id="featured_picture-preview"
-                                src="{{ $itinerary->featured_picture_thumb }}" alt="{{ $itinerary->place_name }}" />
+                            <img class="img-fluid w-100" id="featured_picture-preview" src="{{ $itinerary->featured_picture_thumb }}" alt="{{ $itinerary->place_name }}" />
                         </a>
                     </div>
                     <div class="mt-3 d-flex justify-content-between">
-                        <button id="featured-picture-btn"
-                            class="btn btn-outline-success @error('featured_picture') is-invalid @enderror" type="button"
-                            data-toggle="modal" data-target="#gallery-modal" data-type="featured-picture">
+                        <button id="featured-picture-btn" class="btn btn-outline-success @error('featured_picture') is-invalid @enderror" type="button" data-toggle="modal" data-target="#gallery-modal" data-type="featured-picture">
                             Change Picture
                         </button>
                     </div>
@@ -194,14 +177,12 @@
                     <div class="row px-2" id="gallery-preview">
                         @foreach ($itinerary->media as $media)
                             <a class="d-block col-6 px-2 mb-3" href="{{ $media->url }}" target="_blank">
-                                <img class="img-fluid img--sm w-100" src="{{ $media->thumbnail_url }}"
-                                    alt="{{ $media->name }}" />
+                                <img class="img-fluid img--sm w-100" src="{{ $media->thumbnail_url }}" alt="{{ $media->name }}" />
                             </a>
                         @endforeach
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button id="gallery-btn" class="btn btn-outline-success @error('galleries') is-invalid @enderror"
-                            type="button" data-toggle="modal" data-target="#gallery-modal" data-type="gallery">
+                        <button id="gallery-btn" class="btn btn-outline-success @error('galleries') is-invalid @enderror" type="button" data-toggle="modal" data-target="#gallery-modal" data-type="gallery">
                             Change Pictures
                         </button>
                     </div>
@@ -256,27 +237,6 @@
                 try {
                     await axios.delete(`/itinerary/${id}`)
                     document.location.href = '/itinerary';
-                } catch (e) {
-                    await swal("Error! Something have been wrong!", {
-                        icon: "error"
-                    });
-                }
-            }
-        };
-
-        async function reviewDelete(id) {
-            const willDelete = await swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            });
-
-            if (willDelete) {
-                try {
-                    await axios.delete(`/review/${id}`)
-                    document.location.href = '{{ url()->current() }}';
                 } catch (e) {
                     await swal("Error! Something have been wrong!", {
                         icon: "error"

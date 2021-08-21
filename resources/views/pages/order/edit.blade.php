@@ -56,11 +56,11 @@
                         <tbody>
                             <tr>
                                 <td>Name</td>
-                                <td>: <a href="{{ route('customer.edit', $order->customer) }}" target="_blank">{{ $order->customer->name }}</a></td>
+                                <td>: <a href="{{ route('customer.show', $order->customer) }}" target="_blank">{{ $order->customer->name }}</a></td>
                             </tr>
                             <tr>
                                 <td>Username</td>
-                                <td>: <a href="{{ route('customer.edit', $order->customer) }}" target="_blank">{{ $order->customer->username }}</a></td>
+                                <td>: <a href="{{ route('customer.show', $order->customer) }}" target="_blank">{{ $order->customer->username }}</a></td>
                             </tr>
                             <tr>
                                 <td>Email</td>

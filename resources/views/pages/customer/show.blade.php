@@ -115,7 +115,6 @@
                             <th>Review</th>
                             <th>Rating</th>
                             <th>Posted at</th>
-                            <th>Action</th>
                         </thead>
                         <tbody>
                             @foreach ($customer->reviews as $key => $review)
@@ -132,11 +131,6 @@
                                         @endfor
                                     </td>
                                     <td>{{ $review->created_at->diffForHumans() }}</td>
-                                    <td class="text-center">
-                                        <a href="{{ route('review.show', $review) }}" class="btn btn-primary btn-sm">
-                                            <i class="fa fa-fw fa-eye"></i>
-                                        </a>
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

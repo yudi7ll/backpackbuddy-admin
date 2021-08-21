@@ -36,6 +36,6 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return view('pages.customer.edit', compact('customer'));
+        return view('pages.customer.show', compact('customer'));
     }
 }

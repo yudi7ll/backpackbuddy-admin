@@ -1,9 +1,7 @@
-
 <div id="media-edit" class="container mb-3">
     <div class="row">
         <div class="col-12 col-lg-8">
-            <img id="media-edit-img" class="img-fluid border w-100" src="{{ $media->url }}"
-                alt="{{ $media->alt }}" />
+            <img id="media-edit-img" class="img-fluid border w-100" src="{{ $media->url }}" alt="{{ $media->alt }}" />
         </div>
         <div class="col-12 col-lg-4 mt-3 mt-lg-0">
             <div class="form-group">
@@ -16,8 +14,7 @@
             </div>
             <div class="form-group">
                 <label for="input-alt">Alt : </label>
-                <input id="input-alt" class="form-control" type="text" name="alt"
-                    value="{{ $media->alt }}" />
+                <input id="input-alt" class="form-control" type="text" name="alt" value="{{ $media->alt }}" />
             </div>
             <div class="d-flex justify-content-between align-items-center">
                 <button id="submit-btn" class="btn btn-primary" type="button" disabled>
@@ -58,5 +55,4 @@
         axios.delete('/media/{{ $media->id }}')
             .then(() => document.location.reload());
     });
-
 </script>

@@ -121,7 +121,9 @@
                             <div>: {{ $order->receipt_uploaded_at->diffForHumans() }}</div>
                         </div>
                         <div class="mt-3">
-                            <img class="img-fluid" src="{{ $order->receipt }}" alt="Receipt Of Payment Order {$order->id}" />
+                            <a href="{{ $order->receipt }}">
+                                <img class="img-fluid" src="{{ $order->receipt }}" alt="Receipt Of Payment Order" />
+                            </a>
                         </div>
                     @else
                         <div class="text-danger">No Receipt Uploaded</div>

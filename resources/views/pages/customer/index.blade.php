@@ -21,26 +21,19 @@
                         <tr>
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td>
-                                <a class="text-dark"
-                                    href="{{ route('customer.edit', $customer) }}">{{ $customer['name'] }}</a>
+                                <a class="text-dark" href="{{ route('customer.show', $customer) }}">{{ $customer['name'] }}</a>
                             </td>
                             <td>
-                                <a class="text-dark"
-                                    href="{{ route('customer.edit', $customer) }}">{{ $customer['username'] }}</a>
+                                <a class="text-dark" href="{{ route('customer.show', $customer) }}">{{ $customer['username'] }}</a>
                             </td>
                             <td>
                                 <a href="mailto:{{ $customer['email'] }}">{{ $customer['email'] }}</a>
                             </td>
                             <td class="text-center">{{ $customer['created_at']->diffForHumans() }}</td>
                             <td class="text-center text-nowrap align-middle">
-                                <a class="btn btn-primary btn-sm" href="{{ route('customer.edit', $customer) }}"
-                                    title="Edit">
-                                    <i class="fa fa-fw fa-pencil-alt"></i>
+                                <a class="btn btn-primary btn-sm" href="{{ route('customer.show', $customer) }}" title="Edit">
+                                    <i class="fa fa-fw fa-eye"></i>
                                 </a>
-                                <button type="button" onclick="deleteCustomerHandle({{ $customer->id }})"
-                                    class="btn btn-sm btn-danger">
-                                    <i class="fa fa-fw fa-trash"></i>
-                                </button>
                             </td>
                         </tr>
                     @endforeach
@@ -71,6 +64,5 @@
                 }
             }
         };
-
     </script>
 @endpush

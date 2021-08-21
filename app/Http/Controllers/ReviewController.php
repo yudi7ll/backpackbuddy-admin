@@ -28,18 +28,4 @@ class ReviewController extends Controller
         $this->data['reviews'] = $this->review->all();
         return view('pages.review.index', $this->data);
     }
-
-    /**
-     * Delete specified data
-     *
-     * @param \App\Review $review
-     *
-     * @return \Illuminate\Support\Facades\Session
-     */
-    public function destroy(Review $review)
-    {
-        $review->delete();
-
-        return Session::flash('success', 'Data has been deleted!');
-    }
 }

@@ -11,8 +11,8 @@ Route::middleware('auth:web')->group(function () {
     Route::resource('itinerary', 'ItineraryController');
     Route::resource('category', 'CategoryController')->except('create');
     Route::resource('district', 'DistrictController')->except('create');
-    Route::resource('review', 'ReviewController')->except('create', 'edit', 'update');
-    Route::resource('customer', 'CustomerController');
+    Route::get('review', 'ReviewController@index')->name('review.index');
+    Route::resource('customer', 'CustomerController')->only(['index', 'show']);
     Route::resource('media', 'MediaController');
     Route::get('get-media/{filename}/{thumb?}', 'MediaController@getMedia');
     Route::get('order/{filter?}', 'OrderController@index')->name('order');

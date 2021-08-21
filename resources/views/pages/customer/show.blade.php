@@ -111,10 +111,10 @@
                     <table class="table table-stripped table-bordered" id="datatables2">
                         <thead>
                             <th>No</th>
-                            <th>Place Name</th>
+                            <th class="text-nowrap">Place Name</th>
                             <th>Review</th>
                             <th>Rating</th>
-                            <th>Posted at</th>
+                            <th class="text-nowrap">Posted at</th>
                         </thead>
                         <tbody>
                             @foreach ($customer->reviews as $key => $review)
@@ -130,7 +130,7 @@
                                             <i class="far fa-fw fa-star"></i>
                                         @endfor
                                     </td>
-                                    <td>{{ $review->created_at->diffForHumans() }}</td>
+                                    <td class="text-nowrap">{{ $review->created_at->diffForHumans() }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

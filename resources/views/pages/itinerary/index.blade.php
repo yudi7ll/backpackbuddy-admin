@@ -30,35 +30,28 @@
                             <td class="text-center align-middle">{{ $key + 1 }}</td>
                             <td class="text-center align-middle">
                                 <a href="{{ route('itinerary.edit', $itinerary) }}">
-                                    <img class="img__featured"
-                                         src="{{ $itinerary->featured_picture_thumb }}"
-                                        alt="{{ $itinerary->place_name }}" />
+                                    <img class="img__featured" src="{{ $itinerary->featured_picture_thumb }}" alt="{{ $itinerary->place_name }}" />
                                 </a>
                             </td>
                             <td class="text-nowrap align-middle">
                                 <a class="text-dark" href="{{ route('itinerary.edit', $itinerary) }}">
                                     {{ $itinerary->place_name }}
                                     @if (!$itinerary->is_published)
-                                        -
-                                        <i class="fa fa-fw fa-file"></i>
-                                        Draft
+                                        - <i class="fa fa-fw fa-file"></i> Draft
                                     @endif
                                 </a>
                             </td>
                             <td class="text-nowrap align-middle">
-                                Rp.
-                                {{ number_format($itinerary->sale ? $itinerary->sale : $itinerary->price, 0, ',', '.') }}
+                                Rp. {{ number_format($itinerary->sale ? $itinerary->sale : $itinerary->price, 0, ',', '.') }}
                             </td>
                             <td class="align-middle">{{ $itinerary->categories->pluck('name')->join(', ') }}</td>
                             <td class="align-middle">{{ $itinerary->districts->pluck('name')->join(', ') }}</td>
                             <td class="text-nowrap align-middle">{{ $itinerary->updated_at->diffForHumans() }}</td>
                             <td class="text-center text-nowrap align-middle">
-                                <a class="btn btn-primary btn-sm" href="{{ route('itinerary.edit', $itinerary) }}"
-                                    title="Edit">
+                                <a class="btn btn-primary btn-sm" href="{{ route('itinerary.edit', $itinerary) }}" title="Edit">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </a>
-                                <button type="button" onclick="deleteHandle({{ $itinerary->id }})"
-                                    class="btn btn-sm btn-danger">
+                                <button type="button" onclick="deleteHandle({{ $itinerary->id }})" class="btn btn-sm btn-danger">
                                     <i class="fa fa-fw fa-trash"></i>
                                 </button>
                             </td>
@@ -76,7 +69,6 @@
             $(document).ready(function() {
                 $('#itinerary-modal').modal('show');
             });
-
         </script>
     @endpush
 @endif
@@ -103,6 +95,5 @@
                 }
             }
         };
-
     </script>
 @endpush

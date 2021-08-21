@@ -144,10 +144,10 @@
                             <strong>Visibility: </strong> {{ $itinerary->is_published ? 'Published' : 'Draft' }}
                         </li>
                         <li class="list-group-item">
-                            <strong>View: </strong> Coming Soon
+                            <strong>View: </strong> {{ $itinerary->view }}
                         </li>
                         <li class="list-group-item">
-                            <strong>Sold: </strong> Coming soon
+                            <strong>Sold: </strong> {{ $itinerary->sold }}
                         </li>
                         <li class="list-group-item">
                             <strong>Created at: </strong> {{ $itinerary->created_at->diffForHumans() }}

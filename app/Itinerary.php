@@ -62,6 +62,16 @@ class Itinerary extends Model
         return url('api/get-media/0.jpg/thumb');
     }
 
+    /**
+     * Get the sold count
+     *
+     * @return integer
+     */
+    public function getSoldAttribute()
+    {
+        return $this->orders()->where('status', 2)->count();
+    }
+
 
     /**
      * The attributes that should be cast.

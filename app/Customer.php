@@ -2,13 +2,15 @@
 
 namespace App;
 
+use App\Notifications\customerPasswordResetNotification;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as AuthCanResetPassword;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Passport\HasApiTokens;
 
-class Customer extends Model implements AuthenticatableContract
+class Customer extends Model implements AuthenticatableContract, AuthCanResetPassword
 {
     use HasApiTokens;
     use Authenticatable;
@@ -20,7 +22,7 @@ class Customer extends Model implements AuthenticatableContract
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'email', 'password',
+        'name', 'username', 'email', 'password', 'password_reset_token', 'password_reset_token_expire_at'
     ];
 
     /**
@@ -60,5 +62,13 @@ class Customer extends Model implements AuthenticatableContract
     public function orders()
     {
         return $this->hasMany('App\Order');
+    }
+
+    /**
+     * Password Reset
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new customerPasswordResetNotification($token));
     }
 }

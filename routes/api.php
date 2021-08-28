@@ -19,6 +19,10 @@ Route::post('register', 'Api\AuthController@register');
 Route::get('get-media/{filename}/{thumb?}', 'Api\MediaController@getMedia');
 Route::get('get-receipt/{filename}', 'Api\OrderController@getReceiptImage');
 
+// Reset Password
+Route::post('password/forgot-password', 'Api\CustomerController@forgotPassword');
+Route::post('password/reset', 'Api\CustomerController@resetPassword');
+
 Route::middleware('auth:api-customers')->group(function () {
     Route::post('logout', 'Api\AuthController@logout');
     Route::prefix('customer')->group(function () {

@@ -9,6 +9,7 @@ lando composer install
 npm install
 npm run dev
 ./fresh.sh
+lando db-import backpackbuddy.gz
 ```
 
 ### Screenshots

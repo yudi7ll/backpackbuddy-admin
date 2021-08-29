@@ -5,7 +5,7 @@
 @section('content')
     <h1 class="title">
         <i class="fa fa-fw fa-pencil-alt"></i>
-        Edit Customer / {{ $customer->name }}
+        Customer Info / {{ $customer->name }}
     </h1>
     <hr>
     <div class="row">

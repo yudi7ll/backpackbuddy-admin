@@ -21,20 +21,20 @@ services:
             - ./nginx.conf:/etc/nginx/conf.d/default.conf
         depends_on:
             - app
-            - mysql
+            - db
         networks:
             - laravel
 
-    mysql:
-        image: mysql:5.7
+    db:
+        image: mariadb
         restart: unless-stopped
         volumes:
             - dbdata:/var/lib/mysql
         environment:
-            MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
-            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-            MYSQL_ALLOW_EMPTY_PASSWORD: false
+            MARIADB_DATABASE: ${DB_DATABASE}
+            MARIADB_PASSWORD: ${DB_PASSWORD}
+            MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
+            MARIADB_ALLOW_EMPTY_PASSWORD: false
         healthcheck:
             test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
